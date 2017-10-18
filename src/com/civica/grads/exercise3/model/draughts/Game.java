@@ -14,7 +14,30 @@ public class Game implements Describable {
 	private Player[] player ; 
 	final private ArrayList<Move> moves = new ArrayList<Move>() ;
 	
+	/**
+	 * This operation updates the board with the data from the moves;
+	 */
+	private void updateBoard()
+	{
+		throw new RuntimeException("This code is missing"); //TODO
+	}
 	
+	public int getNumberOfMoves() {
+		return moves.size();
+	}
+
+	public boolean hasMoves() {
+		return moves.isEmpty();
+	}
+
+	public boolean addMove(Move e) {
+		return moves.add(e);
+	}
+
+	public void clearMoves() {
+		moves.clear();
+	}
+
 	public Game(int size, Player[] player) {
 		try {
 			checkBoardSizeValue(size) ; 
