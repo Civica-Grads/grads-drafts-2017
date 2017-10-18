@@ -11,9 +11,9 @@ import com.civica.grads.exercise3.interfaces.Describable;
 public class Counter implements Describable {
 	private final Colour colour ; 
 	private CounterType type ; 
-	private int[][] position ; 
+	private int[] position ; 
 	
-	public Counter(Colour colour, CounterType type, int[][] position) {
+	public Counter(Colour colour, CounterType type, int[] position) {
 		this.colour = colour ; 
 		this.type = type ; 
 		this.position = position ; 
@@ -30,12 +30,12 @@ public class Counter implements Describable {
 	}
 
 
-	public int[][] getPosition() {
+	public int[] getPosition() {
 		return position;
 	}
 
 
-	public void setPosition(int[][] position) {
+	public void setPosition(int[] position) {
 		this.position = position;
 	}
 
