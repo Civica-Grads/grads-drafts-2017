@@ -1,4 +1,4 @@
-package com.civica.grads.exercise3.model;
+package com.civica.grads.exercise3.model.draughts;
 
 import java.io.IOException;
 
