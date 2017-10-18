@@ -9,7 +9,7 @@ import com.civica.grads.exercise3.model.draughts.BoardTile;
 public class BoardTileTest {
 
 	public static void main(String[] args) {
-		BoardTile boardTile = new BoardTile(Colour.BLACK, true, Colour.WHITE) ;
+		BoardTile boardTile = new BoardTile(Colour.BLACK, null, true) ;
 		try {
 			boardTile.describe(System.out);
 		} catch (IOException e) {
