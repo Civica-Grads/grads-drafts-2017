@@ -1,21 +1,44 @@
 package com.civica.grads.exercise3.model.draughts;
 
-import java.io.IOException;
+import static org.junit.Assert.*;
+
+import java.util.Arrays;
+
+import org.junit.Test;
 
 import com.civica.grads.exercise3.enums.Colour;
-import com.civica.grads.exercise3.enums.CounterType;
-import com.civica.grads.exercise3.model.draughts.BoardTile;
 
 public class BoardTileTest {
 
-	public static void main(String[] args) {
-		BoardTile boardTile = new BoardTile(Colour.BLACK, null, true) ;
-		try {
-			boardTile.describe(System.out);
-		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		} ; 
+	@Test
+	public void outputToStringBoardTileTest() {
+		BoardTile tile= new BoardTile(Colour.WHITE,null, false);
+		String expected= "BoardTile [colour=WHITE, position=null, occupied=false]";
+		assertEquals(expected, tile.toString());
 	}
+	
+	@Test
+	public void isOccupiedFalseTest(){
+		BoardTile tile= new BoardTile(Colour.BLACK, null, false);
+		assertFalse(tile.isOccupied());
+		
+	}
+	
+	@Test
+	public void isOccupiedTrueTest(){
+		BoardTile tile= new BoardTile(Colour.BLACK, null, true);
+		assertTrue(tile.isOccupied());
+		
+	}
+	
+	@Test
+	public void getColourBoardTileTest(){
+		BoardTile tile= new BoardTile(Colour.WHITE,null, true);
+		Colour expected= Colour.WHITE;
+		assertEquals(expected, tile.getColour());
+		
+	}
+	
+
 
 }
