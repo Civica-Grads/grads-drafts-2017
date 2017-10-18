@@ -26,9 +26,6 @@ public abstract class Player implements Describable {
 		return type;
 	}
 
-	public void setType(PlayerType type) {
-		this.type = type;
-	}
 
 	@Override
 	public void describe(OutputStream out) throws IOException {
