@@ -7,6 +7,7 @@ public class DraughtsGame extends Game {
 
 	public DraughtsGame(int size, Player[] player) {
 		super(size, player);
+		
 	}
 	
 

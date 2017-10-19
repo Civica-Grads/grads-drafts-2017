@@ -10,10 +10,25 @@ import com.civica.grads.boardgames.interfaces.DeterminesNextMove;
 import com.civica.grads.boardgames.model.player.Player;
 
 public abstract class Game implements Describable,DeterminesNextMove {
-	final private Board board ; 
-	private static int startingPlayerCounters ; 
-	private Player[] player ; 
-	final private ArrayList<TurnRecord> turnRecords = new ArrayList<>() ;
+	
+	final protected Board board ; 
+	protected static int startingPlayerCounters ; 
+	protected Player[] player ; 
+	final protected ArrayList<TurnRecord> turnRecords = new ArrayList<>() ;
+	
+	
+
+	public Game(int size, Player[] player) {
+		try {
+			checkBoardSizeValue(size) ; 
+		}
+		catch (IllegalArgumentException e) {
+			e.printStackTrace();
+			System.exit(-1);
+		}
+		this.board = new Board(size) ;
+		this.player = player ; 
+	}
 	
 	/**
 	 * Sets the board up for the type of game.
@@ -45,18 +60,6 @@ public abstract class Game implements Describable,DeterminesNextMove {
 		turnRecords.clear();
 	}
 
-	public Game(int size, Player[] player) {
-		try {
-			checkBoardSizeValue(size) ; 
-		}
-		catch (IllegalArgumentException e) {
-			e.printStackTrace();
-			System.exit(-1);
-		}
-		this.board = new Board(size) ;
-		this.player = player ; 
-	}
-	
 	private static void checkBoardSizeValue(int size) throws IllegalArgumentException {
 		if (size <  8 || size > 12 || (size % 2) == 1) {
 			throw new IllegalArgumentException("Board size is incorrect.") ; 
@@ -69,6 +72,7 @@ public abstract class Game implements Describable,DeterminesNextMove {
 	public Board getBoard() {
 		return board;
 	}
+	
 
 	public int getStartingPlayerCounters() {
 		return startingPlayerCounters;
