@@ -8,42 +8,47 @@ import java.util.Arrays;
 import com.civica.grads.exercise3.interfaces.Describable;
 
 public class Board implements Describable {
-	private final int size ; 
-	private final BoardTile[][] tiles ; 
-	private final ArrayList<Counter> whiteCounters = new ArrayList<Counter>() ; 
-	private final ArrayList<Counter> blackCounters = new ArrayList<Counter>() ;
+
+	private Counter[][] array;
 	
-	public Board(int size) {
-		this.size = size ; 
-		tiles = new BoardTile[size][size] ;  
+
+	public Board(Counter[][] array) {
+		this.array=array ; 
+		 
 	}
 	
-	public int getSize() {
-		return size;
+	public Counter[][] getArray() {
+		return array;
+	}
+	
+	public boolean isOccupied(int x, int y) {
+		if(this.array[x][y].equals(null)){
+			return false;
+		}else{
+			return true;
+		}
 	}
 
-	public BoardTile[][] getTiles() {
-		return tiles;
-	}
-
-	public ArrayList<Counter> getWhiteCounters() {
-		return whiteCounters;
-	}
-
-	public ArrayList<Counter> getBlackCounters() {
-		return blackCounters;
-	}
-
+	
 	@Override
 	public void describe(OutputStream out) throws IOException {
 		out.write(this.toString().getBytes()) ;  
 	}
 
+
+
+
 	@Override
 	public String toString() {
-		return "Board [size=" + size + ", tiles=" + Arrays.toString(tiles) + ", whiteCounters=" + whiteCounters
-				+ ", blackCounters=" + blackCounters + "]";
+		return "Board [array=" + Arrays.toString(array) + "]";
 	}
+
+
+
+
+
+
+
 
 	
 	
