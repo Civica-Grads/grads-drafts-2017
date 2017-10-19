@@ -6,9 +6,10 @@ import java.util.ArrayList;
 import java.util.Arrays;
 
 import com.civica.grads.exercise3.interfaces.Describable;
+import com.civica.grads.exercise3.interfaces.DeterminesNextMove;
 import com.civica.grads.exercise3.model.player.Player;
 
-public class Game implements Describable {
+public class Game implements Describable,DeterminesNextMove {
 	final private Board board ; 
 	private static int startingPlayerCounters ; 
 	private Player[] player ; 
@@ -61,6 +62,12 @@ public class Game implements Describable {
 	public String toString() {
 		return "Game [board=" + board + ", startingPlayerCounters=" + startingPlayerCounters + ", player="
 				+ Arrays.toString(player) + ", moves=" + moves + "]";
+	}
+
+	@Override
+	public Move evaluate(Board board) {
+		// TODO Auto-generated method stub
+		return null;
 	}
 	
 }

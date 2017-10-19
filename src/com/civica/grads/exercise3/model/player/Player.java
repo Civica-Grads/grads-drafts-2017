@@ -5,10 +5,12 @@ import java.io.OutputStream;
 
 import com.civica.grads.exercise3.enums.PlayerType;
 import com.civica.grads.exercise3.interfaces.Describable;
+import com.civica.grads.exercise3.interfaces.DeterminesNextMove;
 
-public abstract class Player implements Describable {
+//TODO: Change Player to an interface and create a private abtract.
+public abstract class Player implements Describable,DeterminesNextMove {
 	private String name ; 
-	protected PlayerType type ; 
+	protected PlayerType type ; //FIXME Isn't this a final?
 	
 	public Player(String name) {
 		this.name = name ; 
