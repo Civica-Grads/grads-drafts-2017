@@ -25,7 +25,7 @@ import com.civica.grads.boardgames.interfaces.Storable;
 // FIXME How do I get the next move?
 // FIXME Which square is this on?
 // FIXME WHich piece is this?
-public class Move implements Describable,Storable {
+public class MoveRecord implements Describable,Storable {
 	
 	private final Position positionStart;
 	private final Position positionFinish;
@@ -40,7 +40,7 @@ public class Move implements Describable,Storable {
 	 * @param player
 	 * @param counterType
 	 */
-	public Move(Position positionStart, Position positionFinish, Colour player, CounterType counterType) {
+	public MoveRecord(Position positionStart, Position positionFinish, Colour player, CounterType counterType) {
 		super();
 		this.positionStart = positionStart;
 		this.positionFinish = positionFinish;

@@ -4,13 +4,13 @@ import static org.junit.Assert.*;
 
 import org.junit.Test;
 
-import com.civica.grads.boardgames.model.Move;
+import com.civica.grads.boardgames.model.MoveRecord;
 
-public class MoveTest {
+public class MoveRecordTest {
 
 	@Test
 	public void toStringExpectedValue() {
-		Move move = new Move();
+		MoveRecord move = new MoveRecord();
 		
 		String expected = "Move []";
 		String actual = move.toString();

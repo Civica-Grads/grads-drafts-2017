@@ -13,7 +13,7 @@ public abstract class Game implements Describable,DeterminesNextMove {
 	final private Board board ; 
 	private static int startingPlayerCounters ; 
 	private Player[] player ; 
-	final private ArrayList<Move> moves = new ArrayList<Move>() ;
+	final private ArrayList<MoveRecord> moves = new ArrayList<MoveRecord>() ;
 	
 	/**
 	 * Sets the board up for the type of game.
@@ -37,7 +37,7 @@ public abstract class Game implements Describable,DeterminesNextMove {
 		return moves.isEmpty();
 	}
 
-	public boolean addMove(Move e) {
+	public boolean addMove(MoveRecord e) {
 		return moves.add(e);
 	}
 
@@ -78,7 +78,7 @@ public abstract class Game implements Describable,DeterminesNextMove {
 		return player;
 	}
 
-	public ArrayList<Move> getMoves() {
+	public ArrayList<MoveRecord> getMoves() {
 		return moves;
 	}
 
@@ -94,7 +94,7 @@ public abstract class Game implements Describable,DeterminesNextMove {
 	}
 
 	@Override
-	public Move evaluate(Board board) {
+	public MoveRecord evaluate(Board board) {
 		// TODO Auto-generated method stub
 		return null;
 	}

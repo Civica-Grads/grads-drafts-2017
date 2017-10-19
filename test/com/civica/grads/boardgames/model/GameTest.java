@@ -8,7 +8,7 @@ import org.junit.Test;
 
 import com.civica.grads.boardgames.model.Board;
 import com.civica.grads.boardgames.model.Game;
-import com.civica.grads.boardgames.model.Move;
+import com.civica.grads.boardgames.model.MoveRecord;
 import com.civica.grads.boardgames.model.player.Player;
 
 public class GameTest {
@@ -65,8 +65,8 @@ public class GameTest {
 		Player[] players = new Player[2];
 		Game game = new Game(8, players);
 		
-		ArrayList<Move> expected = new ArrayList<>();
-		ArrayList<Move> actual = game.getMoves();
+		ArrayList<MoveRecord> expected = new ArrayList<>();
+		ArrayList<MoveRecord> actual = game.getMoves();
 		
 		assertEquals(expected.size(), actual.size());
 		
