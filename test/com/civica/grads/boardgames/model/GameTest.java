@@ -11,7 +11,7 @@ import com.civica.grads.boardgames.model.Game;
 import com.civica.grads.boardgames.model.MoveRecord;
 import com.civica.grads.boardgames.model.player.Player;
 
-public class GameTest {
+public abstract class GameTest {
 
 	/*
 	 * Checking that the contents of the Board objects are the same, as we cannot compare two objects.
@@ -19,7 +19,7 @@ public class GameTest {
 	@Test
 	public void getBoardExpectedReturn() {
 		Player[] players = new Player[2];
-		Game game = new Game(8, players);
+		Game game = createGame(8, players);
 		
 		int expected = new Board(8).getSize();
 		int actual = game.getBoard().getSize();
@@ -28,10 +28,14 @@ public class GameTest {
 	}
 	
 	
+	abstract protected Game createGame(int i, Player[] players);
+	
+
+
 	@Test
 	public void getStartingPlayerCountersExpectedReturn() {
 		Player[] players = new Player[2];
-		Game game = new Game(8, players);
+		Game game = createGame(8, players);
 		
 		int expected = 24;
 		int actual = game.getStartingPlayerCounters();
@@ -47,7 +51,7 @@ public class GameTest {
 	@Test
 	public void getPlayerExpectedReturn() {
 		Player[] players = new Player[2];
-		Game game = new Game(8, players);
+		Game game = createGame(8, players);
 		
 		Player[] expected = new Player[2];
 		Player[] actual = game.getPlayer();
@@ -63,19 +67,18 @@ public class GameTest {
 	public void getMovesExpectedReturn() {
 		//ArrayList<Move> moves = new ArrayList<>();
 		Player[] players = new Player[2];
-		Game game = new Game(8, players);
+		Game game = createGame(8, players);
 		
 		ArrayList<MoveRecord> expected = new ArrayList<>();
-		ArrayList<MoveRecord> actual = game.getMoves();
 		
-		assertEquals(expected.size(), actual.size());
+		assertEquals(expected.size(), game.getNumberOfTurns());
 		
 	}
 	
 	@Test
 	public void toStringExpectedReturn() {
 		Player[] players = new Player[2];
-		Game game = new Game(8, players);
+		Game game = createGame(8, players);
 		
 		String expected = "Game [board=Board [size=8, tiles=[[Lcom.civica.grads.exercise3.model."
 				+ "draughts.BoardTile;@6e5e91e4, [Lcom.civica.grads.exercise3.model.draughts.BoardTile;@2cdf8d8a,"

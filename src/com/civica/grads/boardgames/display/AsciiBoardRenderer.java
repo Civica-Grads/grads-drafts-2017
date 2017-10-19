@@ -3,6 +3,8 @@ package com.civica.grads.boardgames.display;
 import java.io.PrintStream;
 import java.util.ArrayList;
 
+import org.junit.Ignore;
+
 import com.civica.grads.boardgames.interfaces.Renderer;
 import com.civica.grads.boardgames.model.Board;
 import com.civica.grads.boardgames.model.BoardTile;
@@ -51,12 +53,13 @@ public class AsciiBoardRenderer implements Renderer {
 	}
 
 	@Override
+	@Ignore
 	public void render(Board board) throws RenderException {
 		
-		BoardTile[][] boardTiles = board.getTiles();
-		ArrayList<Counter> whiteCounters = board.getWhiteCounters() ; 
-		ArrayList<Counter> blackCounters = board.getBlackCounters() ;
-		
+//		BoardTile[][] boardTiles = board.getTiles();
+//		ArrayList<Counter> whiteCounters = board.getWhiteCounters() ; 
+//		ArrayList<Counter> blackCounters = board.getBlackCounters() ;
+//		
 		
 		
 	
