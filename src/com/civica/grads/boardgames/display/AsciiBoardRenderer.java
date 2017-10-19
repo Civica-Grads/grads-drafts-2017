@@ -16,7 +16,9 @@ public abstract class AsciiBoardRenderer implements Renderer {
 	protected int dimension;
 	public final PrintStream out ;
 	
-
+	private static char UNICODE_1 = '▄' ; // FIXME LOWER HALF BLOCK 9604	U+2584
+	private static char UNICODE_2 = '▀' ; // FIXME UPPER HALF BLOCK U+2580
+	private static char UNICODE_3 = '█' ; // FIXME FULL BLOCK U+2588
 
 	protected void determineBoardDisplaySize(int size) {
 		dimension = (5*size)+4;
@@ -34,13 +36,13 @@ public abstract class AsciiBoardRenderer implements Renderer {
 			for(int j = 0 ; j < dimension; j++) {
 				textBoard[i][j] = ' ' ;
 				if ((i == 0) ) {
-					textBoard[i][j] = '▄' ; 
+					textBoard[i][j] = UNICODE_1 ; 
 				}
 				if ( i == dimension - 1)  {
-					textBoard[i][j] = '▀' ; 
+					textBoard[i][j] = UNICODE_2 ; 
 				}
 				if (((j == 0) || (j == dimension-1)) && (i != 0) && (i != dimension - 1)) {
-					textBoard[i][j] = '█' ; 
+					textBoard[i][j] = UNICODE_3 ; 
 				} 
 			}
 		}
@@ -49,17 +51,17 @@ public abstract class AsciiBoardRenderer implements Renderer {
 		for(int i =2  ; i < dimension - 2 ; i++) {
 			for(int j = 0 ; j < dimension - 2 ; j++) {
 				if ( (((j+8)%10 == 0)||((j+4)%10 ==0)) && ((i-7)%10 <=4) && (i>6)) {
-                    textBoard[j][i] = '█' ; 
+                    textBoard[j][i] = UNICODE_3 ; 
 				}
 				if ( (((j+3)%10 == 0)||((j-1)%10 ==0)) && ((i-2)%10 <=4) && (j>6)) {
-                    textBoard[j][i] = '█' ; 
+                    textBoard[j][i] = UNICODE_3 ; 
                 
 				}
 				if ( (((j+8)%10 == 0)||((j+4)%10 ==0)) && ((i-7)%10 <=4) && (i>6)) {
-                    textBoard[i][j] = '█' ; 
+                    textBoard[i][j] = UNICODE_3 ; 
 				}
 				if ( (((j+3)%10 == 0)||((j-1)%10 ==0)) && ((i-2)%10 <=4) && (j>6)) {
-                    textBoard[i][j] = '█' ; 
+                    textBoard[i][j] = UNICODE_3 ; 
                 
 				}
 				
