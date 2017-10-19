@@ -11,21 +11,19 @@ import com.civica.grads.exercise3.model.player.Player;
 public class GameTest {
 
 	/*
-	 * Checking two objects?
-	 * 
+	 * Checking that the contents of the Board objects are the same, as we cannot compare two objects.
+	 * */
 	@Test
 	public void getBoardExpectedReturn() {
 		Player[] players = new Player[2];
 		Game game = new Game(8, players);
 		
-		Board expected = new Board(8);
-		Board actual = game.getBoard();
+		int expected = new Board(8).getSize();
+		int actual = game.getBoard().getSize();
 		
-		//assertTrue(expected.equals(actual));
-		//assertThat(actual, samePropertyValuesAs(expected));
 		assertEquals(expected, actual);
 	}
-	*/
+	
 	
 	@Test
 	public void getStartingPlayerCountersExpectedReturn() {
@@ -38,6 +36,11 @@ public class GameTest {
 		assertEquals(expected, actual);
 	}
 	
+	/**
+	 * @author team-mattdamon
+	 * 
+	 * Tests that the getPlayer method returns the expected value.
+	 */
 	@Test
 	public void getPlayerExpectedReturn() {
 		Player[] players = new Player[2];
@@ -49,8 +52,10 @@ public class GameTest {
 		assertArrayEquals(expected, actual);
 	}
 	
-	/*
-	 *  compare two array lists?
+	/**
+	 *  Can't compare two ArrayList objects or the type of objects it holds due to type erasure, so we compare the size
+	 *  to make sure it made the ArrayList correctly.
+	 *  */
 	@Test
 	public void getMovesExpectedReturn() {
 		//ArrayList<Move> moves = new ArrayList<>();
@@ -60,8 +65,25 @@ public class GameTest {
 		ArrayList<Move> expected = new ArrayList<>();
 		ArrayList<Move> actual = game.getMoves();
 		
-		assertArrayEquals(expected, actual);
+		assertEquals(expected.size(), actual.size());
 		
 	}
-	*/
+	
+	@Test
+	public void toStringExpectedReturn() {
+		Player[] players = new Player[2];
+		Game game = new Game(8, players);
+		
+		String expected = "Game [board=Board [size=8, tiles=[[Lcom.civica.grads.exercise3.model."
+				+ "draughts.BoardTile;@6e5e91e4, [Lcom.civica.grads.exercise3.model.draughts.BoardTile;@2cdf8d8a,"
+				+ " [Lcom.civica.grads.exercise3.model.draughts.BoardTile;@30946e09, [Lcom.civica.grads.exercise3"
+				+ ".model.draughts.BoardTile;@5cb0d902, [Lcom.civica.grads.exercise3.model.draughts.BoardTile;@46fbb2c1"
+				+ ", [Lcom.civica.grads.exercise3.model.draughts.BoardTile;@1698c449, [Lcom.civica.grads.exercise3."
+				+ "model.draughts.BoardTile;@5ef04b5, [Lcom.civica.grads.exercise3.model.draughts.BoardTile;@5f4da5c3],"
+				+ " whiteCounters=[], blackCounters=[]], startingPlayerCounters=24, player=[null, null], moves=[]]";
+		String actual = game.toString();
+		
+		assertEquals(expected, actual);
+	}
+	
 }
