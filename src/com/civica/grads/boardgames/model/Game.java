@@ -18,6 +18,11 @@ public abstract class Game implements Describable,DeterminesNextMove {
 	
 	
 
+	/**
+	 * Constructor for game that takes in a int size and  and array of player objects. Also checks for IAE exception to catch wrong board sizes
+	 * @param size is the size of the board of type int
+	 * @param player is an array of player objects
+	 */
 	public Game(int size, Player[] player) {
 		try {
 			checkBoardSizeValue(size) ; 
@@ -56,18 +61,15 @@ public abstract class Game implements Describable,DeterminesNextMove {
 		return turnRecords.add(e);
 	}
 
+	/**
+	 * clears all the turns stored in the turnsRecord arraylist
+	 */
 	public void clearTurns() {
 		turnRecords.clear();
 	}
 
-	private static void checkBoardSizeValue(int size) throws IllegalArgumentException {
-		if (size <  8 || size > 12 || (size % 2) == 1) {
-			throw new IllegalArgumentException("Board size is incorrect.") ; 
-		}
-		else {
-			startingPlayerCounters = (size - 2)*(size/2) ; 
-		}
-	}
+	
+	abstract protected void checkBoardSizeValue(int size) throws IllegalArgumentException ;
 	
 	public Board getBoard() {
 		return board;

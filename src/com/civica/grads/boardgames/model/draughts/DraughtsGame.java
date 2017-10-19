@@ -13,8 +13,27 @@ public class DraughtsGame extends Game {
 
 	@Override
 	protected void initialiseBoardForGame() {
-		// TODO Auto-generated method stub
+		
+		
 
 	}
+
+
+	/**
+	 * This method checks the board size and throws an exception if the size is inappropriate 
+	 * @param size is of type int
+	 * @throws IllegalArgumentException if board size is wrong
+	 */
+	protected void checkBoardSizeValue(int size) throws IllegalArgumentException {
+		// TODO Auto-generated method stub
+		if (size <  8 || size > 12 || (size % 2) == 1) {
+			throw new IllegalArgumentException("Board size is incorrect.") ; 
+		}
+		else {
+			startingPlayerCounters = (size - 2)*(size/2) ; 
+		}
+	}
+	
+	
 
 }
