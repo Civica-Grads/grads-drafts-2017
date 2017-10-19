@@ -26,7 +26,7 @@ public abstract class GameTest {
 	
 	// THEN
 	assertThat(game).isNotNull();
-	assertThat(game.hasTurns()).as("Should't be any turns").isFalse();
+	assertThat(game.hasTurns()).as("Shouldn't be any turns").isFalse();
 	assertThat(game.getTurns()).isNotNull().isEmpty();	
 	}
 	
