@@ -13,7 +13,7 @@ public abstract class Game implements Describable,DeterminesNextMove {
 	final private Board board ; 
 	private static int startingPlayerCounters ; 
 	private Player[] player ; 
-	final private ArrayList<MoveRecord> moves = new ArrayList<MoveRecord>() ;
+	final private ArrayList<TurnRecord> turnRecords = new ArrayList<>() ;
 	
 	/**
 	 * Sets the board up for the type of game.
@@ -29,20 +29,20 @@ public abstract class Game implements Describable,DeterminesNextMove {
 		throw new RuntimeException("This code is missing"); //TODO
 	}
 	
-	public int getNumberOfMoves() {
-		return moves.size();
+	public int getNumberOfTurns() {
+		return turnRecords.size();
 	}
 
-	public boolean hasMoves() {
-		return moves.isEmpty();
+	public boolean hasTurns() {
+		return turnRecords.isEmpty();
 	}
 
-	public boolean addMove(MoveRecord e) {
-		return moves.add(e);
+	public boolean addTurn(TurnRecord e) {
+		return turnRecords.add(e);
 	}
 
-	public void clearMoves() {
-		moves.clear();
+	public void clearTurns() {
+		turnRecords.clear();
 	}
 
 	public Game(int size, Player[] player) {
@@ -78,8 +78,8 @@ public abstract class Game implements Describable,DeterminesNextMove {
 		return player;
 	}
 
-	public ArrayList<MoveRecord> getMoves() {
-		return moves;
+	public ArrayList<TurnRecord> getTurns() {
+		return turnRecords;
 	}
 
 	@Override
@@ -87,11 +87,12 @@ public abstract class Game implements Describable,DeterminesNextMove {
 		out.write(this.toString().getBytes()) ;  
 	}
 
+	
 	@Override
 	public String toString() {
-		return "Game [board=" + board + ", startingPlayerCounters=" + startingPlayerCounters + ", player="
-				+ Arrays.toString(player) + ", moves=" + moves + "]";
+		return "Game [board=" + board + ", player=" + Arrays.toString(player) + ", turnRecords=" + turnRecords + "]";
 	}
+
 
 	@Override
 	public MoveRecord evaluate(Board board) {
