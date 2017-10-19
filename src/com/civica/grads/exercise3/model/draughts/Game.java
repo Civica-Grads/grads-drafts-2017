@@ -9,11 +9,17 @@ import com.civica.grads.exercise3.interfaces.Describable;
 import com.civica.grads.exercise3.interfaces.DeterminesNextMove;
 import com.civica.grads.exercise3.model.player.Player;
 
-public class Game implements Describable,DeterminesNextMove {
+public abstract class Game implements Describable,DeterminesNextMove {
 	final private Board board ; 
 	private static int startingPlayerCounters ; 
 	private Player[] player ; 
 	final private ArrayList<Move> moves = new ArrayList<Move>() ;
+	
+	/**
+	 * Sets the board up for the type of game.
+	 */
+	abstract protected void initialiseBoardForGame();
+	
 	
 	/**
 	 * This operation updates the board with the data from the moves;

@@ -7,33 +7,42 @@ import java.util.Arrays;
 
 import com.civica.grads.exercise3.interfaces.Describable;
 
+//TODO: Constructor only takes board size, counters will be dependent on this, counter belong to the board 
 public class Board implements Describable {
-	private final int size ; 
-	private final BoardTile[][] tiles ; 
-	private final ArrayList<Counter> whiteCounters = new ArrayList<Counter>() ; 
-	private final ArrayList<Counter> blackCounters = new ArrayList<Counter>() ;
+
+	//* An array which represents the board; if null then there is nothing on a square ;
+	private final Counter[][] countersOnBoard ; 
 	
+	public Board(Counter[][] countersOnBoard) {
+		 this.countersOnBoard = countersOnBoard
+	}
 	public Board(int size) {
-		this.size = size ; 
-		tiles = new BoardTile[size][size] ;  
+		
+		this( new Counter[size][size] ); 
 	}
 	
 	public int getSize() {
-		return size;
+		return countersOnBoard.length;
 	}
 
 	public BoardTile[][] getTiles() {
 		return tiles;
 	}
 
+	@Deprecated
 	public ArrayList<Counter> getWhiteCounters() {
 		return whiteCounters;
 	}
 
+	@Deprecated
 	public ArrayList<Counter> getBlackCounters() {
 		return blackCounters;
 	}
 
+	  public Counter[][] getArray() { 
+		    return array; 
+		  } 
+	
 	@Override
 	public void describe(OutputStream out) throws IOException {
 		out.write(this.toString().getBytes()) ;  
@@ -46,6 +55,11 @@ public class Board implements Describable {
 	}
 
 	
-	
+	  public boolean isOccupied(int x, int y) { 
+		    if(this.array[x][y].equals(null)){ 
+		      return false; 
+		    }else{ 
+		      return true; 
+		    } 
 }
  
