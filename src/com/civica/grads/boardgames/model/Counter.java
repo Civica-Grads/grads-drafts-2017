@@ -2,7 +2,6 @@ package com.civica.grads.boardgames.model;
 
 import java.io.IOException;
 import java.io.OutputStream;
-import java.util.Arrays;
 
 import com.civica.grads.boardgames.enums.*;
 import com.civica.grads.boardgames.interfaces.Describable;
@@ -11,9 +10,9 @@ import com.civica.grads.boardgames.interfaces.Describable;
 public class Counter implements Describable {
 	private final Colour colour ; 
 	private CounterType type ; 
-	private int[] position ; 
+	private Position position ; 
 	
-	public Counter(Colour colour, CounterType type, int[] position) {
+	public Counter(Colour colour, CounterType type, Position position) {
 		this.colour = colour ; 
 		this.type = type ; 
 		this.position = position ; 
@@ -30,12 +29,12 @@ public class Counter implements Describable {
 	}
 
 
-	public int[] getPosition() {
+	public Position getPosition() {
 		return position;
 	}
 
 
-	public void setPosition(int[] position) {
+	public void setPosition(Position position) {
 		this.position = position;
 	}
 
@@ -53,7 +52,7 @@ public class Counter implements Describable {
 
 	@Override
 	public String toString() {
-		return "Counter [colour=" + colour + ", type=" + type + ", position=" + Arrays.toString(position) + "]";
+		return "Counter [colour=" + colour + ", type=" + type + ", position=" + position.toString() + "]";
 	}
 	
 
