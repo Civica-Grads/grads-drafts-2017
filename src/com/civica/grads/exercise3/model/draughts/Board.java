@@ -7,6 +7,8 @@ import java.util.Arrays;
 
 import com.civica.grads.exercise3.interfaces.Describable;
 
+
+//TODO: Constructor only takes board size, counters will be dependent on this, counter belong to the board
 public class Board implements Describable {
 
 	private Counter[][] array;

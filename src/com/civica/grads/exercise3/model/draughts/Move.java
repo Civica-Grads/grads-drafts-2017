@@ -6,16 +6,31 @@ import java.io.OutputStream;
 import com.civica.grads.exercise3.interfaces.Describable;
 import com.civica.grads.exercise3.model.player.Player;
 
+
+/**
+ * 
+ * @author Team.Rose
+ * 
+ * Need to distinguish between turn and move, turn = Move[] 
+ * 
+ *
+ */
+
+//TODO: Create new class position and turnRecord + simplify
+
+//TODO : Add information on pieces taken within move, method to do so
+
+//TODO: MoveRecord change 
 public class Move implements Describable {
 	private  Counter counter;
 	private Player player;
-	private int[] starting;
-	private int[] afterMove;
+
+	
+	public MoveRecord(Position positionStart, Position positionFinish, Colour player, CounterType counterType, )
 	
 	
 	public Move(Counter counter, Player player, int[] starting, int[] afterMove) {
 		
-		this.player= player;
 		this.counter= counter;
 		this.starting= starting;
 		this.afterMove= afterMove;						
