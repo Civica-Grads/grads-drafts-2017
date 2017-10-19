@@ -1,7 +1,11 @@
 package com.civica.grads.boardgames.model;
 
+import static org.fest.assertions.api.Assertions.assertThat; // main one
 import static org.junit.Assert.*;
+import static org.mockito.Mockito.*;
 
+import java.io.IOException;
+import java.io.OutputStream;
 import java.util.ArrayList;
 
 import org.junit.Test;
@@ -10,16 +14,47 @@ import com.civica.grads.boardgames.model.Board;
 import com.civica.grads.boardgames.model.Game;
 import com.civica.grads.boardgames.model.MoveRecord;
 import com.civica.grads.boardgames.model.player.Player;
+import com.civica.grads.boardgames.util.OutputStreamUtil;
 
 public abstract class GameTest {
 
+	@Test
+	public void whenTheGameIsCreatedItHasNoTurns()
+	{
+	// WITH
+	Game game = createGame( new Player[2]);
+	
+	// THEN
+	assertThat(game).isNotNull();
+	assertThat(game.hasTurns()).as("Should't be any turns").isFalse();
+	assertThat(game.getTurns()).isNotNull().isEmpty();	
+	}
+	
+	@Test
+	public void canAddTurnsToAGame()
+	{
+	// WITH
+	Game game = createGame( new Player[2]);
+	TurnRecord turn = new TurnRecord();
+	
+	// WHEN
+	game.addTurn(turn);
+
+	// THEN
+	assertThat(game.hasTurns()).as("No Turns.").isTrue();
+	assertThat(game.getTurns()).isNotNull().hasSize(1);
+	assertThat(game.getTurns()).contains(turn);
+	
+	
+	}
+	
 	/*
 	 * Checking that the contents of the Board objects are the same, as we cannot compare two objects.
 	 * */
 	@Test
 	public void getBoardExpectedReturn() {
 		Player[] players = new Player[2];
-		Game game = createGame(8, players);
+		Game game = createGame( players);
 		
 		int expected = new Board(8).getSize();
 		int actual = game.getBoard().getSize();
@@ -28,14 +63,17 @@ public abstract class GameTest {
 	}
 	
 	
-	abstract protected Game createGame(int i, Player[] players);
+	private Game createGame(ArrayList<Player> players) {
+		return createGame(players.toArray(new Player[0]));
+	}
+	abstract protected Game createGame(Player[] players);
 	
 
 
 	@Test
 	public void getStartingPlayerCountersExpectedReturn() {
 		Player[] players = new Player[2];
-		Game game = createGame(8, players);
+		Game game = createGame( players);
 		
 		int expected = 24;
 		int actual = game.getStartingPlayerCounters();
@@ -51,7 +89,7 @@ public abstract class GameTest {
 	@Test
 	public void getPlayerExpectedReturn() {
 		Player[] players = new Player[2];
-		Game game = createGame(8, players);
+		Game game = createGame( players);
 		
 		Player[] expected = new Player[2];
 		Player[] actual = game.getPlayer();
@@ -67,7 +105,7 @@ public abstract class GameTest {
 	public void getMovesExpectedReturn() {
 		//ArrayList<Move> moves = new ArrayList<>();
 		Player[] players = new Player[2];
-		Game game = createGame(8, players);
+		Game game = createGame( players);
 		
 		ArrayList<MoveRecord> expected = new ArrayList<>();
 		
@@ -76,20 +114,41 @@ public abstract class GameTest {
 	}
 	
 	@Test
-	public void toStringExpectedReturn() {
-		Player[] players = new Player[2];
-		Game game = createGame(8, players);
+	public void toStringExpectedReturn() throws IOException {
 		
-		String expected = "Game [board=Board [size=8, tiles=[[Lcom.civica.grads.exercise3.model."
-				+ "draughts.BoardTile;@6e5e91e4, [Lcom.civica.grads.exercise3.model.draughts.BoardTile;@2cdf8d8a,"
-				+ " [Lcom.civica.grads.exercise3.model.draughts.BoardTile;@30946e09, [Lcom.civica.grads.exercise3"
-				+ ".model.draughts.BoardTile;@5cb0d902, [Lcom.civica.grads.exercise3.model.draughts.BoardTile;@46fbb2c1"
-				+ ", [Lcom.civica.grads.exercise3.model.draughts.BoardTile;@1698c449, [Lcom.civica.grads.exercise3."
-				+ "model.draughts.BoardTile;@5ef04b5, [Lcom.civica.grads.exercise3.model.draughts.BoardTile;@5f4da5c3],"
-				+ " whiteCounters=[], blackCounters=[]], startingPlayerCounters=24, player=[null, null], moves=[]]";
-		String actual = game.toString();
+		// WITH
+		Player player1 = mock(Player.class);
+		Player player2 = mock(Player.class);
+		when(player1.getName()).thenReturn("player-1");
+		when(player2.getName()).thenReturn("player-2");
+		ArrayList<Player> players = new ArrayList<Player>();
+		players.add(player1);
+		players.add(player2);
+
+		Game game = createGame(players);
+		OutputStream out = OutputStreamUtil.createOutputStream();
 		
-		assertEquals(expected, actual);
+		// WHEN
+		game.describe(out);
+		String actualText = out.toString();
+		
+		// THEN
+		assertThat(actualText)
+			.as("Game Description")
+				.isNotNull()
+				.isNotEmpty()
+			.as("Game Description, has game entry")
+				.startsWith("Game [")
+				.endsWith("]")
+			.as("Game Description, has turns description")
+				.contains("Turns [")
+			.as("Game Description, has player description")
+				.contains("Players [")
+				.contains(player1.getName())
+				.contains(player2.getName());
+		
 	}
+
+
 	
 }
