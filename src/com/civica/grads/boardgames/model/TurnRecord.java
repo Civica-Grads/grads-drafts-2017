@@ -3,9 +3,10 @@ package com.civica.grads.boardgames.model;
 import java.util.ArrayList;
 
 /**
+ * TurnRecord class that holds an ArrayList of MoveRecord objects
  * 
- * @author team-mattdamon
- *
+ * @author team-mattdamon, david getter
+ * 
  */
 
 public class TurnRecord {
