@@ -17,9 +17,7 @@ import com.civica.grads.boardgames.interfaces.Storable;
  *  
  * 
  */ 
-//TODO: Create new class position and turnRecord + simplify 
 //TODO : Add information on pieces taken within move, method to do so 
-//TODO: MoveRecord change 
 // FIXME Who's Move is this ?
 // FIXME Which board does this belong to if any?
 // FIXME How do I get the next move?
@@ -31,6 +29,8 @@ public class MoveRecord implements Describable,Storable {
 	private final Position positionFinish;
 	private final Colour player;
 	private final CounterType counterType;
+	private boolean counterTaken;
+	
 	
 
 	
@@ -40,13 +40,24 @@ public class MoveRecord implements Describable,Storable {
 	 * @param player
 	 * @param counterType
 	 */
-	public MoveRecord(Position positionStart, Position positionFinish, Colour player, CounterType counterType) {
-		super();
+	public MoveRecord(Position positionStart, Position positionFinish, Colour player, CounterType counterType, boolean counterTaken) {
+		
 		this.positionStart = positionStart;
 		this.positionFinish = positionFinish;
 		this.player = player;
 		this.counterType = counterType;
+		this.counterTaken = counterTaken;
+		
 	}
+	
+	
+
+	public boolean isCounterTaken() {
+		return counterTaken;
+	}
+
+	
+
 
 	@Override
 	public void describe(OutputStream out) throws IOException {
