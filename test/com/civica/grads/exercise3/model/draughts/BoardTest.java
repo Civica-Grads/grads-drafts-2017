@@ -9,6 +9,7 @@ import org.junit.Test;
 
 public class BoardTest {
 	
+	//FIXME: This test fails
 	@Test
 	public void toStringOutputExpectedText() {
 		
