@@ -9,6 +9,7 @@ import java.util.ArrayList;
 import org.junit.Ignore;
 import org.junit.Test;
 
+import com.civica.grads.boardgames.exceptions.MoveException;
 import com.civica.grads.boardgames.interfaces.Move;
 import com.civica.grads.boardgames.model.Board;
 import com.civica.grads.boardgames.model.BoardTile;
@@ -78,7 +79,7 @@ public class BoardTest {
 		assertEquals(expected, actual);
 	}
 	
-	@Test (expected = MoveException.class) //TODO: import moveexception when it's been implemented
+	 @Test (expected = MoveException.class) 
 	 public void invalidHorizontalMoveDenied() {
 		
 		//WITH
@@ -101,7 +102,7 @@ public class BoardTest {
 		board.applyMove(move);
 		
 		// THEN
-		// FIXME: What happens now?
+		// Should have thrown an exception.
 	}
 
 }

@@ -7,7 +7,7 @@ package com.civica.grads.boardgames.exceptions;
  * @author Luke.Smith
  *
  */
-public class OnToPieceException extends MoveException {
+public class OnToPieceException extends IllegalMoveException {
 
 	/**
 	 * 

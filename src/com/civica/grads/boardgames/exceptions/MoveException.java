@@ -4,6 +4,7 @@
 package com.civica.grads.boardgames.exceptions;
 
 /**
+ * Something went wrong when a move occured.
  * @author Luke.Smith
  *
  */

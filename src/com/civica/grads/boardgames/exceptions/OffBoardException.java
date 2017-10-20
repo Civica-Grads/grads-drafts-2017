@@ -7,7 +7,7 @@ package com.civica.grads.boardgames.exceptions;
  * @author Luke.Smith
  *
  */
-public class OffBoardException extends MoveException {
+public class OffBoardException extends IllegalMoveException {
 
 	/**
 	 * 
@@ -28,5 +28,7 @@ public class OffBoardException extends MoveException {
 	public OffBoardException(String message) {
 		super(message);
 	}
+
+
 
 }

@@ -4,6 +4,7 @@
 package com.civica.grads.boardgames.exceptions;
 
 /**
+ * An attempt to move an empty square.
  * @author Luke.Smith
  *
  */
