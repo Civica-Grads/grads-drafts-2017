@@ -4,16 +4,17 @@ import com.civica.grads.boardgames.enums.Colour;
 import com.civica.grads.boardgames.enums.CounterType;
 import com.civica.grads.boardgames.model.Counter;
 import com.civica.grads.boardgames.model.Game;
-import com.civica.grads.boardgames.model.Position;
 import com.civica.grads.boardgames.model.player.Player;
 
 public class DraughtsGame extends Game {
+	private int counterKey ; 
 
 	public static final int BOARD_SIZE = 8 ;
 	
 
 	protected DraughtsGame(int size, Player[] player) {
 		super(size, player);
+		counterKey = 0 ; 
 		
 	}
 	
@@ -52,9 +53,8 @@ public class DraughtsGame extends Game {
 				isStartTile = (i+j)%2 == 1;
 
 				if (isStartTile) {
-					board.getBoard()[i][j] = new Counter(Colour.WHITE, 
-														CounterType.NORMAL, 
-														new Position(i, j));
+					createNewCounterAndPlace(board.getBoard()[i][j], Colour.WHITE) ; 
+					
 					whiteCountersLeft--;
 				} else {
 					board.getBoard()[i][j] = null;
@@ -74,9 +74,8 @@ public class DraughtsGame extends Game {
 				isStartTile = (i+j)%2 == 1;
 
 				if (isStartTile) {
-					board.getBoard()[i][j] = new Counter(Colour.BLACK, 
-														CounterType.NORMAL, 
-														new Position(i, j));
+					createNewCounterAndPlace(board.getBoard()[i][j], Colour.BLACK) ; 
+
 					blackCountersLeft--;
 				} else {
 					board.getBoard()[i][j] = null;
@@ -86,6 +85,10 @@ public class DraughtsGame extends Game {
 				break;
 			}
 		}
+	}
+	
+	private void createNewCounterAndPlace(Counter counter, Colour colour) {
+		counter = new Counter(colour, CounterType.NORMAL, counterKey++);
 	}
 
 

@@ -13,7 +13,7 @@ import com.civica.grads.boardgames.interfaces.Describable;
  *
  */
 public class Position implements Describable {
-	
+	// TODO: Should we change to row and column for ease?
 	private int x;
 	private int y;
 	

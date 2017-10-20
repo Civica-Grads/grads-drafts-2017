@@ -5,8 +5,6 @@ import java.io.OutputStream;
 import java.util.ArrayList;
 import java.util.Arrays;
 
-import com.civica.grads.boardgames.enums.Colour;
-import com.civica.grads.boardgames.enums.CounterType;
 import com.civica.grads.boardgames.interfaces.Describable;
 import com.civica.grads.boardgames.interfaces.Move;
 
@@ -16,27 +14,23 @@ public class Board implements Describable {
 	//* An array which represents the board; if null then there is nothing on a square ;
 	private final Counter[][] countersOnBoard ; 
 	
+	
 	public Board(Counter[][] countersOnBoard) {
 		 this.countersOnBoard = countersOnBoard;
 	}
 	
 	public Board(int size) {
-		
 		this( new Counter[size][size] ); 
 	}
-	
-	public void placeCounter(Position position, Colour colour){
-	   
-		int x = position.getX();
-		int y = position.getY();
-		
-		this.countersOnBoard[x][y] = new Counter(colour, CounterType.NORMAL, position );
-		
-	}
-	
 
-	public void applyMove(Move move)
-	{
+	public void applyMove(Move move) {
+		Position start = move.getPositionStart() ; 
+		Position end = move.getPositionFinish() ; 
+		
+		// TODO: Check valid move. 
+		
+		countersOnBoard[end.getX()][end.getY()] = countersOnBoard[start.getX()][end.getY()] ; 
+		countersOnBoard[start.getX()][end.getY()] = null ;  
 		
 	}
 	
