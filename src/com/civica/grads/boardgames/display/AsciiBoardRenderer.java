@@ -5,6 +5,7 @@ import java.util.ArrayList;
 
 import org.junit.Ignore;
 
+import com.civica.grads.boardgames.exceptions.RenderException;
 import com.civica.grads.boardgames.interfaces.Renderer;
 import com.civica.grads.boardgames.model.Board;
 import com.civica.grads.boardgames.model.BoardTile;
