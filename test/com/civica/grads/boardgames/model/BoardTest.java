@@ -80,6 +80,8 @@ public class BoardTest {
 	
 	@Test (expected = MoveException.class) //TODO: import moveexception when it's been implemented
 	 public void invalidHorizontalMoveDenied() {
+		
+		//WITH
 		Position p1 = mock(Position.class);
 		when(p1.getX()).thenReturn(0);
 		when(p1.getY()).thenReturn(0);
@@ -94,7 +96,12 @@ public class BoardTest {
 		when(move.getPositionFinish()).thenReturn(p2);
 		
 		Board board = new Board(8);//TODO: replace with test data
+		
+		// WHEN
 		board.applyMove(move);
+		
+		// THEN
+		// FIXME: What happens now?
 	}
 
 }
