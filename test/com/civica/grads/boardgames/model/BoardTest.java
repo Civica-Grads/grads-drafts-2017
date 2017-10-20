@@ -9,6 +9,7 @@ import java.util.ArrayList;
 import org.junit.Ignore;
 import org.junit.Test;
 
+import com.civica.grads.boardgames.exceptions.IllegalMoveException;
 import com.civica.grads.boardgames.exceptions.MoveException;
 import com.civica.grads.boardgames.interfaces.Move;
 import com.civica.grads.boardgames.model.Board;
@@ -79,16 +80,86 @@ public class BoardTest {
 		assertEquals(expected, actual);
 	}
 	
-	 @Test (expected = MoveException.class) 
-	 public void invalidHorizontalMoveDenied() {
-		
+	 /**
+	  * Checks that when a counter is moved to the left that an IllegalMoveException is thrown.
+	  * 
+	  * @author Ryan Cullen
+	  */
+	 @Test (expected = IllegalMoveException.class) 
+	 public void checkInvalidMoveLeftThrowsException() {
+		//TESTS MOVING TO THE LEFT
+		 
 		//WITH
 		Position p1 = mock(Position.class);
-		when(p1.getX()).thenReturn(0);
-		when(p1.getY()).thenReturn(0);
+		when(p1.getX()).thenReturn(1);
+		when(p1.getY()).thenReturn(1);
 		
 		Position p2 = mock(Position.class);
 		when(p2.getX()).thenReturn(0);
+		when(p2.getY()).thenReturn(1);
+		
+		
+		Move move = mock(Move.class);
+		when(move.getPositionStart()).thenReturn(p1);
+		when(move.getPositionFinish()).thenReturn(p2);
+		
+		Board board = new Board(8);//TODO: replace with test data
+		
+		// WHEN
+		board.applyMove(move);
+		
+		// THEN
+		// Should have thrown an exception.
+	}
+	 
+	 /**
+	  * Checks that when a counter is moved to the right that an IllegalMoveException is thrown.
+	  * 
+	  * @author Ryan Cullen
+	  */
+	 @Test (expected = IllegalMoveException.class) 
+	 public void checkInvalidMoveRightThrowsException() {
+		//TESTS MOVING TO THE LEFT
+		 
+		//WITH
+		Position p1 = mock(Position.class);
+		when(p1.getX()).thenReturn(1);
+		when(p1.getY()).thenReturn(1);
+		
+		Position p2 = mock(Position.class);
+		when(p2.getX()).thenReturn(2);
+		when(p2.getY()).thenReturn(1);
+		
+		
+		Move move = mock(Move.class);
+		when(move.getPositionStart()).thenReturn(p1);
+		when(move.getPositionFinish()).thenReturn(p2);
+		
+		Board board = new Board(8);//TODO: replace with test data
+		
+		// WHEN
+		board.applyMove(move);
+		
+		// THEN
+		// Should have thrown an exception.
+	}
+	 
+	 /**
+	  * Checks that when a counter is moved up that an IllegalMoveException is thrown.
+	  * 
+	  * @author Ryan Cullen
+	  */
+	 @Test (expected = IllegalMoveException.class) 
+	 public void checkInvalidMoveUpThrowsException() {
+		//TESTS MOVING TO THE LEFT
+		 
+		//WITH
+		Position p1 = mock(Position.class);
+		when(p1.getX()).thenReturn(1);
+		when(p1.getY()).thenReturn(1);
+		
+		Position p2 = mock(Position.class);
+		when(p2.getX()).thenReturn(1);
 		when(p2.getY()).thenReturn(0);
 		
 		
@@ -154,6 +225,38 @@ public class BoardTest {
 		 *
 		*/
 		
+	}
+	 
+	 /**
+	  * Checks that when a counter is moved down that an IllegalMoveException is thrown.
+	  * 
+	  * @author Ryan Cullen
+	  */
+	 @Test (expected = IllegalMoveException.class) 
+	 public void checkInvalidMoveDownThrowsException() {
+		//TESTS MOVING TO THE LEFT
+		 
+		//WITH
+		Position p1 = mock(Position.class);
+		when(p1.getX()).thenReturn(1);
+		when(p1.getY()).thenReturn(1);
+		
+		Position p2 = mock(Position.class);
+		when(p2.getX()).thenReturn(1);
+		when(p2.getY()).thenReturn(2);
+		
+		
+		Move move = mock(Move.class);
+		when(move.getPositionStart()).thenReturn(p1);
+		when(move.getPositionFinish()).thenReturn(p2);
+		
+		Board board = new Board(8);//TODO: replace with test data
+		
+		// WHEN
+		board.applyMove(move);
+		
+		// THEN
+		// Should have thrown an exception.
 	}
 
 }
