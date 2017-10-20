@@ -15,6 +15,12 @@ public class DraughtsGame extends Game {
 	}
 	
 
+	/**
+	 * This method initially populates the board with counters, having a Counter object on a set position
+	 * an null if there isn't one. It loops from the top left and adds a white counter on every other tile from the
+	 * second one (so odd numbered tile starting at 0). It then does the loop again from the bottom right filling the
+	 * bottom half of the board with black counters. It leaves a space in the middle so counters can move.
+	 */
 	@Override
 	protected void initialiseBoardForGame() {
 		
@@ -23,27 +29,55 @@ public class DraughtsGame extends Game {
 		// true if tile should start with a counter on it
 		boolean isStartTile;
 		
+		/*This equation works out how many counters the game should
+		 *  have depending on the size, according to standard draughts rules.*/
+		int initialTotalCounters = (boardSize-2)*(boardSize/2);
+		int whiteCountersLeft = initialTotalCounters/2;
+		int blackCountersLeft = initialTotalCounters/2;
 		
-		//TODO: for loop to populate one colour in one direction, until maximum no hit (size-2)*(size/2), then use another for loop to populate backwards for other colour
+		//This is the for loop for the white counters.
 		for(int i = 0; i < boardSize; i++) {
 			for(int j = 0; j < boardSize; j++) {
 				
+				/*Adds the current i and j values, then divides by 2 and if there's a remainder 
+				 * then it is odd. Tiles only get a counter if it's an odd value.*/
 				isStartTile = (i+j)%2 == 1;
-				
-				if (isStartTile ) {
+
+				if (isStartTile) {
 					board.getBoard()[i][j] = new Counter(Colour.WHITE, 
 														CounterType.NORMAL, 
 														new Position(i, j));
-				} else if (isStartTile  ) {
-					board.getBoard()[i][j] = new Counter(Colour.BLACK, 
-														CounterType.NORMAL, 
-														new Position(i, j));
+					whiteCountersLeft--;
 				} else {
 					board.getBoard()[i][j] = null;
 				}
 			}
+			if (whiteCountersLeft <= 0) {
+				break;
+			}
 		}
+		
+		//This is the for loop for the black counters
+		for(int i = boardSize-1; i >= 0; i--) {
+			for(int j = boardSize-1; j >= 0; j--) {
+				
+				/*Adds the current i and j values, then divides by 2 and if there's a remainder 
+				 * then it is odd. Tiles only get a counter if it's an odd value.*/
+				isStartTile = (i+j)%2 == 1;
 
+				if (isStartTile) {
+					board.getBoard()[i][j] = new Counter(Colour.BLACK, 
+														CounterType.NORMAL, 
+														new Position(i, j));
+					blackCountersLeft--;
+				} else {
+					board.getBoard()[i][j] = null;
+				}
+			}
+			if (blackCountersLeft <= 0) {
+				break;
+			}
+		}
 	}
 
 
