@@ -35,7 +35,7 @@ public class MoveTestDataFactory {
 		}
 	}
 	
-	public MoveRecord moveRight(){
+	public MoveRecord createMoveRight(){
 		if(type.equals(TypeGame.DRAUGHTS)){
 			return  new MoveRecord(start, new Position(start.getX() + 1,start.getY()),Colour.BLACK, CounterType.NORMAL, false);
 		}else{
@@ -43,7 +43,7 @@ public class MoveTestDataFactory {
 		}
 	}
 	
-	public MoveRecord moveDown(){
+	public MoveRecord createMoveDown(){
 		if(type.equals(TypeGame.DRAUGHTS)){
 			return new MoveRecord(start, new Position(start.getX(),start.getY()+1),Colour.BLACK, CounterType.NORMAL, false);
 		}else{
@@ -51,7 +51,7 @@ public class MoveTestDataFactory {
 		}
 	}
 	
-	public MoveRecord moveUp(){
+	public MoveRecord createMoveUp(){
 		if(type.equals(TypeGame.DRAUGHTS)){	
 			return new MoveRecord(start, new Position(start.getX(),start.getY()-1),Colour.BLACK, CounterType.NORMAL, false);
 		}else{
@@ -60,7 +60,7 @@ public class MoveTestDataFactory {
 	}
 	
 
-	public MoveRecord moveUpRight(){
+	public MoveRecord createMoveUpRight(){
 		if(type.equals(TypeGame.DRAUGHTS)){
 			return new MoveRecord(start, new Position(start.getX()+1,start.getY()-1),Colour.BLACK, CounterType.NORMAL, false);
 		}else{
@@ -68,7 +68,7 @@ public class MoveTestDataFactory {
 		}
 	}
 
-	public MoveRecord moveUpLeft(){
+	public MoveRecord createMoveUpLeft(){
 		if(type.equals(TypeGame.DRAUGHTS)){
 			return  new MoveRecord(new Position(1,1), new Position(0,0),Colour.BLACK, CounterType.NORMAL, false);
 		}else{
@@ -77,7 +77,7 @@ public class MoveTestDataFactory {
 	}
 	
 	
-	public MoveRecord moveDownLeft(){
+	public MoveRecord createMoveDownLeft(){
 		if(type.equals(TypeGame.DRAUGHTS)){
 			return new MoveRecord(new Position(1,1), new Position(0,2),Colour.BLACK, CounterType.NORMAL, false);
 		}else{
@@ -85,7 +85,7 @@ public class MoveTestDataFactory {
 		}
 	}
 	
-	public MoveRecord moveDownRight(){
+	public MoveRecord createMoveDownRight(){
 		if(type.equals(TypeGame.DRAUGHTS)){
 			return new MoveRecord(new Position(1,1), new Position(2,2),Colour.BLACK, CounterType.NORMAL, false);
 		}else{
