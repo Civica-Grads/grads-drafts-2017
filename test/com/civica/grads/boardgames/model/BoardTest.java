@@ -9,12 +9,15 @@ import java.util.ArrayList;
 import org.junit.Ignore;
 import org.junit.Test;
 
+import com.civica.grads.boardgames.enums.Colour;
+import com.civica.grads.boardgames.enums.CounterType;
 import com.civica.grads.boardgames.exceptions.IllegalMoveException;
 import com.civica.grads.boardgames.exceptions.MoveException;
 import com.civica.grads.boardgames.interfaces.Move;
 import com.civica.grads.boardgames.model.Board;
 import com.civica.grads.boardgames.model.BoardTile;
 import com.civica.grads.boardgames.model.Counter;
+import com.civica.grads.boardgames.exceptions.*;
 
 
 public class BoardTest {
@@ -247,5 +250,29 @@ public class BoardTest {
 		// THEN
 		// Should have thrown an exception.
 	}
+	
+	@Test (expected = IllegalMoveException.class)
+	public void invalidLongDiagonalMoveExceptionThrown() {
+		Board board = new Board(8);
+		//WHEN
+		Position p1 = mock(Position.class);
+		when(p1.getX()).thenReturn(1);
+		when(p1.getY()).thenReturn(1);
+		
+		Position p2 = mock(Position.class);
+		when(p2.getX()).thenReturn(3);
+		when(p2.getY()).thenReturn(3);
+		
+		MoveRecord move= new MoveRecord(p1, p2,
+				Colour.BLACK,CounterType.NORMAL,false);
+		
+		//WHEN
+		board.applyMove(move);
+		
+		//THEN
+		
+		
+	}
+	
 
 }
