@@ -94,7 +94,7 @@ public class BoardTest {
 		when(move.getPositionFinish()).thenReturn(p2);
 		
 		Board board = new Board(8);//TODO: replace with test data
-		applyMove(move);
+		board.applyMove(move);
 	}
 
 }
