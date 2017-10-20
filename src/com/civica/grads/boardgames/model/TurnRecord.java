@@ -9,6 +9,8 @@ import java.util.ArrayList;
  * 
  */
 
+//TODO : Add information on pieces taken within move, method to do so 
+//FIXME Which board does this belong to if any?
 public class TurnRecord {
 	
 	private ArrayList<MoveRecord> moveRecords;

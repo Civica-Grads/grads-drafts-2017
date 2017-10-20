@@ -18,12 +18,10 @@ import com.civica.grads.boardgames.interfaces.Storable;
  *  
  * 
  */ 
-//TODO : Add information on pieces taken within move, method to do so 
-// FIXME Who's Move is this ?
-// FIXME Which board does this belong to if any?
-// FIXME How do I get the next move?
-// FIXME Which square is this on?
-// FIXME WHich piece is this?
+
+
+
+
 public class MoveRecord implements Describable,Storable, Move {
 	
 	private final Position positionStart;
