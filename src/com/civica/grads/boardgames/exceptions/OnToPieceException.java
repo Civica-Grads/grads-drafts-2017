@@ -20,7 +20,6 @@ public class OnToPieceException extends MoveException {
 	 */
 	public OnToPieceException(String message, Throwable cause) {
 		super(message, cause);
-		// TODO Auto-generated constructor stub
 	}
 
 	/**
@@ -28,7 +27,6 @@ public class OnToPieceException extends MoveException {
 	 */
 	public OnToPieceException(String message) {
 		super(message);
-		// TODO Auto-generated constructor stub
 	}
 	
 }
