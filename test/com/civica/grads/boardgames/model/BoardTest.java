@@ -12,6 +12,8 @@ import org.junit.Test;
 import com.civica.grads.boardgames.exceptions.IllegalMoveException;
 import com.civica.grads.boardgames.exceptions.MoveException;
 import com.civica.grads.boardgames.interfaces.Move;
+import com.civica.grads.boardgames.enums.Colour;
+import com.civica.grads.boardgames.enums.CounterType;
 import com.civica.grads.boardgames.model.Board;
 import com.civica.grads.boardgames.model.BoardTile;
 import com.civica.grads.boardgames.model.Counter;
