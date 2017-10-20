@@ -11,14 +11,7 @@ public class MoveTestDataFactory {
 	private Position start;
 	private TypeGame type;
 	
-	//private MoveRecord left;
-	private MoveRecord right;
-	private MoveRecord down;
-	private MoveRecord up;
-	private MoveRecord upRight;
-	private MoveRecord upLeft;
-	private MoveRecord downLeft;
-	private MoveRecord downRight;
+
 	
 	public MoveTestDataFactory(Position start, TypeGame type){
 		this.start = start;
