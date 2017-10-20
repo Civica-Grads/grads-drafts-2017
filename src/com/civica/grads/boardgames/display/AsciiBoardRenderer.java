@@ -103,17 +103,10 @@ public abstract class AsciiBoardRenderer implements Renderer {
 		}
 	}
 
-	@Override
-	@Ignore
+	@Override	
 	public void render(Board board) throws RenderException {
 		
-//		BoardTile[][] boardTiles = board.getTiles();
-//		ArrayList<Counter> whiteCounters = board.getWhiteCounters() ; 
-//		ArrayList<Counter> blackCounters = board.getBlackCounters() ;
-//		
-		
-		
-	
+		//TODO
 	}
 
 	public AsciiBoardRenderer(PrintStream out) {
