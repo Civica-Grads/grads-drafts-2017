@@ -1,12 +1,15 @@
 package com.civica.grads.boardgames.model;
 
 import static org.junit.Assert.*;
+import static org.mockito.Mockito.mock;
+import static org.mockito.Mockito.when;
 
 import java.util.ArrayList;
 
 import org.junit.Ignore;
 import org.junit.Test;
 
+import com.civica.grads.boardgames.interfaces.Move;
 import com.civica.grads.boardgames.model.Board;
 import com.civica.grads.boardgames.model.BoardTile;
 import com.civica.grads.boardgames.model.Counter;
@@ -73,6 +76,25 @@ public class BoardTest {
 		ArrayList<Counter> actual = board.getBlackCounters();
 		
 		assertEquals(expected, actual);
+	}
+	
+	@Test (expected = MoveException.class) //TODO: import moveexception when it's been implemented
+	 public void invalidHorizontalMoveDenied() {
+		Position p1 = mock(Position.class);
+		when(p1.getX()).thenReturn(0);
+		when(p1.getY()).thenReturn(0);
+		
+		Position p2 = mock(Position.class);
+		when(p2.getX()).thenReturn(0);
+		when(p2.getY()).thenReturn(0);
+		
+		
+		Move move = mock(Move.class);
+		when(move.getPositionStart()).thenReturn(p1);
+		when(move.getPositionFinish()).thenReturn(p2);
+		
+		Board board = new Board(8);//TODO: replace with test data
+		applyMove(move);
 	}
 
 }
