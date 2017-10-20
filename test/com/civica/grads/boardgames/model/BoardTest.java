@@ -107,6 +107,8 @@ public class BoardTest {
 	
 	@Test
 	public void validMoveAllowed() {
+		
+		// WITH
 		Board board = new Board(8);
 		
 		Position p1 = mock(Position.class);
@@ -120,6 +122,11 @@ public class BoardTest {
 		Move move = mock(Move.class);
 		when(move.getPositionStart()).thenReturn(p1);
 		when(move.getPositionFinish()).thenReturn(p2);
+		
+		
+		// WHEN
+		
+		// THEN
 		
 		/* TODO: finish test
 		
