@@ -114,18 +114,38 @@ public class BoardTest {
 		when(p1.getY()).thenReturn(0);
 		
 		Position p2 = mock(Position.class);
-		when(p2.getX()).thenReturn(0);
-		when(p2.getY()).thenReturn(0);
+		when(p2.getX()).thenReturn(1);
+		when(p2.getY()).thenReturn(1);
 		
 		Move move = mock(Move.class);
 		when(move.getPositionStart()).thenReturn(p1);
 		when(move.getPositionFinish()).thenReturn(p2);
 		
-		/*
-		 *  TODO: test validate move function
+		/* TODO: finish test
+		
+		// if move is valid
+		if() {
+			board.applyMove(move);
+		}
+		
+		Position expected;
+				
+		Position actual;
+		
+		assertEquals(expected, actual);
+		
+		*
+		 *  if(move is valid) {
+		 *  	do move
+		 *  }
 		 *  
-		 *  board.applyMove(move);
-		 */
+		 *  expected = counter is at final position
+		 *  
+		 *  actual = where is counter
+		 *  
+		 *  assertEquals(expected, actual)
+		 *
+		*/
 		
 	}
 
