@@ -16,4 +16,10 @@ public class DraughtsGame extends Game {
 
 	}
 
+	@Override
+	protected void checkBoardSizeValue(int size) throws IllegalArgumentException {
+		// TODO Auto-generated method stub
+		
+	}
+
 }

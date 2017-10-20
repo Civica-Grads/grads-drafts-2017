@@ -7,6 +7,7 @@ import java.util.Arrays;
 
 import com.civica.grads.boardgames.interfaces.Describable;
 import com.civica.grads.boardgames.interfaces.DeterminesNextMove;
+import com.civica.grads.boardgames.interfaces.Move;
 import com.civica.grads.boardgames.model.player.Player;
 
 public abstract class Game implements Describable,DeterminesNextMove {
@@ -101,7 +102,7 @@ public abstract class Game implements Describable,DeterminesNextMove {
 
 
 	@Override
-	public MoveRecord evaluate(Board board) {
+	public Move evaluate(Board board) {
 		// TODO Auto-generated method stub
 		return null;
 	}

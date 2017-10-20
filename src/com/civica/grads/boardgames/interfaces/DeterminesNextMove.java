@@ -4,7 +4,6 @@
 package com.civica.grads.boardgames.interfaces;
 
 import com.civica.grads.boardgames.model.Board;
-import com.civica.grads.boardgames.model.MoveRecord;
 
 /**
  * This interface describes what happens when a board is evaluated.
@@ -20,6 +19,6 @@ public interface DeterminesNextMove {
 	 * @param board
 	 * @return null when there is not a move.
 	 */
-	MoveRecord evaluate(Board board);
+	Move evaluate(Board board);
 	
 }

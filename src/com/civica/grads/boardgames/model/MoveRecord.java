@@ -7,6 +7,7 @@ import java.io.OutputStream;
 import com.civica.grads.boardgames.enums.Colour;
 import com.civica.grads.boardgames.enums.CounterType;
 import com.civica.grads.boardgames.interfaces.Describable;
+import com.civica.grads.boardgames.interfaces.Move;
 import com.civica.grads.boardgames.interfaces.Storable;
 
 /** 
@@ -23,7 +24,7 @@ import com.civica.grads.boardgames.interfaces.Storable;
 // FIXME How do I get the next move?
 // FIXME Which square is this on?
 // FIXME WHich piece is this?
-public class MoveRecord implements Describable,Storable {
+public class MoveRecord implements Describable,Storable, Move {
 	
 	private final Position positionStart;
 	private final Position positionFinish;
@@ -34,6 +35,26 @@ public class MoveRecord implements Describable,Storable {
 	
 
 	
+	/* (non-Javadoc)
+	 * @see com.civica.grads.boardgames.model.Move#getPositionStart()
+	 */
+	@Override
+	public final Position getPositionStart() {
+		return positionStart;
+	}
+
+
+
+	/* (non-Javadoc)
+	 * @see com.civica.grads.boardgames.model.Move#getPositionFinish()
+	 */
+	@Override
+	public final Position getPositionFinish() {
+		return positionFinish;
+	}
+
+
+
 	/**
 	 * @param positionStart
 	 * @param positionFinish

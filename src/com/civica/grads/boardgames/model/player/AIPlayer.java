@@ -2,8 +2,8 @@ package com.civica.grads.boardgames.model.player;
 
 import com.civica.grads.boardgames.enums.Difficulty;
 import com.civica.grads.boardgames.enums.PlayerType;
+import com.civica.grads.boardgames.interfaces.Move;
 import com.civica.grads.boardgames.model.Board;
-import com.civica.grads.boardgames.model.MoveRecord;
 
 public abstract class AIPlayer extends Player {
 	private Difficulty difficulty ; 
@@ -24,7 +24,7 @@ public abstract class AIPlayer extends Player {
 	}
 
 	@Override
-	public MoveRecord evaluate(Board board) {
+	public Move evaluate(Board board) {
 		// TODO Auto-generated method stub
 		return null;
 	}

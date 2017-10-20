@@ -16,6 +16,7 @@ public abstract class AsciiBoardRenderer implements Renderer {
 	protected int dimension;
 	public final PrintStream out ;
 	
+	 
 	private static char UNICODE_1 = '▄' ; // FIXME LOWER HALF BLOCK 9604	U+2584
 	private static char UNICODE_2 = '▀' ; // FIXME UPPER HALF BLOCK U+2580
 	private static char UNICODE_3 = '█' ; // FIXME FULL BLOCK U+2588

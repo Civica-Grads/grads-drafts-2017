@@ -6,6 +6,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 
 import com.civica.grads.boardgames.interfaces.Describable;
+import com.civica.grads.boardgames.interfaces.Move;
 
 
 public class Board implements Describable {
@@ -21,6 +22,12 @@ public class Board implements Describable {
 		
 		this( new Counter[size][size] ); 
 	}
+
+	public void applyMove(Move move)
+	{
+		
+	}
+	
 	
 	public int getSize() {
 		return countersOnBoard.length;
