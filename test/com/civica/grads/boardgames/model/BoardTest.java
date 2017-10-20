@@ -194,6 +194,28 @@ public class BoardTest {
 			
 		}
 		
+		Position p2 = mock(Position.class);
+		when(p2.getX()).thenReturn(1);
+		when(p2.getY()).thenReturn(0);
+		
+		
+		Move move = mock(Move.class);
+		when(move.getPositionStart()).thenReturn(p1);
+		when(move.getPositionFinish()).thenReturn(p2);
+		
+		Board board = new Board(8);//TODO: replace with test data
+		
+		// WHEN
+		board.applyMove(move);
+		
+		// THEN
+		// Should have thrown an exception.
+	}
+	
+	/**
+	 * Test that a valid move is recognised to be valid. 
+	 * Define and apply a move that we know is valid, pass test if no Exception is thrown
+	 */
 	@Test
 	public void validMoveAllowed() {
 		
@@ -212,36 +234,11 @@ public class BoardTest {
 		when(move.getPositionStart()).thenReturn(p1);
 		when(move.getPositionFinish()).thenReturn(p2);
 		
-		
 		// WHEN
+		board.applyMove(move);
 		
 		// THEN
-		
-		/* TODO: finish test
-		
-		// if move is valid
-		if() {
-			board.applyMove(move);
-		}
-		
-		Position expected;
-				
-		Position actual;
-		
-		assertEquals(expected, actual);
-		
-		*
-		 *  if(move is valid) {
-		 *  	do move
-		 *  }
-		 *  
-		 *  expected = counter is at final position
-		 *  
-		 *  actual = where is counter
-		 *  
-		 *  assertEquals(expected, actual)
-		 *
-		*/
+		// should not throw a exception
 		
 	}
 	 
