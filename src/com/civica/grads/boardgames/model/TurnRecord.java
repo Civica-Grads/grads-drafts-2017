@@ -33,6 +33,11 @@ public class TurnRecord {
 	public void addMoveRecord(MoveRecord moveRecord) {
 		
 		moveRecords.add(moveRecord);
+		
+		// if counter taken then increment countersTakenThisTurn
+		if(moveRecord.isCounterTaken()) {
+			countersTakenThisTurn++;
+		}
 	}
 	
 	public ArrayList<MoveRecord> getMoveRecordArrayList() {
