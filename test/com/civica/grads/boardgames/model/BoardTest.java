@@ -104,5 +104,29 @@ public class BoardTest {
 		// THEN
 		// Should have thrown an exception.
 	}
+	
+	@Test
+	public void validMoveAllowed() {
+		Board board = new Board(8);
+		
+		Position p1 = mock(Position.class);
+		when(p1.getX()).thenReturn(0);
+		when(p1.getY()).thenReturn(0);
+		
+		Position p2 = mock(Position.class);
+		when(p2.getX()).thenReturn(0);
+		when(p2.getY()).thenReturn(0);
+		
+		Move move = mock(Move.class);
+		when(move.getPositionStart()).thenReturn(p1);
+		when(move.getPositionFinish()).thenReturn(p2);
+		
+		/*
+		 *  TODO: test validate move function
+		 *  
+		 *  board.applyMove(move);
+		 */
+		
+	}
 
 }
