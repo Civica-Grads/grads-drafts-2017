@@ -17,10 +17,7 @@ import com.civica.grads.boardgames.model.player.AIPlayerTest;
  */
 public class DraughtsAIPlayerTest extends AIPlayerTest {
 
-	@Test
-	public void test() {
-		fail("Not yet implemented");
-	}
+
 
 	@Override
 	protected AIPlayer createPlayer(String name, Difficulty easy) {

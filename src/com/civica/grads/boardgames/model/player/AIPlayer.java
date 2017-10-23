@@ -25,7 +25,7 @@ public abstract class AIPlayer extends Player {
 
 	@Override
 	public Move evaluate(Board board) {
-		// TODO Auto-generated method stub
+		// FIXME Auto-generated method stub
 		return null;
 	}
 	

@@ -21,7 +21,6 @@ public class IllegalMoveException extends MoveException {
 	 */
 	public IllegalMoveException(String message, Throwable cause) {
 		super(message, cause);
-		// TODO Auto-generated constructor stub
 	}
 
 	/**
@@ -29,7 +28,6 @@ public class IllegalMoveException extends MoveException {
 	 */
 	public IllegalMoveException(String message) {
 		super(message);
-		// TODO Auto-generated constructor stub
 	}
 
 }

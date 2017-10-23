@@ -9,11 +9,19 @@ import com.civica.grads.boardgames.model.player.Player;
 
 public class DraughtsGame extends Game {
 
-	public DraughtsGame(int size, Player[] player) {
+	public static final int BOARD_SIZE = 8 ;
+	
+
+	protected DraughtsGame(int size, Player[] player) {
 		super(size, player);
 		
 	}
 	
+
+	public DraughtsGame(Player[] player) {
+		this(BOARD_SIZE,player);
+	}
+
 
 	/**
 	 * This method initially populates the board with counters, having a Counter object on a set position
@@ -87,7 +95,7 @@ public class DraughtsGame extends Game {
 	 * @throws IllegalArgumentException if board size is wrong
 	 */
 	protected void checkBoardSizeValue(int size) throws IllegalArgumentException {
-		// TODO Auto-generated method stub
+
 		if (size <  8 || size > 12 || (size % 2) == 1) {
 			throw new IllegalArgumentException("Board size is incorrect.") ; 
 		}

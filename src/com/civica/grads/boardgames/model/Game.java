@@ -47,7 +47,7 @@ public abstract class Game implements Describable,DeterminesNextMove {
 	 */
 	private void updateBoard()
 	{
-		throw new RuntimeException("This code is missing"); //TODO
+		throw new RuntimeException("This code is missing"); //FIXME Update the board
 	}
 	
 	public int getNumberOfTurns() {

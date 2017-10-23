@@ -8,7 +8,7 @@ package com.civica.grads.boardgames.exceptions;
  * @author Luke.Smith
  *
  */
-public abstract class MoveException extends Exception {
+public abstract class MoveException extends GameException {
 
 	/**
 	 * 

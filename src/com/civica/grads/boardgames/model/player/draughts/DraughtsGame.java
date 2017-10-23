@@ -3,23 +3,14 @@ package com.civica.grads.boardgames.model.player.draughts;
 import com.civica.grads.boardgames.model.Game;
 import com.civica.grads.boardgames.model.player.Player;
 
-public class DraughtsGame extends Game {
+@Deprecated
+public class DraughtsGame extends com.civica.grads.boardgames.model.draughts.DraughtsGame {
+
+	public DraughtsGame(Player[] player) {
+		super(player);
+	}
 
 	
-	public DraughtsGame(Player[] player) {
-		super(8, player);
-	}
 
-	@Override
-	protected void initialiseBoardForGame() {
-		// TODO Auto-generated method stub
-
-	}
-
-	@Override
-	protected void checkBoardSizeValue(int size) throws IllegalArgumentException {
-		// TODO Auto-generated method stub
-		
-	}
 
 }

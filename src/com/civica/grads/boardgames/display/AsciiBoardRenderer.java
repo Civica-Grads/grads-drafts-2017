@@ -106,7 +106,7 @@ public abstract class AsciiBoardRenderer implements Renderer {
 	@Override	
 	public void render(Board board) throws RenderException {
 		
-		//TODO
+		//FIXME No rendering
 	}
 
 	public AsciiBoardRenderer(PrintStream out) {

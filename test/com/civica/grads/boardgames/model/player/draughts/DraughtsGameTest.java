@@ -13,9 +13,10 @@ import com.civica.grads.boardgames.model.player.Player;
 
 /**
  * @author Bruce.Mundin
- *
+ * @deprecated
  */
 public class DraughtsGameTest extends GameTest{
+
 
 
 	@Override

@@ -47,18 +47,7 @@ public class BoardTest {
 		
 		assertEquals(expected, actual);
 	}
-	
-	@Test
-	@Ignore
-	public void getTilesExpectedValue() {
-//		Board board = new Board(8);
-//		
-//		BoardTile[][] expected = new BoardTile[8][8];
-//		BoardTile[][] actual = board.getTiles();
-//		
-//		
-//		assertArrayEquals(expected, actual);
-	}
+
 	
 	@Test
 	public void getWhiteCountersExpectedValue() {
