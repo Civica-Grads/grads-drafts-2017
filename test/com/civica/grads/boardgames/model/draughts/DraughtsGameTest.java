@@ -66,9 +66,10 @@ public class DraughtsGameTest extends GameTest {
 
 	/**
 	 * Test to check whether a counter is correctly removed when takePiece is called. 
+	 * @throws NoPieceException 
 	 */
 	@Test
-	public void takePieceCorretlyRemovesCounter() {
+	public void takePieceCorrectlyRemovesCounter() throws NoPieceException {
 		// WITH
 		Player[] players = {mock(Player.class), mock(Player.class)} ; 
 		int size = 8 ; // One of the standard board sizes.
@@ -84,11 +85,7 @@ public class DraughtsGameTest extends GameTest {
 		assertThat(draughtsGame.getBoard().getBoard()[takeLocation.getY()][takeLocation.getX()], instanceOf(Counter.class)) ; 
 		
 		// WHEN 
-		try {
-			draughtsGame.takePiece(takeLocation) ;
-		} catch (NoPieceException e) {
-			e.printStackTrace();
-		} 
+		draughtsGame.takePiece(takeLocation) ;
 		
 		// THEN
 		assertNull(draughtsGame.getBoard().getBoard()[takeLocation.getY()][takeLocation.getX()]) ; 
@@ -116,6 +113,7 @@ public class DraughtsGameTest extends GameTest {
 		try {
 			// WHEN
 			draughtsGame.takePiece(takeLocation) ;
+			fail("Exception not thrown.");
 		} catch (NoPieceException e) {
 			// THEN
 			assertThat(e, instanceOf(NoPieceException.class)) ; 
