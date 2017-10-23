@@ -11,12 +11,12 @@ import com.civica.grads.boardgames.model.draughts.MakeMoveLogicDraughts;
 public class MakeMoveLogicDraughtsTest {
 
 	@Test (expected = MoveException.class)
-	public void CheckFoValidMoveOutsideOfBoardtest() throws MoveException {
+	public void CheckFoInvalidMoveOutsideOfBoardonCheckValidMoveTest() throws MoveException {
 		
 		
 		//with 
 		Board mockBoard = mock(Board.class);
-		when(mockBoard.getBoard()).thenReturn(new Counter[10][10]);
+		when(mockBoard.getSize()).thenReturn(10);
 		
 		// AND
 		Position startPos = mock(Position.class);
@@ -35,7 +35,7 @@ public class MakeMoveLogicDraughtsTest {
 	}
 	
 	@Test (expected = MoveException.class)
-	public void CheckFoValidMovedBy3onXand3onYCoordinateTest() throws MoveException {
+	public void CheckFoInvalidMovedBy3onXand3onYCoordinateonCheckValidMoveTest() throws MoveException {
 		
 		
 		//with 
@@ -59,7 +59,7 @@ public class MakeMoveLogicDraughtsTest {
 	}
 	
 	@Test (expected = MoveException.class)
-	public void CheckFoValidisNonDiagnalTest() throws MoveException {
+	public void CheckForInvalidisNonDiagnalMoveonCheckValidMoveTest() throws MoveException {
 		
 		
 		//with 
@@ -82,8 +82,32 @@ public class MakeMoveLogicDraughtsTest {
 
 	}
 
+	
 	@Test (expected = MoveException.class)
-	public void CheckFoValidMoveDiagnolMoveTest() throws MoveException {
+	public void CheckForInvalidisNonDiagnalMoveonCheckValidMoveTest2() throws MoveException {
+		
+		
+		//with 
+		Board mockBoard = mock(Board.class);
+		when(mockBoard.getSize()).thenReturn(10);
+		
+		// AND
+		Position startPos = mock(Position.class);
+		when(startPos.getX()).thenReturn(9);
+		when(startPos.getY()).thenReturn(1);
+		
+		//AND 
+		Position newPos = mock(Position.class);
+		when(newPos.getX()).thenReturn(2);
+		when(newPos.getY()).thenReturn(1);
+		
+		MakeMoveLogicDraughts toTest = new MakeMoveLogicDraughts(mockBoard , startPos, newPos);
+		
+		toTest.checkForValidMove();
+
+	}
+	@Test (expected = MoveException.class)
+	public void CheckForInvalidMoveDiagnolonCheckValidMoveTest() throws MoveException {
 		
 		
 		//with 
@@ -97,6 +121,30 @@ public class MakeMoveLogicDraughtsTest {
 		
 		//AND 
 		Position newPos = mock(Position.class);
+		when(newPos.getX()).thenReturn(6);
+		when(newPos.getY()).thenReturn(4);
+		
+		MakeMoveLogicDraughts toTest = new MakeMoveLogicDraughts(mockBoard , startPos, newPos);
+		
+		toTest.checkForValidMove();
+
+	}
+	
+	@Test (expected = MoveException.class)
+	public void CheckIllegalMoveUpofCheckValidMoveOnCheckValidMoveTest() throws MoveException {
+		
+		
+		//with 
+		Board mockBoard = mock(Board.class);
+		when(mockBoard.getSize()).thenReturn(10);
+		
+		// AND
+		Position startPos = mock(Position.class);
+		when(startPos.getX()).thenReturn(4);
+		when(startPos.getY()).thenReturn(1);
+		
+		//AND 
+		Position newPos = mock(Position.class);
 		when(newPos.getX()).thenReturn(4);
 		when(newPos.getY()).thenReturn(2);
 		
@@ -105,4 +153,113 @@ public class MakeMoveLogicDraughtsTest {
 		toTest.checkForValidMove();
 
 	}
+	
+	@Test (expected = MoveException.class)
+	public void validMoveUpRightCheckIsValidMoveTest() throws MoveException {
+		
+		
+		//with 
+		Board mockBoard = mock(Board.class);
+		when(mockBoard.getSize()).thenReturn(10);
+		
+		// AND
+		Position startPos = mock(Position.class);
+		when(startPos.getX()).thenReturn(4);
+		when(startPos.getY()).thenReturn(1);
+		
+		
+		
+		//AND 
+		Position newPos = mock(Position.class);
+		when(newPos.getX()).thenReturn(5);
+		when(newPos.getY()).thenReturn(0);
+		
+		MakeMoveLogicDraughts toTest = new MakeMoveLogicDraughts(mockBoard , startPos, newPos);
+		
+		toTest.checkForValidMove();
+
+	}
+	
+	@Test (expected = MoveException.class)
+	public void validMoveUpLeftCheckIsValidMoveTest() throws MoveException {
+		
+		
+		//with 
+		Board mockBoard = mock(Board.class);
+		when(mockBoard.getSize()).thenReturn(10);
+		
+		// AND
+		Position startPos = mock(Position.class);
+		when(startPos.getX()).thenReturn(4);
+		when(startPos.getY()).thenReturn(1);
+		
+		
+		
+		//AND 
+		Position newPos = mock(Position.class);
+		when(newPos.getX()).thenReturn(3);
+		when(newPos.getY()).thenReturn(0);
+		
+		MakeMoveLogicDraughts toTest = new MakeMoveLogicDraughts(mockBoard , startPos, newPos);
+		
+		toTest.checkForValidMove();
+		
+
+	}
+	
+	@Test (expected = MoveException.class)
+	public void validMoveDownLeftCheckIsValidMoveTest() throws MoveException {
+		
+		
+		//with 
+		Board mockBoard = mock(Board.class);
+		when(mockBoard.getSize()).thenReturn(10);
+		
+		// AND
+		Position startPos = mock(Position.class);
+		when(startPos.getX()).thenReturn(4);
+		when(startPos.getY()).thenReturn(1);
+		
+		
+		
+		//AND 
+		Position newPos = mock(Position.class);
+		when(newPos.getX()).thenReturn(3);
+		when(newPos.getY()).thenReturn(2);
+		
+		MakeMoveLogicDraughts toTest = new MakeMoveLogicDraughts(mockBoard , startPos, newPos);
+		
+		toTest.checkForValidMove();
+		
+
+	}
+	
+	@Test (expected = MoveException.class)
+	public void validMoveDownRightCheckIsValidMoveTest() throws MoveException {
+		
+		
+		//with 
+		Board mockBoard = mock(Board.class);
+		when(mockBoard.getSize()).thenReturn(10);
+		
+		// AND
+		Position startPos = mock(Position.class);
+		when(startPos.getX()).thenReturn(4);
+		when(startPos.getY()).thenReturn(1);
+		
+		
+		
+		//AND 
+		Position newPos = mock(Position.class);
+		when(newPos.getX()).thenReturn(5);
+		when(newPos.getY()).thenReturn(2);
+		
+		MakeMoveLogicDraughts toTest = new MakeMoveLogicDraughts(mockBoard , startPos, newPos);
+		
+		toTest.checkForValidMove();
+
+	}
+	
+	
+	
 }
