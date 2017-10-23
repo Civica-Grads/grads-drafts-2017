@@ -17,6 +17,7 @@ import com.civica.grads.boardgames.model.player.Player;
 import static org.mockito.Mockito.when;
 
 import com.civica.grads.boardgames.interfaces.Move;
+import com.civica.grads.boardgames.model.Position;
 import com.civica.grads.boardgames.model.Board;
 import com.civica.grads.boardgames.model.player.*;
 
@@ -131,7 +132,7 @@ public class DraughtsGameTest extends GameTest {
 	 * }
 	 */
 	
-	// TODO: this is unfinished!
+	// TODO: This needs to be checked! Use getRow(), getColumn() ? Check positions are correct.
 	@Test
 	public void isValidMovePerformed() {
 		
@@ -151,16 +152,35 @@ public class DraughtsGameTest extends GameTest {
 		
 		// mock start position, end position and move
 		Position startPosition = mock(Position.class);
-		when(startPosition.getX()).thenReturn(0);
+		when(startPosition.getX()).thenReturn(1);
 		when(startPosition.getY()).thenReturn(0);
 		
 		Position endPosition = mock(Position.class);
-		when(endPosition.getX()).thenReturn(1);
+		when(endPosition.getX()).thenReturn(0);
 		when(endPosition.getY()).thenReturn(1);
 		
 		Move move = mock(Move.class);
 		when(move.getPositionStart()).thenReturn(startPosition);
 		when(move.getPositionFinish()).thenReturn(endPosition);
 		
+		boolean counterAtStart, counterAtEnd;
+		
+		// check there is a counter that can move into an empty position
+		// TODO: this will be checked by the validate move function anyway?
+		counterAtStart = draughtsGame.getBoard().isOccupied(startPosition.getX(), startPosition.getY());
+		counterAtEnd = draughtsGame.getBoard().isOccupied(endPosition.getX(), endPosition.getY());
+		
+		// if valid then apply move
+		if(counterAtStart && !counterAtEnd /* && move is valid */) {
+			draughtsGame.applyMove(move);
+		} else {
+			fail("Move is invalid");
+		}
+		
+		counterAtStart = draughtsGame.getBoard().isOccupied(startPosition.getX(), startPosition.getY());
+		counterAtEnd = draughtsGame.getBoard().isOccupied(endPosition.getX(), endPosition.getY());
+		
+		assertEquals(0, counterAtStart);
+		assertEquals(1, counterAtEnd);
 	}
 }
