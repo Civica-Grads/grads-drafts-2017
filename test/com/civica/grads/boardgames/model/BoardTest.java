@@ -194,22 +194,26 @@ public class BoardTest {
 			
 		}
 		
-		Position p2 = mock(Position.class);
-		when(p2.getX()).thenReturn(1);
-		when(p2.getY()).thenReturn(0);
-		
-		
-		Move move = mock(Move.class);
-		when(move.getPositionStart()).thenReturn(p1);
-		when(move.getPositionFinish()).thenReturn(p2);
-		
-		Board board = new Board(8);//TODO: replace with test data
-		
-		// WHEN
-		board.applyMove(move);
-		
-		// THEN
-		// Should have thrown an exception.
+		@Test
+		public void shobadMoveThrowsAnException() { 
+			fail("Broken Test");
+			//FIXME Broken Test uncomment this code and it will be revealed.
+//		Position p2 = mock(Position.class);
+//		when(p2.getX()).thenReturn(1);
+//		when(p2.getY()).thenReturn(0);
+//		
+//		
+//		Move move = mock(Move.class);
+//		when(move.getPositionStart()).thenReturn(p1);
+//		when(move.getPositionFinish()).thenReturn(p2);
+//		
+//		Board board = new Board(8);//TODO: replace with test data
+//		
+//		// WHEN
+//		board.applyMove(move);
+//		
+//		// THEN
+//		// Should have thrown an exception.
 	}
 	
 	/**
@@ -218,27 +222,29 @@ public class BoardTest {
 	 */
 	@Test
 	public void validMoveAllowed() {
-		
-		// WITH
-		Board board = new Board(8);
-		
-		Position p1 = mock(Position.class);
-		when(p1.getX()).thenReturn(0);
-		when(p1.getY()).thenReturn(0);
-		
-		Position p2 = mock(Position.class);
-		when(p2.getX()).thenReturn(1);
-		when(p2.getY()).thenReturn(1);
-		
-		Move move = mock(Move.class);
-		when(move.getPositionStart()).thenReturn(p1);
-		when(move.getPositionFinish()).thenReturn(p2);
-		
-		// WHEN
-		board.applyMove(move);
-		
-		// THEN
-		// should not throw a exception
+		fail("Broken Test");
+		//FIXME Broken Test uncomment this code and it will be revealed.
+//		
+//		// WITH
+//		Board board = new Board(8);
+//		
+//		Position p1 = mock(Position.class);
+//		when(p1.getX()).thenReturn(0);
+//		when(p1.getY()).thenReturn(0);
+//		
+//		Position p2 = mock(Position.class);
+//		when(p2.getX()).thenReturn(1);
+//		when(p2.getY()).thenReturn(1);
+//		
+//		Move move = mock(Move.class);
+//		when(move.getPositionStart()).thenReturn(p1);
+//		when(move.getPositionFinish()).thenReturn(p2);
+//		
+//		// WHEN
+//		board.applyMove(move);
+//		
+//		// THEN
+//		// should not throw a exception
 		
 	}
 	 
