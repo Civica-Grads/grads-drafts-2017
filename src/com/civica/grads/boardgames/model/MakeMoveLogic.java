@@ -1,5 +1,7 @@
 package com.civica.grads.boardgames.model;
 
+import com.civica.grads.boardgames.exceptions.MoveException;
+
 public abstract class MakeMoveLogic {
 
 	public MakeMoveLogic() {
@@ -7,7 +9,7 @@ public abstract class MakeMoveLogic {
 	}
 
 	
-	public abstract void checkForValidMove();
+	public abstract void checkForValidMove() throws MoveException;
 	public abstract void checkIfCounterTaken();
 	public abstract void checkIfCounterTypeNeedChanging();
 	public abstract void createMoveRecord();

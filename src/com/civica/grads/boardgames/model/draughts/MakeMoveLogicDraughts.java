@@ -1,5 +1,6 @@
 package com.civica.grads.boardgames.model.draughts;
 
+import com.civica.grads.boardgames.exceptions.MoveException;
 import com.civica.grads.boardgames.model.Board;
 import com.civica.grads.boardgames.model.MakeMoveLogic;
 import com.civica.grads.boardgames.model.Position;
@@ -25,7 +26,7 @@ public class MakeMoveLogicDraughts extends MakeMoveLogic {
 	}
 
 	@Override
-	public void checkForValidMove() {
+	public void checkForValidMove() throws MoveException {
 		
 		
 	}
@@ -33,6 +34,14 @@ public class MakeMoveLogicDraughts extends MakeMoveLogic {
 	@Override
 	public void checkIfCounterTaken() {
 		// TODO Auto-generated method stub
+		int xDelta = Math.abs(current.getX() - newPosition.getX());
+		int yDelta = Math.abs(current.getY() - newPosition.getY());
+		
+		if(xDelta == 1 && yDelta == 1) {
+			//TODO: set counter taken to false
+		} else {
+			//TODO: set counter taken to true
+		}
 		
 	}
 
