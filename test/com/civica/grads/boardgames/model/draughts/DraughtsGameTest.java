@@ -14,6 +14,12 @@ import com.civica.grads.boardgames.model.GameTest;
 import com.civica.grads.boardgames.model.Position;
 import com.civica.grads.boardgames.model.player.Player;
 
+import static org.mockito.Mockito.when;
+
+import com.civica.grads.boardgames.interfaces.Move;
+import com.civica.grads.boardgames.model.Board;
+import com.civica.grads.boardgames.model.player.*;
+
 /**
  * @author Bruce.Mundin
  *
@@ -54,4 +60,42 @@ public class DraughtsGameTest extends GameTest {
 	// THEN	
 	}
 
+
+
+	/**
+	 * Test that a valid move is recognised to be valid. 
+	 * Define and apply a move that we know is valid, pass test if no Exception is thrown
+	 */
+	@Test
+	public void validMoveAllowed() {
+		
+		// WITH
+		
+		// create an array of players
+		HumanPlayer humanPlayerWhite = new HumanPlayer("playerWhite");
+		HumanPlayer humanPlayerBlack = new HumanPlayer("playerBlack");
+		HumanPlayer humanPlayers[] = {humanPlayerWhite, humanPlayerBlack};
+		
+		// create draughts game with the two players in the array
+		DraughtsGame draughtsGame = new DraughtsGame(8,	humanPlayers);
+		
+		Position p1 = mock(Position.class);
+		when(p1.getX()).thenReturn(0);
+		when(p1.getY()).thenReturn(0);
+		
+		Position p2 = mock(Position.class);
+		when(p2.getX()).thenReturn(1);
+		when(p2.getY()).thenReturn(1);
+		
+		Move move = mock(Move.class);
+		when(move.getPositionStart()).thenReturn(p1);
+		when(move.getPositionFinish()).thenReturn(p2);
+		
+		// WHEN
+		draughtsGame.applyMove(move);
+		
+		// THEN 
+		// should not throw a exception
+		
+	}
 }
