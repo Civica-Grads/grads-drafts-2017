@@ -12,37 +12,27 @@ import com.civica.grads.boardgames.interfaces.Move;
 public class Board implements Describable {
 
 	//* An array which represents the board; if null then there is nothing on a square ;
-	private final Counter[][] countersOnBoard ; 
+	private final Piece[][] piecesOnBoard ; 
 	
 	
-	public Board(Counter[][] countersOnBoard) {
-		 this.countersOnBoard = countersOnBoard;
+	public Board(Piece[][] countersOnBoard) {
+		 this.piecesOnBoard = countersOnBoard;
 	}
 	
 	public Board(int size) {
-		this( new Counter[size][size] ); 
+		this( new Piece[size][size] ); 
 	}
 
-	public void applyMove(Move move) {
-		Position start = move.getPositionStart() ; 
-		Position end = move.getPositionFinish() ; 
 		
-		// TODO: Check valid move. 
-		
-		countersOnBoard[end.getX()][end.getY()] = countersOnBoard[start.getX()][end.getY()] ; 
-		countersOnBoard[start.getX()][end.getY()] = null ;  
-		
-	}
-	
 	
 	public int getSize() {
-		return countersOnBoard.length;
+		return piecesOnBoard.length;
 	}
 
 
 
-	public Counter[][] getBoard() { 		    
-		return countersOnBoard; 
+	public Piece[][] getBoard() { 		    
+		return piecesOnBoard; 
 	}
 
 	
@@ -55,12 +45,12 @@ public class Board implements Describable {
 	
 	@Override
 	public String toString() {
-		return "Board [countersOnBoard=" + Arrays.toString(countersOnBoard) + "]";
+		return "Board [countersOnBoard=" + Arrays.toString(piecesOnBoard) + "]";
 	}
 	
 
 	public boolean isOccupied(int x, int y) { 
-		if(this.countersOnBoard[x][y].equals(null)){ 
+		if(this.piecesOnBoard[x][y].equals(null)){ 
 			return false; 
 		}else{ 
 			return true; 
@@ -68,12 +58,12 @@ public class Board implements Describable {
 	}
 	
 	@Deprecated
-	public ArrayList<Counter> getWhiteCounters() {
+	public ArrayList<Piece> getWhiteCounters() {
 		return null;
 	}
 	
 	@Deprecated
-	public ArrayList<Counter> getBlackCounters() {
+	public ArrayList<Piece> getBlackCounters() {
 		return null;
 	}
 }

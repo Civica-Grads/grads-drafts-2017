@@ -41,6 +41,7 @@ public abstract class Game implements Describable,DeterminesNextMove {
 	 */
 	abstract protected void initialiseBoardForGame();
 	
+	public abstract void applyMove(Move move) ;
 	
 	/**
 	 * This operation updates the board with the data from the moves;

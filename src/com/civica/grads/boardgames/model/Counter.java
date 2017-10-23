@@ -2,18 +2,18 @@ package com.civica.grads.boardgames.model;
 
 import java.io.IOException;
 import java.io.OutputStream;
-
+import com.civica.grads.boardgames.enums.Colour;
 import com.civica.grads.boardgames.enums.*;
 import com.civica.grads.boardgames.interfaces.Describable;
 
 
-public class Counter implements Describable {
-	private final Colour colour ; 
+public class Counter extends Piece implements Describable {
+	 
 	private CounterType type ; 
-	private final int key ; 
+	private final int key ; //Assign each counter a number (key) from 1 to (size-2)*size/2
 	
 	public Counter(Colour colour, CounterType type, int key) {
-		this.colour = colour ; 
+		super(colour);
 		this.type = type ; 
 		this.key = key; 
 	}
@@ -34,10 +34,6 @@ public class Counter implements Describable {
 	}
 
 
-	public Colour getColour() {
-		return colour;
-	}
-
 
 	@Override
 	public void describe(OutputStream out) throws IOException {
@@ -47,8 +43,9 @@ public class Counter implements Describable {
 
 	@Override
 	public String toString() {
-		return "Counter [colour=" + colour + ", type=" + type + ", key=" + key + "]";
+		return "Counter [type=" + type + ", key=" + key + "]";
 	}
+
 
 
 	

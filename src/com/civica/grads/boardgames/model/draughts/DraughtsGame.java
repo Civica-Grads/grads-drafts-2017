@@ -2,8 +2,10 @@ package com.civica.grads.boardgames.model.draughts;
 
 import com.civica.grads.boardgames.enums.Colour;
 import com.civica.grads.boardgames.enums.CounterType;
+import com.civica.grads.boardgames.interfaces.Move;
 import com.civica.grads.boardgames.model.Counter;
 import com.civica.grads.boardgames.model.Game;
+import com.civica.grads.boardgames.model.Position;
 import com.civica.grads.boardgames.model.player.Player;
 
 public class DraughtsGame extends Game {
@@ -53,7 +55,7 @@ public class DraughtsGame extends Game {
 				isStartTile = (i+j)%2 == 1;
 
 				if (isStartTile) {
-					createNewCounterAndPlace(board.getBoard()[i][j], Colour.WHITE) ; 
+					createNewCounterAndPlace((Counter) board.getBoard()[i][j], Colour.WHITE) ; 
 					
 					whiteCountersLeft--;
 				} else {
@@ -74,7 +76,7 @@ public class DraughtsGame extends Game {
 				isStartTile = (i+j)%2 == 1;
 
 				if (isStartTile) {
-					createNewCounterAndPlace(board.getBoard()[i][j], Colour.BLACK) ; 
+					createNewCounterAndPlace((Counter) board.getBoard()[i][j], Colour.BLACK) ; 
 
 					blackCountersLeft--;
 				} else {
@@ -90,8 +92,21 @@ public class DraughtsGame extends Game {
 	private void createNewCounterAndPlace(Counter counter, Colour colour) {
 		counter = new Counter(colour, CounterType.NORMAL, counterKey++);
 	}
+	
+	public void applyMove(Move move) { 
+		Position start = move.getPositionStart() ; 
+		Position end = move.getPositionFinish() ; 
+		
+		// TODO: Check valid move. 
+		
+		board.getBoard()[end.getX()][end.getY()] = board.getBoard()[start.getX()][end.getY()] ; 
+		board.getBoard()[start.getX()][end.getY()] = null ;  
+		
+	}
 
-
+	public void removeCounter(Position position) {
+		board.getBoard()[position.getX()][position.getY()] = null ; 
+	}
 	/**
 	 * This method checks the board size and throws an exception if the size is inappropriate 
 	 * @param size is of type int

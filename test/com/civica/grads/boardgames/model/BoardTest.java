@@ -16,7 +16,7 @@ import com.civica.grads.boardgames.enums.Colour;
 import com.civica.grads.boardgames.enums.CounterType;
 import com.civica.grads.boardgames.model.Board;
 import com.civica.grads.boardgames.model.BoardTile;
-import com.civica.grads.boardgames.model.Counter;
+import com.civica.grads.boardgames.model.Piece;
 
 
 public class BoardTest {
@@ -55,8 +55,8 @@ public class BoardTest {
 	public void getWhiteCountersExpectedValue() {
 		Board board = new Board(8);
 		
-		ArrayList<Counter> expected = new ArrayList<>();
-		ArrayList<Counter> actual = board.getWhiteCounters();
+		ArrayList<Piece> expected = new ArrayList<>();
+		ArrayList<Piece> actual = board.getWhiteCounters();
 		
 		assertEquals(expected, actual);
 	}
@@ -65,8 +65,8 @@ public class BoardTest {
 	public void getBlackCountersExpectedValue() {
 		Board board = new Board(8);
 		
-		ArrayList<Counter> expected = new ArrayList<>();
-		ArrayList<Counter> actual = board.getBlackCounters();
+		ArrayList<Piece> expected = new ArrayList<>();
+		ArrayList<Piece> actual = board.getBlackCounters();
 		
 		assertEquals(expected, actual);
 	}

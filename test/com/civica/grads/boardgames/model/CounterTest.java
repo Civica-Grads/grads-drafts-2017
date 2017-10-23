@@ -6,7 +6,7 @@ import org.junit.Test;
 
 import com.civica.grads.boardgames.enums.Colour;
 import com.civica.grads.boardgames.enums.CounterType;
-import com.civica.grads.boardgames.model.Counter;
+import com.civica.grads.boardgames.model.Piece;
 
 public class CounterTest {
 	
