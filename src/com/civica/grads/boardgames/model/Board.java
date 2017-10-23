@@ -29,8 +29,25 @@ public class Board implements Describable {
 		return piecesOnBoard.length;
 	}
 
+	public void placePiece(Piece piece, Position position)
+	{
+		if ( isOccupied(position) )
+		{
+			// FIXME
+		}
+		this.piecesOnBoard[position.getX()][position.getY()] = piece ;
+	}
+	
 
+	public Piece getPiece(Position position)
+	{
+		return this.piecesOnBoard[position.getX()][position.getY()];
+	}
 
+	/**
+	 * @deprecated Use {@link #placePiece(Piece, Position)} and {@link #getPiece(Position)}
+	 */
+	@Deprecated
 	public Piece[][] getBoard() { 		    
 		return piecesOnBoard; 
 	}
@@ -48,13 +65,20 @@ public class Board implements Describable {
 		return "Board [countersOnBoard=" + Arrays.toString(piecesOnBoard) + "]";
 	}
 	
-
+	/**
+	 * @deprecated Use {@link #isOccupied(Position)}
+	 */
 	public boolean isOccupied(int x, int y) { 
 		if(this.piecesOnBoard[x][y].equals(null)){ 
 			return false; 
 		}else{ 
 			return true; 
 		} 
+	}
+
+	public boolean isOccupied(Position position) {
+		// FIXME Auto-generated method stub
+		return false;
 	}
 	
 	@Deprecated
