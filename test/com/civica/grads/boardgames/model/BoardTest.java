@@ -1,5 +1,6 @@
 package com.civica.grads.boardgames.model;
 
+import static org.fest.assertions.api.Assertions.assertThat;
 import static org.junit.Assert.*;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.when;
@@ -166,7 +167,38 @@ public class BoardTest {
 		// THEN
 		// Should have thrown an exception.
 	}
-	
+
+		@Test
+		public void shouldAllowDiagonalMove() {
+			
+			// WITH
+			Board board = new Board(8);
+			
+			Position p1 = mock(Position.class);
+			when(p1.getX()).thenReturn(0);
+			when(p1.getY()).thenReturn(0);
+			
+			Position p2 = mock(Position.class);
+			when(p2.getX()).thenReturn(1);
+			when(p2.getY()).thenReturn(1);
+			
+			Move move = mock(Move.class);
+			when(move.getPositionStart()).thenReturn(p1);
+			when(move.getPositionFinish()).thenReturn(p2);
+			
+			
+			// WHEN
+			assertThat(board.isOccupied(0, 0)).as("Old Position is occupied").isTrue();
+			assertThat(board.isOccupied(1, 1)).as("New position is unoccupied").isFalse();
+			board.applyMove(move);
+			
+			// THEN
+			assertThat(board.isOccupied(0, 0)).as("Old Position is unoccupied").isFalse();
+			assertThat(board.isOccupied(1, 1)).as("New position is occupied").isTrue();
+
+			
+		}
+		
 	@Test
 	public void validMoveAllowed() {
 		
