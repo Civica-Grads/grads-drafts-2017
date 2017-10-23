@@ -98,4 +98,69 @@ public class DraughtsGameTest extends GameTest {
 		// should not throw a exception
 		
 	}
+	
+	/* Test that when we try to perform a valid more, the move is actually performed
+	 * 
+	 * @Test
+	 * public void isValidMovePerformed() {
+	 * 
+	 * create an array of players
+	 * HumanPlayer humanPlayerWhite = new HumanPlayer("playerWhite");
+	 * HumanPlayer humanPlayerBlack = new HumanPlayer("playerBlack");
+	 * HumanPlayer humanPlayers[] = {humanPlayerWhite, humanPlayerBlack};
+	 *  
+	 * create draughts game with the two players in the array
+	 * DraughtsGame draughtsGame = new DraughtsGame(8,	humanPlayers);
+	 * 
+	 * create move game logic class (to validate move later on)
+	 * 
+	 * initialise counters on board
+	 * draughtsGame.initialiseBoardForGame();
+	 * 
+	 * check
+	 * 	board.getBoard()[start][start] != null
+	 * 	board.getBoard()[end][end] == null
+	 * 	
+	 * if(move is valid)
+	 * 	draughtsGame.applyMove(move);
+	 * 
+	 * check
+	 * 	board.getBoard()[start][start] == null
+	 * 	board.getBoard()[end][end] != null
+	 * 
+	 * }
+	 */
+	
+	// TODO: this is unfinished!
+	@Test
+	public void isValidMovePerformed() {
+		
+		// WITH
+		
+		// create an array of players
+		HumanPlayer humanPlayerWhite = new HumanPlayer("playerWhite");
+		HumanPlayer humanPlayerBlack = new HumanPlayer("playerBlack");
+		HumanPlayer humanPlayers[] = {humanPlayerWhite, humanPlayerBlack};
+				
+		// create draughts game with the two players in the array
+		DraughtsGame draughtsGame = new DraughtsGame(8,	humanPlayers);
+		
+		// TODO: create move game logic class (to validate move later on)
+		
+		draughtsGame.initialiseBoardForGame();
+		
+		// mock start position, end position and move
+		Position startPosition = mock(Position.class);
+		when(startPosition.getX()).thenReturn(0);
+		when(startPosition.getY()).thenReturn(0);
+		
+		Position endPosition = mock(Position.class);
+		when(endPosition.getX()).thenReturn(1);
+		when(endPosition.getY()).thenReturn(1);
+		
+		Move move = mock(Move.class);
+		when(move.getPositionStart()).thenReturn(startPosition);
+		when(move.getPositionFinish()).thenReturn(endPosition);
+		
+	}
 }
