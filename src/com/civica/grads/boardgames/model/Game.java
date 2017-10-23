@@ -5,6 +5,7 @@ import java.io.OutputStream;
 import java.util.ArrayList;
 import java.util.Arrays;
 
+import com.civica.grads.boardgames.exceptions.GameException;
 import com.civica.grads.boardgames.interfaces.Describable;
 import com.civica.grads.boardgames.interfaces.DeterminesNextMove;
 import com.civica.grads.boardgames.interfaces.Move;
@@ -41,7 +42,7 @@ public abstract class Game implements Describable,DeterminesNextMove {
 	 */
 	abstract protected void initialiseBoardForGame();
 	
-	public abstract void applyMove(Move move) ;
+	public abstract void applyMove(Move move) throws GameException ;
 	
 	/**
 	 * This operation updates the board with the data from the moves;

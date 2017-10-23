@@ -1,17 +1,12 @@
 package com.civica.grads.boardgames.model;
 
 import static org.junit.Assert.*;
-import static org.mockito.Mockito.mock;
-import static org.mockito.Mockito.when;
 
 import java.util.ArrayList;
 
 import org.junit.Ignore;
 import org.junit.Test;
 
-import com.civica.grads.boardgames.exceptions.IllegalMoveException;
-import com.civica.grads.boardgames.exceptions.MoveException;
-import com.civica.grads.boardgames.interfaces.Move;
 import com.civica.grads.boardgames.enums.Colour;
 import com.civica.grads.boardgames.enums.CounterType;
 import com.civica.grads.boardgames.model.Board;
@@ -49,7 +44,18 @@ public class BoardTest {
 		
 		assertEquals(expected, actual);
 	}
-
+	
+	@Test
+	@Ignore
+	public void getTilesExpectedValue() {
+//		Board board = new Board(8);
+//		
+//		BoardTile[][] expected = new BoardTile[8][8];
+//		BoardTile[][] actual = board.getTiles();
+//		
+//		
+//		assertArrayEquals(expected, actual);
+	}
 	
 	@Test
 	public void getWhiteCountersExpectedValue() {
@@ -71,183 +77,15 @@ public class BoardTest {
 		assertEquals(expected, actual);
 	}
 	
-	 /**
-	  * Checks that when a counter is moved to the left that an IllegalMoveException is thrown.
-	  * 
-	  * @author Ryan Cullen
-	  */
-	 @Test (expected = IllegalMoveException.class) 
-	 public void checkInvalidMoveLeftThrowsException() {
-		//TESTS MOVING TO THE LEFT
-		 
-		//WITH
-		Position p1 = mock(Position.class);
-		when(p1.getX()).thenReturn(1);
-		when(p1.getY()).thenReturn(1);
+	@Test(expected=RuntimeException.class) // expecting exception
+	public void occupiedSpaceTest() {
 		
-		Position p2 = mock(Position.class);
-		when(p2.getX()).thenReturn(0);
-		when(p2.getY()).thenReturn(1);
+		// cREATE A POPULATED 2 X 2 BOARD
+		// Create a diagonal one space move
+		// apply move to board
+		//TODO: assess whether counter constructor is correct	
+		Board board = new Board (2);
 		
-		
-		Move move = mock(Move.class);
-		when(move.getPositionStart()).thenReturn(p1);
-		when(move.getPositionFinish()).thenReturn(p2);
-		
-		Board board = new Board(8);//TODO: replace with test data
-		
-		// WHEN
-		board.applyMove(move);
-		
-		// THEN
-		// Should have thrown an exception.
-	}
-	 
-	 /**
-	  * Checks that when a counter is moved to the right that an IllegalMoveException is thrown.
-	  * 
-	  * @author Ryan Cullen
-	  */
-	 @Test (expected = IllegalMoveException.class) 
-	 public void checkInvalidMoveRightThrowsException() {
-		//TESTS MOVING TO THE LEFT
-		 
-		//WITH
-		Position p1 = mock(Position.class);
-		when(p1.getX()).thenReturn(1);
-		when(p1.getY()).thenReturn(1);
-		
-		Position p2 = mock(Position.class);
-		when(p2.getX()).thenReturn(2);
-		when(p2.getY()).thenReturn(1);
-		
-		
-		Move move = mock(Move.class);
-		when(move.getPositionStart()).thenReturn(p1);
-		when(move.getPositionFinish()).thenReturn(p2);
-		
-		Board board = new Board(8);//TODO: replace with test data
-		
-		// WHEN
-		board.applyMove(move);
-		
-		// THEN
-		// Should have thrown an exception.
-	}
-	 
-	 /**
-	  * Checks that when a counter is moved up that an IllegalMoveException is thrown.
-	  * 
-	  * @author Ryan Cullen
-	  */
-	 @Test (expected = IllegalMoveException.class) 
-	 public void checkInvalidMoveUpThrowsException() {
-		//TESTS MOVING TO THE LEFT
-		 
-		//WITH
-		Position p1 = mock(Position.class);
-		when(p1.getX()).thenReturn(1);
-		when(p1.getY()).thenReturn(1);
-		
-		Position p2 = mock(Position.class);
-		when(p2.getX()).thenReturn(1);
-		when(p2.getY()).thenReturn(0);
-		
-		
-		Move move = mock(Move.class);
-		when(move.getPositionStart()).thenReturn(p1);
-		when(move.getPositionFinish()).thenReturn(p2);
-		
-		Board board = new Board(8);//TODO: replace with test data
-		
-		// WHEN
-		board.applyMove(move);
-		
-		// THEN
-		// Should have thrown an exception.
-	}
-	
-	@Test
-	public void validMoveAllowed() {
-		
-		// WITH
-		Board board = new Board(8);
-		
-		Position p1 = mock(Position.class);
-		when(p1.getX()).thenReturn(0);
-		when(p1.getY()).thenReturn(0);
-		
-		Position p2 = mock(Position.class);
-		when(p2.getX()).thenReturn(1);
-		when(p2.getY()).thenReturn(1);
-		
-		Move move = mock(Move.class);
-		when(move.getPositionStart()).thenReturn(p1);
-		when(move.getPositionFinish()).thenReturn(p2);
-		
-		
-		// WHEN
-		
-		// THEN
-		
-		/* TODO: finish test
-		
-		// if move is valid
-		if() {
-			board.applyMove(move);
-		}
-		
-		Position expected;
-				
-		Position actual;
-		
-		assertEquals(expected, actual);
-		
-		*
-		 *  if(move is valid) {
-		 *  	do move
-		 *  }
-		 *  
-		 *  expected = counter is at final position
-		 *  
-		 *  actual = where is counter
-		 *  
-		 *  assertEquals(expected, actual)
-		 *
-		*/
-		
-	}
-	 
-	 /**
-	  * Checks that when a counter is moved down that an IllegalMoveException is thrown.
-	  * 
-	  * @author Ryan Cullen
-	  */
-	 @Test (expected = IllegalMoveException.class) 
-	 public void checkInvalidMoveDownThrowsException() {
-		//TESTS MOVING TO THE LEFT
-		 
-		//WITH
-		Position p1 = mock(Position.class);
-		when(p1.getX()).thenReturn(1);
-		when(p1.getY()).thenReturn(1);
-		
-		Position p2 = mock(Position.class);
-		when(p2.getX()).thenReturn(1);
-		when(p2.getY()).thenReturn(2);
-		
-		
-		Move move = mock(Move.class);
-		when(move.getPositionStart()).thenReturn(p1);
-		when(move.getPositionFinish()).thenReturn(p2);
-		
-		Board board = new Board(8);//TODO: replace with test data
-		
-		// WHEN
-		board.applyMove(move);
-		
-		// THEN
-		// Should have thrown an exception.
 	}
 
 }

@@ -2,6 +2,7 @@ package com.civica.grads.boardgames.model.draughts;
 
 import com.civica.grads.boardgames.enums.Colour;
 import com.civica.grads.boardgames.enums.CounterType;
+import com.civica.grads.boardgames.exceptions.GameException;
 import com.civica.grads.boardgames.interfaces.Move;
 import com.civica.grads.boardgames.model.Counter;
 import com.civica.grads.boardgames.model.Game;
@@ -93,15 +94,13 @@ public class DraughtsGame extends Game {
 		counter = new Counter(colour, CounterType.NORMAL, counterKey++);
 	}
 	
-	public void applyMove(Move move) { 
+	
+	// TODO: Either check valid move (R&P) before calling this or at the start!
+	public void applyMove(Move move) throws GameException { 
 		Position start = move.getPositionStart() ; 
 		Position end = move.getPositionFinish() ; 
 		
-		// TODO: Check valid move. 
-		
-		board.getBoard()[end.getX()][end.getY()] = board.getBoard()[start.getX()][end.getY()] ; 
-		board.getBoard()[start.getX()][end.getY()] = null ;  
-		
+		board.placePiece(board.getAndRemovePiece(start), end); 
 	}
 
 	public void removeCounter(Position position) {
