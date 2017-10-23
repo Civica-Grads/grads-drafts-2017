@@ -22,11 +22,6 @@ public class Board implements Describable {
 		
 		this( new Counter[size][size] ); 
 	}
-
-	public void applyMove(Move move)
-	{
-		
-	}
 	
 	
 	public int getSize() {
