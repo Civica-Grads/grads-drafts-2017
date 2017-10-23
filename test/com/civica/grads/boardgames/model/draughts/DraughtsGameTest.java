@@ -180,6 +180,7 @@ public class DraughtsGameTest extends GameTest {
 		counterAtStart = draughtsGame.getBoard().isOccupied(startPosition.getX(), startPosition.getY());
 		counterAtEnd = draughtsGame.getBoard().isOccupied(endPosition.getX(), endPosition.getY());
 		
+		// check that there is now a counter at end, and no counter at start
 		assertEquals(0, counterAtStart);
 		assertEquals(1, counterAtEnd);
 	}
