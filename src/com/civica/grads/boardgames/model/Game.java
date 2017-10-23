@@ -5,10 +5,13 @@ import java.io.OutputStream;
 import java.util.ArrayList;
 import java.util.Arrays;
 
+import com.civica.grads.boardgames.exceptions.NoPieceException;
 import com.civica.grads.boardgames.interfaces.Describable;
 import com.civica.grads.boardgames.interfaces.DeterminesNextMove;
 import com.civica.grads.boardgames.interfaces.Move;
 import com.civica.grads.boardgames.model.player.Player;
+import com.civica.grads.boardgames.exceptions.NoPieceException;
+
 
 public abstract class Game implements Describable,DeterminesNextMove {
 	
@@ -34,6 +37,7 @@ public abstract class Game implements Describable,DeterminesNextMove {
 		}
 		this.board = new Board(size) ;
 		this.player = player ; 
+		initialiseBoardForGame() ; 
 	}
 	
 	/**
@@ -49,6 +53,8 @@ public abstract class Game implements Describable,DeterminesNextMove {
 	{
 		throw new RuntimeException("This code is missing"); //TODO
 	}
+	
+	abstract public void takePiece(Position position) throws NoPieceException ; 
 	
 	public int getNumberOfTurns() {
 		return turnRecords.size();

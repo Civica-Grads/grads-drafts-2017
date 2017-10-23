@@ -2,6 +2,7 @@ package com.civica.grads.boardgames.model.draughts;
 
 import com.civica.grads.boardgames.enums.Colour;
 import com.civica.grads.boardgames.enums.CounterType;
+import com.civica.grads.boardgames.exceptions.NoPieceException;
 import com.civica.grads.boardgames.model.Counter;
 import com.civica.grads.boardgames.model.Game;
 import com.civica.grads.boardgames.model.Position;
@@ -94,6 +95,23 @@ public class DraughtsGame extends Game {
 		else {
 			startingPlayerCounters = (size - 2)*(size/2) ; 
 		}
+	}
+	
+	/**
+	 * This method simply removes a piece from the board. 
+	 * If there is no piece on the tile, throws an exception.
+	 * @Override
+	 */
+	public void takePiece(Position position) throws NoPieceException {
+		
+		if (board.getBoard()[position.getY()][position.getX()] == null) {
+			throw new NoPieceException("Trying to remove a piece from a tile where one does not exist.") ; 
+		}
+		else {
+			board.getBoard()[position.getY()][position.getX()] = null ;
+		} 
+				
+		return ; 
 	}
 	
 	
