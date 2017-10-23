@@ -6,13 +6,27 @@ import com.civica.grads.boardgames.model.Position;
 
 public class MakeMoveLogicDraughts extends MakeMoveLogic {
 
+	private Board board ;
+	private Position current;
+	private Position newPosition;
+	private int boardSize; 
+	private int newPositionX;
+	private int newPositionY;
+	
+	
 	public MakeMoveLogicDraughts(Board board, Position current, Position newPosition) {
-		// TODO Auto-generated constructor stub
+		this.board = board;
+		this.current= current;
+		this.newPosition = newPosition;
+		this.boardSize = board.getSize();
+		this.newPositionX = newPosition.getX();
+		this.newPositionY = newPosition.getY();
+		
 	}
 
 	@Override
 	public void checkForValidMove() {
-		// TODO Auto-generated method stub
+		
 		
 	}
 
@@ -34,4 +48,18 @@ public class MakeMoveLogicDraughts extends MakeMoveLogic {
 		
 	}
 
+	
+	public boolean outSideBoard(){
+		if(this.newPosition.getX() > boardSize || this.newPosition.getX()<= -1){
+			return false;
+		}else if(this.newPosition.getY() > boardSize || this.newPosition.getY()<= -1){
+			return false;
+		}else{
+			return true;
+		}
+	}
+	
+	
+			
+	
 }
