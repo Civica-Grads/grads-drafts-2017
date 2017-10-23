@@ -293,23 +293,27 @@ public class BoardTest {
 	 * Normal/King counter not taking piece
 	 */
 	public void invalidLongDiagonalMoveExceptionThrown1() {
-		//WHEN
-				
-		Position p1 = mock(Position.class);
-		when(p1.getX()).thenReturn(1);
-		when(p1.getY()).thenReturn(1);
 		
-		Position p2 = mock(Position.class);
-		when(p2.getX()).thenReturn(3);
-		when(p2.getY()).thenReturn(3);
-		
-		MoveRecord move= new MoveRecord(p1, p2,
-				Colour.BLACK,CounterType.NORMAL,false);
-		
-		//WHEN
-		
-		Move.applyMove(move);
-		//THEN
+		fail("Broken Test");
+		//FIXME Broken Test uncomment this code and it will be revealed.
+
+//		//WHEN
+//				
+//		Position p1 = mock(Position.class);
+//		when(p1.getX()).thenReturn(1);
+//		when(p1.getY()).thenReturn(1);
+//		
+//		Position p2 = mock(Position.class);
+//		when(p2.getX()).thenReturn(3);
+//		when(p2.getY()).thenReturn(3);
+//		
+//		MoveRecord move= new MoveRecord(p1, p2,
+//				Colour.BLACK,CounterType.NORMAL,false);
+//		
+//		//WHEN
+//		
+//		Move.applyMove(move);
+//		//THEN
 			
 	}
 	
@@ -318,23 +322,27 @@ public class BoardTest {
 	 * Normal/King counter taking piece
 	 */
 	public void invalidLongDiagonalMoveExceptionThrown2() {
-		//WHEN
-				
-		Position p1 = mock(Position.class);
-		when(p1.getX()).thenReturn(1);
-		when(p1.getY()).thenReturn(1);
 		
-		Position p2 = mock(Position.class);
-		when(p2.getX()).thenReturn(4);
-		when(p2.getY()).thenReturn(4);
-		
-		MoveRecord move= new MoveRecord(p1, p2,
-				Colour.BLACK,CounterType.NORMAL,true);
-		
-		//WHEN
-		
-		Move.applyMove(move);
-		//THEN
+		fail("Broken Test");
+		//FIXME Broken Test uncomment this code and it will be revealed.
+
+//		//WHEN
+//				
+//		Position p1 = mock(Position.class);
+//		when(p1.getX()).thenReturn(1);
+//		when(p1.getY()).thenReturn(1);
+//		
+//		Position p2 = mock(Position.class);
+//		when(p2.getX()).thenReturn(4);
+//		when(p2.getY()).thenReturn(4);
+//		
+//		MoveRecord move= new MoveRecord(p1, p2,
+//				Colour.BLACK,CounterType.NORMAL,true);
+//		
+//		//WHEN
+//		
+//		Move.applyMove(move);
+//		//THEN
 			
 	}
 	
