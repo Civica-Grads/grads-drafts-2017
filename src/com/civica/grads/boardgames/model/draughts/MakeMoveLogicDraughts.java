@@ -48,22 +48,28 @@ public class MakeMoveLogicDraughts extends MakeMoveLogic {
 		
 	}
 
+	@Override
 	/**
 	 * Sets counter type to KING if it reached the opposite end of the board
+	 * returns whether change occurred or not
 	 */
-	@Override
-	public void checkIfCounterTypeNeedChanging() {
-			Counter counter = (Counter) board.getPiece(newPosition);
-			int row = newPosition.getX();
+	public boolean checkIfCounterTypeNeedChanging() {
+		boolean occurred = false;
+		Counter counter = (Counter) board.getPiece(newPosition);
+		int row = newPosition.getX();
 			
-			if (counter.getType() != CounterType.KING){
-				// whites start on top, blacks on bottom
-				if ((counter.getColour() == Colour.WHITE) && (row == ( boardSize - 1)))
-					counter.setType(CounterType.KING);
-				if ((counter.getColour() == Colour.BLACK) && (row == 0))
-					counter.setType(CounterType.KING);
+		if (counter.getType() != CounterType.KING){
+			// whites start on top, blacks on bottom
+			if ((counter.getColour() == Colour.WHITE) && (row == ( boardSize - 1))){
+				counter.setType(CounterType.KING);
+				occurred = true;
 			}
-		
+			if ((counter.getColour() == Colour.BLACK) && (row == 0)){
+				counter.setType(CounterType.KING);
+				occurred = true;
+			}
+		}
+		return occurred;
 	}
 
 	@Override
