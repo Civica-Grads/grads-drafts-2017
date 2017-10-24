@@ -111,14 +111,19 @@ public class MakeMoveLogicDraughts extends MakeMoveLogic {
 		}
 		
 	}
-
+	
+	/**
+	 * Checks to see if a counter has been taken, relying on the fact there was a valid move input. Changes pieceTaken boolean.
+	 * @param checkIfCounterTaken
+	 * @author Ed Strode-Willis
+	 */
 	@Override
 	public boolean checkIfCounterTaken() {
 		// TODO Auto-generated method stub
 		int xDelta = Math.abs(current.getX() - newPosition.getX());
 		int yDelta = Math.abs(current.getY() - newPosition.getY());
 		
-		if(xDelta == 2 && yDelta == 2) {
+		if(xDelta == LONG_MOVE && yDelta == LONG_MOVE) {
 			this.pieceTaken = true;
 			//TODO: set counter taken to false
 		} else { 
@@ -135,7 +140,11 @@ public class MakeMoveLogicDraughts extends MakeMoveLogic {
 		
 		
 	}
-
+	/**
+	 * Creates a moveRecord from information parsed to MakeMoveLogicDraughts
+	 * @param createMoveRecord
+	 * @author Ed Strode-Willis
+	 */
 	@Override
 	public MoveRecord createMoveRecord() {
 		// TODO Auto-generated method stub
