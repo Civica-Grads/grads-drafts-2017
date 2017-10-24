@@ -130,6 +130,7 @@ public class MakeMoveLogicDraughts extends MakeMoveLogic {
 			this.pieceTaken = false;
 			//TODO: set counter taken to true
 		}
+        return this.pieceTaken ;
 		
 	}
 

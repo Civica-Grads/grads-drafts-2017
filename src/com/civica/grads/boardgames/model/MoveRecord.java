@@ -130,7 +130,7 @@ public class MoveRecord implements Describable,Storable, Move {
 
 
 	public boolean isChangedType() {
-		return changedType;
+		return false; // FIXME Real return value
 	}
 
 
