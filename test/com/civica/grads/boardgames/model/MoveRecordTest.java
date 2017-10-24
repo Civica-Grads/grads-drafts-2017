@@ -22,7 +22,7 @@ public class MoveRecordTest {
 	
 	
 	/*
-	 * tests that getPositionStart() returns the correct position object
+	 * Tests that getPositionStart() returns the correct position object
 	 */
 	@Test
 	public void getPositionStartExpectedReturn() {
@@ -52,7 +52,7 @@ public class MoveRecordTest {
 	}
 	
 	/*
-	 * tests that getPositionFinish() returns the correct position object
+	 * Tests that getPositionFinish() returns the correct position object
 	 */
 	@Test
 	public void getPositionFinishExpectedReturn() {
@@ -75,7 +75,7 @@ public class MoveRecordTest {
 	}
 	
 	/*
-	 * tests that isCounterTaken() returns the correct value
+	 * Tests that isCounterTaken() returns the correct value
 	 */
 	@Test
 	public void isCounterTakenExpectedReturn() {
@@ -99,4 +99,33 @@ public class MoveRecordTest {
 		assertEquals(expected, moveRecord.isCounterTaken());
 	}
 	
+	/*
+	 * Tests that toString() returns the expected string
+	 */
+	@Test
+	public void toStringExpectedReturn() {
+		
+		// create start and end positions
+		Position startPosition = new Position(0, 0);
+		Position finishPosition = new Position(1, 1);
+						
+		// no counter taken during turn
+		boolean counterTaken = false;
+						
+		// create a moveRecord
+		MoveRecord moveRecord = new MoveRecord(startPosition,
+												finishPosition,
+												Colour.WHITE,
+												CounterType.NORMAL, 
+												counterTaken);
+		
+		String expected = "Move [positionStart=" + startPosition +
+						", positionFinish=" + finishPosition + 
+						", player=" + Colour.WHITE +
+						", counterType=" + CounterType.NORMAL + "]";
+		
+		String actual = moveRecord.toString();
+		
+		assertEquals(expected, actual);
+	}
 }
