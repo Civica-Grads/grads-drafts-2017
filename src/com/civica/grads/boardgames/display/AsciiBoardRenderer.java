@@ -1,8 +1,6 @@
 package com.civica.grads.boardgames.display;
 
 import java.io.PrintStream;
-import org.junit.Ignore;
-
 import com.civica.grads.boardgames.exceptions.RenderException;
 import com.civica.grads.boardgames.interfaces.Renderer;
 import com.civica.grads.boardgames.model.Board;

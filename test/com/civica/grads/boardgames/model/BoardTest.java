@@ -8,17 +8,13 @@ import static org.mockito.Mockito.when;
 
 import java.io.IOException;
 import java.io.OutputStream;
-import java.util.ArrayList;
-
 import org.junit.Test;
 
 
 import com.civica.grads.boardgames.exceptions.GameException;
 
-import com.civica.grads.boardgames.interfaces.Move;
 import com.civica.grads.boardgames.model.Board;
 import com.civica.grads.boardgames.model.Piece;
-import com.civica.grads.boardgames.model.player.Player;
 import com.civica.grads.boardgames.util.OutputStreamUtil;
 
 /**

@@ -12,7 +12,6 @@ import com.civica.grads.boardgames.interfaces.Describable;
 import com.civica.grads.boardgames.interfaces.DeterminesNextMove;
 import com.civica.grads.boardgames.interfaces.Move;
 import com.civica.grads.boardgames.model.player.Player;
-import com.civica.grads.boardgames.exceptions.NoPieceException;
 
 
 public abstract class Game implements Describable,DeterminesNextMove {

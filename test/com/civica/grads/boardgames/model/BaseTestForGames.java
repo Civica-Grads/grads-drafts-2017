@@ -1,20 +1,14 @@
 package com.civica.grads.boardgames.model;
 
 import static org.fest.assertions.api.Assertions.assertThat; // main one
-import static org.junit.Assert.*;
 import static org.mockito.Mockito.*;
 
-import java.io.IOException;
-import java.io.OutputStream;
 import java.util.ArrayList;
 
 import org.junit.Test;
 
-import com.civica.grads.boardgames.model.Board;
 import com.civica.grads.boardgames.model.Game;
-import com.civica.grads.boardgames.model.MoveRecord;
 import com.civica.grads.boardgames.model.player.Player;
-import com.civica.grads.boardgames.util.OutputStreamUtil;
 
 public abstract class BaseTestForGames {
 

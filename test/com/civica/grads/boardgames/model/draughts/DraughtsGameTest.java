@@ -16,9 +16,7 @@ import com.civica.grads.boardgames.model.player.Player;
 
 import static org.mockito.Mockito.when;
 
-import com.civica.grads.boardgames.interfaces.Move;
 import com.civica.grads.boardgames.model.Position;
-import com.civica.grads.boardgames.model.Board;
 import com.civica.grads.boardgames.model.player.*;
 
 import static org.hamcrest.CoreMatchers.instanceOf;
@@ -34,6 +32,7 @@ import com.civica.grads.boardgames.model.Counter;
  * @author Bruce.Mundin
  *
  */
+@SuppressWarnings("unused")
 public class DraughtsGameTest extends BaseTestForGames {
 
 	@Test(expected=GameException.class)

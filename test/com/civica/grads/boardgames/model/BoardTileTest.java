@@ -2,8 +2,6 @@ package com.civica.grads.boardgames.model;
 
 import static org.junit.Assert.*;
 
-import java.util.Arrays;
-
 import org.junit.Test;
 
 import com.civica.grads.boardgames.enums.Colour;

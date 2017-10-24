@@ -9,7 +9,6 @@ import com.civica.grads.boardgames.exceptions.GameException;
 import com.civica.grads.boardgames.exceptions.NoPieceException;
 import com.civica.grads.boardgames.exceptions.OnToPieceException;
 import com.civica.grads.boardgames.interfaces.Describable;
-import com.civica.grads.boardgames.interfaces.Move;
 
 
 public class Board implements Describable {
