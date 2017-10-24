@@ -14,6 +14,10 @@ import com.civica.grads.boardgames.model.Position;
 
 public class MakeMoveLogicDraughts extends MakeMoveLogic {
 
+	private static final int SHORT_MOVE = 1;
+	private static final int LONG_MOVE = 2;
+	private static final int AVG = 2;
+	
 	private Board board ;
 	private Position current;
 	private Position newPosition;
@@ -43,7 +47,7 @@ public class MakeMoveLogicDraughts extends MakeMoveLogic {
 		Counter startPiece = (Counter) board.getPiece(current);
 		Counter newPositionPiece = (Counter) board.getPiece(newPosition);
 		Counter middlePiece = (Counter) board.getPiece(new Position(
-				(currentX+newPositionX)/2, (currentY+newPositionY)/2));
+				(currentX+newPositionX)/AVG, (currentY+newPositionY)/AVG));
 		
 		CounterType startType = startPiece.getType();
 		Colour startColour = startPiece.getColour();
@@ -70,33 +74,38 @@ public class MakeMoveLogicDraughts extends MakeMoveLogic {
 		
 		/* Checks if the move is valid for a normal counter, if not it throws an exception.
 		   Checks that normal can only move forward, and if it moves by 2 it takes a piece.*/
-		if (startType.equals(CounterType.NORMAL)) {
-			if (Math.abs(newPositionX - currentX) == 1 
-					&& newPositionY - currentY == 1) { //valid
+		switch (startType){
+		case NORMAL: 
+			if (Math.abs(newPositionX - currentX) == SHORT_MOVE 
+					&& newPositionY - currentY == SHORT_MOVE) { //valid
 				//Move is going forward by one so is valid, carry on.
-			} else if ((Math.abs(newPositionX - currentX) == 2) 
-					&& (newPositionY - currentY == 2)
+			} else if ((Math.abs(newPositionX - currentX) == LONG_MOVE) 
+					&& (newPositionY - currentY == LONG_MOVE)
+					&& !middlePiece.equals(null)
 					&& !middlePiece.getColour().equals(startColour)) {
 				//Move is moving by two and taking an opponent's piece, valid so carry on.
 			} else {
 				throw new IllegalMoveException("IllegalMoveException: Move was not performed "
 						+ "in a valid direction or number of spaces.");
 			}
-			
-			//King can move forward and backwards, so Y value can be negative or positive.
-		} else if (startType.equals(CounterType.KING)) {
-			if (Math.abs(newPositionX - currentX) == 1 
-					&& Math.abs(newPositionY - currentY) == 1) { //valid
+			break;
+		//King can move forward and backwards, so Y value can be negative or positive.
+		case KING:
+			if (Math.abs(newPositionX - currentX) == SHORT_MOVE  
+					&& Math.abs(newPositionY - currentY) == SHORT_MOVE) { //valid
 				//Move is going forward/backward by one so is valid, carry on.
-			} else if ((Math.abs(newPositionX - currentX) == 2) 
-					&& (Math.abs(newPositionY - currentY) == 2)
+			} else if ((Math.abs(newPositionX - currentX) == LONG_MOVE) 
+					&& (Math.abs(newPositionY - currentY) == LONG_MOVE)
+					&& !middlePiece.equals(null)
 					&& !middlePiece.getColour().equals(startColour)) {
 				//Move is moving by two and taking an opponent's piece, valid so carry on.
 			} else {
 				throw new IllegalMoveException("IllegalMoveException: Move was not performed "
-						+ "in a valid direction or number of spaces.");
+												+ "in a valid direction or number of spaces.");
 			}
+			break;
 		}
+		
 	}
 
 	@Override
