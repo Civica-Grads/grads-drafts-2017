@@ -103,6 +103,7 @@ public class DraughtsGame extends Game {
 		
 		board.placePiece(board.getAndRemovePiece(start), end); 
 	}
+	
 
 	public void removeCounter(Position position) {
 		board.getBoard()[position.getX()][position.getY()] = null ; 
