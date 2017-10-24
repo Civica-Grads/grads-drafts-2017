@@ -1,5 +1,6 @@
 package com.civica.grads.boardgames.model.draughts;
 
+import com.civica.grads.boardgames.exceptions.IllegalMoveException;
 import com.civica.grads.boardgames.enums.Colour;
 import com.civica.grads.boardgames.enums.CounterType;
 import com.civica.grads.boardgames.exceptions.MoveException;
@@ -16,6 +17,8 @@ public class MakeMoveLogicDraughts extends MakeMoveLogic {
 	private int boardSize; 
 	private int newPositionX;
 	private int newPositionY;
+	private int currentX;
+	private int currentY;
 	
 	
 	public MakeMoveLogicDraughts(Board board, Position current, Position newPosition) {
@@ -25,12 +28,23 @@ public class MakeMoveLogicDraughts extends MakeMoveLogic {
 		this.boardSize = board.getSize();
 		this.newPositionX = newPosition.getX();
 		this.newPositionY = newPosition.getY();
+		this.currentX = current.getX();
+		this.currentY = current.getY();
 		
 	}
 
 	@Override
 	public void checkForValidMove() throws MoveException {
+		//TODO: Check counter not moving up/down/left/right
+		boolean movedHorizontal = (Math.abs(newPositionX - currentX) == 1) && (newPositionY == currentY);
+		boolean movedVertical = (Math.abs(newPositionY - currentY) == 1) && (newPositionX == currentX);
 		
+		
+		if (movedHorizontal || movedVertical) {
+			throw new IllegalMoveException("");
+		}
+		
+		//TODO: 
 		
 	}
 
