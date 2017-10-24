@@ -1,5 +1,6 @@
 package com.civica.grads.boardgames.model.draughts;
 
+import com.civica.grads.boardgames.enums.CounterType;
 import com.civica.grads.boardgames.enums.Colour;
 import com.civica.grads.boardgames.enums.CounterType;
 import com.civica.grads.boardgames.exceptions.IllegalMoveException;
@@ -27,9 +28,9 @@ public class MakeMoveLogicDraughts extends MakeMoveLogic {
 	private int boardSize; 
 	private int newPositionX;
 	private int newPositionY;
+	private boolean pieceTaken = false;
 	private int currentX;
 	private int currentY;
-	
 	
 	public MakeMoveLogicDraughts(Board board, Position current, Position newPosition) {
 		this.board = board;
@@ -117,10 +118,12 @@ public class MakeMoveLogicDraughts extends MakeMoveLogic {
 		int xDelta = Math.abs(current.getX() - newPosition.getX());
 		int yDelta = Math.abs(current.getY() - newPosition.getY());
 		
-		if(xDelta == 1 && yDelta == 1) {
-			return false;
-		} else {
-			return true;
+		if(xDelta == 2 && yDelta == 2) {
+			this.pieceTaken = true;
+			//TODO: set counter taken to false
+		} else { 
+			this.pieceTaken = false;
+			//TODO: set counter taken to true
 		}
 		
 	}
@@ -130,21 +133,41 @@ public class MakeMoveLogicDraughts extends MakeMoveLogic {
 		return false;
 		// TODO Auto-generated method stub
 		
+		
 	}
 
 	@Override
 	public MoveRecord createMoveRecord() {
-		return new MoveRecord(current, current,  Colour.BLACK, CounterType.NORMAL, false);
 		// TODO Auto-generated method stub
+		MoveRecord moveRecord = new MoveRecord(current, newPosition, board.getPiece(current).getColour(), board.getPiece(current).getType(), pieceTaken);
+		return moveRecord;
+		
 		
 	}
 
 	
+	public int getNewPositionX() {
+		return newPositionX;
+	}
+
+
+	public int getNewPositionY() {
+		return newPositionY;
+	}
+
+
+	public boolean isPieceTaken() {
+		return pieceTaken;
+	}
+
 	public boolean outSideBoard(){
 		if(this.newPosition.getX() > boardSize || this.newPosition.getX()<= -1){
 			return false;
 		}else if(this.newPosition.getY() > boardSize || this.newPosition.getY()<= -1){
 			return false;
+			
+			
+			
 		}else{
 			return true;
 		}

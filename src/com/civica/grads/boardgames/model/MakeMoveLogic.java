@@ -14,5 +14,4 @@ public abstract class MakeMoveLogic {
 	public abstract boolean checkIfCounterTypeNeedChanging();
 	public abstract MoveRecord createMoveRecord();
 	
-	
 }
