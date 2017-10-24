@@ -10,7 +10,7 @@ public abstract class MakeMoveLogic {
 
 	
 	public abstract void checkForValidMove() throws MoveException;
-	public abstract void checkIfCounterTaken();
+	public abstract boolean checkIfCounterTaken();
 	public abstract void checkIfCounterTypeNeedChanging();
 	public abstract void createMoveRecord();
 	

@@ -1,5 +1,6 @@
 package com.civica.grads.boardgames.model.draughts;
 
+import com.civica.grads.boardgames.exceptions.IllegalMoveException;
 import com.civica.grads.boardgames.exceptions.MoveException;
 import com.civica.grads.boardgames.model.Board;
 import com.civica.grads.boardgames.model.MakeMoveLogic;
@@ -13,6 +14,8 @@ public class MakeMoveLogicDraughts extends MakeMoveLogic {
 	private int boardSize; 
 	private int newPositionX;
 	private int newPositionY;
+	private int currentX;
+	private int currentY;
 	
 	
 	public MakeMoveLogicDraughts(Board board, Position current, Position newPosition) {
@@ -22,25 +25,36 @@ public class MakeMoveLogicDraughts extends MakeMoveLogic {
 		this.boardSize = board.getSize();
 		this.newPositionX = newPosition.getX();
 		this.newPositionY = newPosition.getY();
+		this.currentX = current.getX();
+		this.currentY = current.getY();
 		
 	}
 
 	@Override
 	public void checkForValidMove() throws MoveException {
+		//TODO: Check counter not moving up/down/left/right
+		boolean movedHorizontal = (Math.abs(newPositionX - currentX) == 1) && (newPositionY == currentY);
+		boolean movedVertical = (Math.abs(newPositionY - currentY) == 1) && (newPositionX == currentX);
 		
+		
+		if (movedHorizontal || movedVertical) {
+			throw new IllegalMoveException("");
+		}
+		
+		//TODO: 
 		
 	}
 
 	@Override
-	public void checkIfCounterTaken() {
+	public boolean checkIfCounterTaken() {
 		// TODO Auto-generated method stub
 		int xDelta = Math.abs(current.getX() - newPosition.getX());
 		int yDelta = Math.abs(current.getY() - newPosition.getY());
 		
 		if(xDelta == 1 && yDelta == 1) {
-			//TODO: set counter taken to false
+			return false;
 		} else {
-			//TODO: set counter taken to true
+			return true;
 		}
 		
 	}
