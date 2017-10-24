@@ -34,21 +34,16 @@ import com.civica.grads.boardgames.model.Counter;
  * @author Bruce.Mundin
  *
  */
-public class DraughtsGameTest extends GameTest {
-
-	@Override
-	protected Game createGame(Player[] players) {
-		return new DraughtsGame(players);
-	}
+public class DraughtsGameTest {
 
 	@Test(expected=GameException.class)
 	public void shouldNotAllowTooFewPlayers()
 	{
 	// WITH
-	Player[] tooManyPlayers = {
+	Player[] tooFewPlayers = {
 			mock(Player.class)
 	};
-	DraughtsGame game = new DraughtsGame(tooManyPlayers);
+	DraughtsGame game = new DraughtsGame(tooFewPlayers);
 	
 	// WHEN
 	// THEN	
@@ -199,65 +194,16 @@ public class DraughtsGameTest extends GameTest {
 //		assertEquals(0, counterAtStart);
 //		assertEquals(1, counterAtEnd);
 	}
-
-	/**
-	 * Test to check whether a counter is correctly removed when takePiece is called. 
-	 * @throws NoPieceException 
-	 */
-	@Test
-	public void takePieceCorrectlyRemovesCounter() throws NoPieceException {
-		// WITH
-		Player[] players = {mock(Player.class), mock(Player.class)} ; 
-		int size = 8 ; // One of the standard board sizes.
-		
-		DraughtsGame draughtsGame = new DraughtsGame(size, players) ; 
-		
-		Position takeLocation = mock(Position.class) ; 
-		when(takeLocation.getX()).thenReturn(0) ; 
-		when(takeLocation.getY()).thenReturn(1) ; 
-	 
-		
-		// THEN - Check that the piece is actually there before taking it. 
-		assertThat(draughtsGame.getBoard().getBoard()[takeLocation.getY()][takeLocation.getX()], instanceOf(Counter.class)) ; 
-		
-		// WHEN 
-		draughtsGame.takePiece(takeLocation) ;
-		
-		// THEN
-		assertNull(draughtsGame.getBoard().getBoard()[takeLocation.getY()][takeLocation.getX()]) ; 
-	}
 	
-	/**
-	 * Test to whether correct Exception is thrown when no piece on tile and takePiece called. 
-	 */
-	@Test
-	public void takePieceThrowsCorrectException() {
-		// WITH
-		Player[] players = {mock(Player.class), mock(Player.class)} ; 
-		int size = 8 ; // One of the standard board sizes.
+	@Test(expected = IllegalArgumentException.class)
+	public void shouldNotAllowBoardTooBig() {
 		
-		DraughtsGame draughtsGame = new DraughtsGame(size, players) ; 
-		
-		Position takeLocation = mock(Position.class) ; 
-		when(takeLocation.getX()).thenReturn(0) ; 
-		when(takeLocation.getY()).thenReturn(0) ; 
-	 
-		
-		// THEN - Check that there is not a piece on the tile before trying to take it. 
-		assertNull(draughtsGame.getBoard().getBoard()[takeLocation.getY()][takeLocation.getX()]) ; 
-		
-		try {
-			// WHEN
-			draughtsGame.takePiece(takeLocation) ;
-			fail("Exception not thrown.");
-		} catch (NoPieceException e) {
-			// THEN
-			assertThat(e, instanceOf(NoPieceException.class)) ; 
-			assertThat(e.getMessage())
-				.as("Should contain the correct Exception message.")
-				.contains("Trying to remove a piece from a tile where one does not exist.") ; 
-		} 
-		
+		// create an array of players
+		HumanPlayer humanPlayerWhite = new HumanPlayer("playerWhite");
+		HumanPlayer humanPlayerBlack = new HumanPlayer("playerBlack");
+		HumanPlayer humanPlayers[] = {humanPlayerWhite, humanPlayerBlack};
+				
+		// create draughts game with the two players in the array
+		DraughtsGame draughtsGame = new DraughtsGame(13, humanPlayers);
 	}
-
 }
