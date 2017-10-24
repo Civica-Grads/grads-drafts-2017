@@ -6,7 +6,7 @@ import org.junit.Test;
 
 import com.civica.grads.boardgames.enums.Colour;
 import com.civica.grads.boardgames.enums.CounterType;
-import com.civica.grads.boardgames.model.Piece;
+import com.civica.grads.boardgames.model.Counter;
 
 public class CounterTest {
 	
@@ -14,10 +14,10 @@ public class CounterTest {
 
 	@Test
 	public void outputToStringCounterTest() {
-		Counter one= new Counter(Colour.BLACK, CounterType.NORMAL, 2);
-		String expected= "Counter [colour=BLACK, type=NORMAL, key=2]";
+	
+		String expected= "Counter [type=NORMAL, key=2]";
 
-		assertEquals(expected,one.toString());
+		assertEquals(expected,global.toString());
 		
 	}
 	
