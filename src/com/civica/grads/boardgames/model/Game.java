@@ -29,13 +29,7 @@ public abstract class Game implements Describable,DeterminesNextMove {
 	 * @param player is an array of player objects
 	 */
 	public Game(int size, Player[] player) {
-		try {
-			checkBoardSizeValue(size) ; 
-		}
-		catch (IllegalArgumentException e) {
-			e.printStackTrace();
-			System.exit(-1);
-		}
+	    checkBoardSizeValue(size) ; 
 		this.board = new Board(size) ;
 		this.player = player ; 
 		initialiseBoardForGame() ; 
