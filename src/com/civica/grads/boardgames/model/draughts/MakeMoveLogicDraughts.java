@@ -51,7 +51,7 @@ public class MakeMoveLogicDraughts extends MakeMoveLogic {
 	@Override
 	/**
 	 * Sets counter type to KING if it reached the opposite end of the board
-	 * returns whether change occurred or not
+	 * @return Returns whether change occurred or not
 	 */
 	public boolean checkIfCounterTypeNeedChanging() {
 		boolean occurred = false;
@@ -70,7 +70,9 @@ public class MakeMoveLogicDraughts extends MakeMoveLogic {
 			}
 		}
 		return occurred;
-	}
+	}/**
+	 * 
+	 */
 
 	@Override
 	public void createMoveRecord() {
@@ -78,7 +80,10 @@ public class MakeMoveLogicDraughts extends MakeMoveLogic {
 		
 	}
 
-	
+	/**
+	 * Checks if a tile described as newPosition actually exists on the board
+	 * @return Returns true if tile doesn't exist and move is invalid, false otherwise
+	 */
 	public boolean outSideBoard(){
 		if(this.newPosition.getX() > boardSize || this.newPosition.getX()<= -1){
 			return false;
