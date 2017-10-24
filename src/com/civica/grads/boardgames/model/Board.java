@@ -35,7 +35,7 @@ public class Board implements Describable {
 	public void placePiece(Piece piece, Position position) throws GameException
 	{
 		if ( isOccupied(position) ){
-			throw new OnToPieceException("Invalid move! There's a piece on " + position.getX() +" "+ position.getY() +" already!");
+			throw new OnToPieceException("Invalid move! There's a piece on " + position.getX() + " " + position.getY() +" already!");
 			
 		}
 		this.piecesOnBoard[position.getX()][position.getY()] = piece ;
@@ -44,7 +44,7 @@ public class Board implements Describable {
 	public Piece getAndRemovePiece(Position position) throws GameException {
 		
 		if ( !isOccupied(position) ) {
-			throw new NoPieceException("Invalid move! There's no piece on " + position.getX() +" "+ position.getY() + "!");
+			throw new NoPieceException("Invalid move! There's no piece on " + position.getX() + " " + position.getY() + "!");
 		}
 		
 		Piece removedPiece = this.piecesOnBoard[position.getX()][position.getY()] ; 
@@ -77,7 +77,7 @@ public class Board implements Describable {
 	
 	@Override
 	public String toString() {
-		return "Board [countersOnBoard=" + Arrays.toString(piecesOnBoard) + "]";
+		return "Board [countersOnBoard = " + Arrays.toString(piecesOnBoard) + "]";
 	}
 	
 	/**
