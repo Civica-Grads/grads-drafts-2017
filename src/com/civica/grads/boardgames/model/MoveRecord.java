@@ -62,14 +62,15 @@ public class MoveRecord implements Describable,Storable, Move {
 	 * @param player
 	 * @param counterType
 	 */
-	public MoveRecord(Position positionStart, Position positionFinish, Colour player, CounterType counterType, boolean counterTaken) {
+	public MoveRecord(Position positionStart, Position positionFinish, Colour player, 
+			CounterType counterType, boolean counterTaken) {
 		
 		this.positionStart = positionStart;
 		this.positionFinish = positionFinish;
 		this.player = player;
 		this.counterType = counterType;
 		this.counterTaken = counterTaken;
-		moveRecordID = totalMoveRecords++;
+			moveRecordID = totalMoveRecords++;
 	
 		
 	}
@@ -125,6 +126,14 @@ public class MoveRecord implements Describable,Storable, Move {
 	public int getMoveRecordID() {
 		return moveRecordID;
 	}
+
+
+
+	public boolean isChangedType() {
+		return changedType;
+	}
+
+
 
 
 
