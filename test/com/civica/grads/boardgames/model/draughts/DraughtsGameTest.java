@@ -25,21 +25,16 @@ import com.civica.grads.boardgames.model.player.*;
  * @author Bruce.Mundin
  *
  */
-public class DraughtsGameTest extends GameTest {
-
-	@Override
-	protected Game createGame(Player[] players) {
-		return new DraughtsGame(players);
-	}
+public class DraughtsGameTest {
 
 	@Test(expected=GameException.class)
 	public void shouldNotAllowTooFewPlayers()
 	{
 	// WITH
-	Player[] tooManyPlayers = {
+	Player[] tooFewPlayers = {
 			mock(Player.class)
 	};
-	DraughtsGame game = new DraughtsGame(tooManyPlayers);
+	DraughtsGame game = new DraughtsGame(tooFewPlayers);
 	
 	// WHEN
 	// THEN	
@@ -189,5 +184,17 @@ public class DraughtsGameTest extends GameTest {
 //		// check that there is now a counter at end, and no counter at start
 //		assertEquals(0, counterAtStart);
 //		assertEquals(1, counterAtEnd);
+	}
+	
+	@Test(expected = IllegalArgumentException.class)
+	public void shouldNotAllowBoardTooBig() {
+		
+		// create an array of players
+		HumanPlayer humanPlayerWhite = new HumanPlayer("playerWhite");
+		HumanPlayer humanPlayerBlack = new HumanPlayer("playerBlack");
+		HumanPlayer humanPlayers[] = {humanPlayerWhite, humanPlayerBlack};
+				
+		// create draughts game with the two players in the array
+		DraughtsGame draughtsGame = new DraughtsGame(13, humanPlayers);
 	}
 }
