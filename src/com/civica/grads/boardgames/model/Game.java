@@ -58,14 +58,26 @@ public abstract class Game implements Describable,DeterminesNextMove {
 	
 	abstract public void takePiece(Position position) throws NoPieceException ; 
 	
+	/**
+	 * Retrieves number of turns in a game
+	 * @return Number of turns
+	 */
 	public int getNumberOfTurns() {
 		return turnRecords.size();
 	}
-
+	
+	/**
+	 * Checks if game has any turns
+	 * @return True if turns count > 0, false otherwise
+	 */
 	public boolean hasTurns() {
 		return turnRecords.isEmpty();
 	}
-
+	/**
+	 * Adds a turn record to list
+	 * @param e turn record
+	 * @return true if successful, false if failed
+	 */
 	public boolean addTurn(TurnRecord e) {
 		return turnRecords.add(e);
 	}
@@ -80,11 +92,18 @@ public abstract class Game implements Describable,DeterminesNextMove {
 	
 	abstract protected void checkBoardSizeValue(int size) throws IllegalArgumentException ;
 	
+	/**
+	 * Retrieves board object
+	 * @return Board object
+	 */
 	public Board getBoard() {
 		return board;
 	}
 	
-
+	/**
+	 * Returns the total number of counters at the start of a game
+	 * @return Number of counters
+	 */
 	public int getStartingPlayerCounters() {
 		return startingPlayerCounters;
 	}

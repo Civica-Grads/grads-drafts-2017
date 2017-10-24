@@ -13,16 +13,25 @@ import com.civica.grads.boardgames.model.player.Player;
 public class DraughtsGame extends Game {
 	private int counterKey ; 
 
-	public static final int BOARD_SIZE = 8 ;
+	public static int BOARD_SIZE = 8;
 	
 
+	/**
+	 * Constructor with custom board size
+	 * @param size Board size
+	 * @param player Game players
+	 */
 	protected DraughtsGame(int size, Player[] player) {
 		super(size, player);
+		BOARD_SIZE = size;
 		counterKey = 0 ; 
 		
 	}
 	
-
+	/**
+	 * Constructor with the default board size
+	 * @param player Game players
+	 */
 	public DraughtsGame(Player[] player) {
 		this(BOARD_SIZE,player);
 	}
@@ -91,12 +100,25 @@ public class DraughtsGame extends Game {
 		}
 	}
 	
+	/**
+	 * Instantiates a counter 
+	 * Used for initializing the board
+	 * @param counter
+	 * @param colour
+	 */
 	private void createNewCounterAndPlace(Counter counter, Colour colour) {
 		counter = new Counter(colour, CounterType.NORMAL, counterKey++);
 	}
 	
 	
 	// TODO: Either check valid move (R&P) before calling this or at the start!
+	
+	/**
+	 * Moves piece from its origin to a new position if the move is legal
+	 * Validation takes place elsewhere
+	 * Hence, no guarantee that the piece will actually move to new position
+	 * @param move Object implementing Move interface
+	 */
 	public void applyMove(Move move) throws GameException { 
 		Position start = move.getPositionStart() ; 
 		Position end = move.getPositionFinish() ; 
