@@ -10,7 +10,7 @@ import org.junit.Test;
 
 import com.civica.grads.boardgames.exceptions.GameException;
 import com.civica.grads.boardgames.model.Game;
-import com.civica.grads.boardgames.model.GameTest;
+import com.civica.grads.boardgames.model.BaseTestForGames;
 import com.civica.grads.boardgames.model.Position;
 import com.civica.grads.boardgames.model.player.Player;
 
@@ -34,7 +34,7 @@ import com.civica.grads.boardgames.model.Counter;
  * @author Bruce.Mundin
  *
  */
-public class DraughtsGameTest {
+public class DraughtsGameTest extends BaseTestForGames {
 
 	@Test(expected=GameException.class)
 	public void shouldNotAllowTooFewPlayers()
@@ -206,4 +206,10 @@ public class DraughtsGameTest {
 		// create draughts game with the two players in the array
 		DraughtsGame draughtsGame = new DraughtsGame(13, humanPlayers);
 	}
+
+
+    @Override
+    protected Game createGame(Player[] players) {
+        return new DraughtsGame(players);
+    }
 }

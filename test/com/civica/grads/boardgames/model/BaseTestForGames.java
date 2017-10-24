@@ -16,8 +16,11 @@ import com.civica.grads.boardgames.model.MoveRecord;
 import com.civica.grads.boardgames.model.player.Player;
 import com.civica.grads.boardgames.util.OutputStreamUtil;
 
-public class GameTest {
+public abstract class BaseTestForGames {
 
+    protected abstract Game createGame(Player[] players); 
+    
+    
 	/**
 	 * Check whether getPlayer() returns the correct Player array.
 	 */
@@ -25,15 +28,16 @@ public class GameTest {
 	public void getPlayerReturnsExpectedPlayers() {
 		// WITH
 		Player[] players = {mock(Player.class), mock(Player.class)} ; 		
-		Game game = mock(Game.class) ; 
 		
 		// WHEN
-		when(game.getPlayer()).thenReturn(players) ;
+        Game game = createGame(players) ; 
 		
 		// THEN
-		assert(game.getPlayer() == players) ; 
-		assertEquals(game.getPlayer()[1], players[1]) ;
-		assertEquals(game.getPlayer()[2], players[2]) ;		
+		assertThat(game.getPlayer())
+		    .isNotNull()
+		    .isNotEmpty()
+		    .hasSize(2)
+		    .contains(players[0], players[1]) ;		
 	}
 	
 	/**
@@ -42,21 +46,26 @@ public class GameTest {
 	@Test
 	public void getTurnsReturnsExpectedTurns() {
 		// WITH
+        Player[] players = {mock(Player.class), mock(Player.class)} ;       
 		TurnRecord turnOne = mock(TurnRecord.class) ; 
 		TurnRecord turnTwo = mock(TurnRecord.class) ; 
 		ArrayList<TurnRecord> turns = new ArrayList<TurnRecord>() ; 
 		turns.add(turnOne) ; 
 		turns.add(turnTwo) ; 
 		
-		Game game = mock(Game.class) ; 
+		Game game = createGame(players) ; 
+        assertThat(game.hasTurns()).isFalse();
 		
 		// WHEN
-		when(game.getTurns()).thenReturn(turns) ;
+		game.addTurns(turns);
 		
 		// THEN
-		assert(game.getTurns() == turns) ; 
-		assertEquals(game.getTurns().get(1), turns.get(1)) ;
-		assertEquals(game.getTurns().get(2), turns.get(2)) ;		
+		assertThat(game.hasTurns()).isTrue();
+		assertThat(game.getTurns())
+		    .hasSize(2)
+		    .contains(turnOne,turnTwo);
+		
+
 	}
 
 

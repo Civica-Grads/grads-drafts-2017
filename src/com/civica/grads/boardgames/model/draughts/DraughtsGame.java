@@ -11,30 +11,59 @@ import com.civica.grads.boardgames.model.Position;
 import com.civica.grads.boardgames.model.player.Player;
 
 public class DraughtsGame extends Game {
-	private int counterKey ; 
+    
+    /**
+     * This is an incrementing key value.
+     */
+	private int uniqueCounterKey ; 
 
-	public static int BOARD_SIZE = 8;
+	   /** This is the size of a Draughts board */
+    public static final int BRAZILIAN_BOARD_SIZE = 8;
+    public static final int INTRERNALIONAL_BOARD_SIZE = 10;
+    public static final int CANADIAN_BOARD_SIZE = 12;
+
+    public enum BoardType {
+
+        BRAZILIAN(BRAZILIAN_BOARD_SIZE), 
+        INTERNATIONAL(INTRERNALIONAL_BOARD_SIZE), 
+        CANADIAN(CANADIAN_BOARD_SIZE);
+
+        private final int size;
+
+        private BoardType(int size) {
+            this.size = size;
+        }
+        
+        public int getBoardSize() { return this.size; }
+    }
 	
+	
+    /**
+     * Constructor with the default board size
+     * @param player Game players
+     */
+    public DraughtsGame(Player[] player) {
+        this(BoardType.INTERNATIONAL,player);
+    }	
 
+    public DraughtsGame(BoardType boardType, 
+            Player[] player) 
+        {
+            this(boardType.getBoardSize(),player);
+        }
+        
 	/**
 	 * Constructor with custom board size
 	 * @param size Board size
 	 * @param player Game players
 	 */
-	protected DraughtsGame(int size, Player[] player) {
+	DraughtsGame(int size, Player[] player) {
 		super(size, player);
-		BOARD_SIZE = size;
-		counterKey = 0 ; 
+		uniqueCounterKey = 0 ; 
 		
 	}
 	
-	/**
-	 * Constructor with the default board size
-	 * @param player Game players
-	 */
-	public DraughtsGame(Player[] player) {
-		this(BOARD_SIZE,player);
-	}
+
 
 
 	/**
@@ -107,7 +136,7 @@ public class DraughtsGame extends Game {
 	 * @param colour
 	 */
 	private void createNewCounterAndPlace(Counter counter, Colour colour) {
-		counter = new Counter(colour, CounterType.NORMAL, counterKey++);
+		counter = new Counter(colour, CounterType.NORMAL, uniqueCounterKey++);
 	}
 	
 	
@@ -137,11 +166,18 @@ public class DraughtsGame extends Game {
 	 */
 	protected void checkBoardSizeValue(int size) throws IllegalArgumentException {
 
-		if (size <  8 || size > 12 || (size % 2) == 1) {
+	    boolean found = false ;
+	    for (BoardType type:BoardType.values())
+	    {
+	        if ( type.getBoardSize() == size ) 
+	        {
+	            found = true ;
+	            break;
+	        }
+	    }
+	    
+		if (!found) {
 			throw new IllegalArgumentException("Board size is incorrect.") ; 
-		}
-		else {
-			startingPlayerCounters = (size - 2)*(size/2) ; 
 		}
 	}
 	

@@ -4,6 +4,7 @@ import java.io.IOException;
 import java.io.OutputStream;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Collection;
 
 import com.civica.grads.boardgames.exceptions.NoPieceException;
 import com.civica.grads.boardgames.exceptions.GameException;
@@ -17,10 +18,10 @@ import com.civica.grads.boardgames.exceptions.NoPieceException;
 public abstract class Game implements Describable,DeterminesNextMove {
 	
 	final protected Board board ; 
-	protected static int startingPlayerCounters ; 
 	protected Player[] player ; 
 	final protected ArrayList<TurnRecord> turnRecords = new ArrayList<>() ;
-	
+
+
 	
 
 	/**
@@ -72,10 +73,18 @@ public abstract class Game implements Describable,DeterminesNextMove {
 	 * @param e turn record
 	 * @return true if successful, false if failed
 	 */
-	public boolean addTurn(TurnRecord e) {
-		return turnRecords.add(e);
+	public boolean addTurn(TurnRecord turn) {
+		return turnRecords.add(turn);
 	}
 
+    public void addTurns(Collection<TurnRecord> turns) {
+        
+        for ( TurnRecord turn:turns)
+        {
+            addTurn(turn);
+        }
+        
+    }
 	/**
 	 * clears all the turns stored in the turnsRecord arraylist
 	 */
@@ -93,14 +102,7 @@ public abstract class Game implements Describable,DeterminesNextMove {
 	public Board getBoard() {
 		return board;
 	}
-	
-	/**
-	 * Returns the total number of counters at the start of a game
-	 * @return Number of counters
-	 */
-	public int getStartingPlayerCounters() {
-		return startingPlayerCounters;
-	}
+
 
 	public Player[] getPlayer() {
 		return player;
@@ -127,5 +129,7 @@ public abstract class Game implements Describable,DeterminesNextMove {
 		// TODO Auto-generated method stub
 		return null;
 	}
+
+
 	
 }
