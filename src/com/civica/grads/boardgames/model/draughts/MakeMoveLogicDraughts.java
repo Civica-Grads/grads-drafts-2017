@@ -1,11 +1,8 @@
 package com.civica.grads.boardgames.model.draughts;
 
-import com.civica.grads.boardgames.enums.CounterType;
 import com.civica.grads.boardgames.enums.Colour;
 import com.civica.grads.boardgames.enums.CounterType;
 import com.civica.grads.boardgames.exceptions.IllegalMoveException;
-import com.civica.grads.boardgames.enums.Colour;
-import com.civica.grads.boardgames.enums.CounterType;
 import com.civica.grads.boardgames.exceptions.MoveException;
 import com.civica.grads.boardgames.exceptions.NoPieceException;
 import com.civica.grads.boardgames.exceptions.OffBoardException;
@@ -134,10 +131,21 @@ public class MakeMoveLogicDraughts extends MakeMoveLogic {
 		
 	}
 
+	/**
+	 * Sets counter type to KING if it reached the opposite end of the board
+	 */
 	@Override
-	public boolean checkIfCounterTypeNeedChanging() {
-		return false;
-		// TODO Auto-generated method stub
+	public void checkIfCounterTypeNeedChanging() {
+			Counter counter = (Counter) board.getPiece(newPosition);
+			int row = newPosition.getX();
+			
+			if (counter.getType() != CounterType.KING){
+				// whites start on top, blacks on bottom
+				if ((counter.getColour() == Colour.WHITE) && (row == ( boardSize - 1)))
+					counter.setType(CounterType.KING);
+				if ((counter.getColour() == Colour.BLACK) && (row == 0))
+					counter.setType(CounterType.KING);
+			}
 		
 		
 	}
