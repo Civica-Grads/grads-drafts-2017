@@ -29,6 +29,9 @@ public class MoveRecord implements Describable,Storable, Move {
 	private final Colour player;
 	private final CounterType counterType;
 	private boolean counterTaken;
+	private static int totalMoveRecords;
+	private int moveRecordID;
+
 	
 	
 
@@ -66,6 +69,8 @@ public class MoveRecord implements Describable,Storable, Move {
 		this.player = player;
 		this.counterType = counterType;
 		this.counterTaken = counterTaken;
+		moveRecordID = totalMoveRecords++;
+	
 		
 	}
 	
@@ -102,6 +107,28 @@ public class MoveRecord implements Describable,Storable, Move {
 		// TODO Auto-generated method stub
 		
 	}
+
+
+
+
+
+
+	public static int getTotalMoveRecords() {
+		return totalMoveRecords;
+	}
+
+
+
+
+
+
+	public int getMoveRecordID() {
+		return moveRecordID;
+	}
+
+
+
+
 
 	
 }

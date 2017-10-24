@@ -13,7 +13,7 @@ public class Counter extends Piece implements Describable {
 	private final int key ; //Assign each counter a number (key) from 1 to (size-2)*size/2
 	
 	public Counter(Colour colour, CounterType type, int key) {
-		super(colour);
+		super(colour, type);
 		this.type = type ; 
 		this.key = key; 
 	}
