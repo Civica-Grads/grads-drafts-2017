@@ -45,15 +45,18 @@ public class Board implements Describable {
 	 * Takes a piece and puts it onto a tile on a board
 	 * @param piece Piece to be placed
 	 * @param position New position of a piece
+	 * @return 
 	 * @throws GameException Exception thrown when piece cannot be placed on a given position
 	 */
-	public void placePiece(Piece piece, Position position) throws GameException
+	public Board placePiece(Piece piece, Position position) throws GameException
 	{
 		if ( isOccupied(position) ){
 			throw new OnToPieceException("Invalid move! There's a piece on " + position.getX() + " " + position.getY() +" already!");
 			
 		}
 		this.piecesOnBoard[position.getX()][position.getY()] = piece ;
+		
+		return this ;
 	}
 	
 	/**
