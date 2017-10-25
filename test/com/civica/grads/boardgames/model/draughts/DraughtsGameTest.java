@@ -9,6 +9,7 @@ import static org.mockito.Mockito.mock;
 import org.junit.Test;
 
 import com.civica.grads.boardgames.exceptions.GameException;
+import com.civica.grads.boardgames.exceptions.GameSetupException;
 import com.civica.grads.boardgames.model.Game;
 import com.civica.grads.boardgames.model.BaseTestForGames;
 import com.civica.grads.boardgames.model.Position;
@@ -35,8 +36,14 @@ import com.civica.grads.boardgames.model.Counter;
 @SuppressWarnings("unused")
 public class DraughtsGameTest extends BaseTestForGames {
 
+
+    @Override
+    protected Game createGame(Player[] players) throws GameSetupException {
+        return new DraughtsGame(players);
+    }
+    
 	@Test(expected=GameException.class)
-	public void shouldNotAllowTooFewPlayers()
+	public void shouldNotAllowTooFewPlayers() throws GameSetupException
 	{
 	// WITH
 	Player[] tooFewPlayers = {
@@ -50,7 +57,7 @@ public class DraughtsGameTest extends BaseTestForGames {
 
 	
 	@Test(expected=GameException.class)
-	public void shouldNotAllowTooManyPlayers()
+	public void shouldNotAllowTooManyPlayers() throws GameSetupException
 	{
 	// WITH
 	Player[] tooManyPlayers = {
@@ -194,8 +201,8 @@ public class DraughtsGameTest extends BaseTestForGames {
 //		assertEquals(1, counterAtEnd);
 	}
 	
-	@Test(expected = IllegalArgumentException.class)
-	public void shouldNotAllowBoardTooBig() {
+	@Test(expected = GameSetupException.class)
+	public void shouldNotAllowBoardTooBig() throws GameSetupException {
 		
 		// create an array of players
 		HumanPlayer humanPlayerWhite = new HumanPlayer("playerWhite");
@@ -207,8 +214,4 @@ public class DraughtsGameTest extends BaseTestForGames {
 	}
 
 
-    @Override
-    protected Game createGame(Player[] players) {
-        return new DraughtsGame(players);
-    }
 }

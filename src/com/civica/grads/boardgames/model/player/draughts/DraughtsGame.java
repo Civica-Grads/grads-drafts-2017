@@ -1,11 +1,12 @@
 package com.civica.grads.boardgames.model.player.draughts;
 
+import com.civica.grads.boardgames.exceptions.GameSetupException;
 import com.civica.grads.boardgames.model.player.Player;
 
 @Deprecated
 public class DraughtsGame extends com.civica.grads.boardgames.model.draughts.DraughtsGame {
 
-	public DraughtsGame(Player[] player) {
+	public DraughtsGame(Player[] player) throws GameSetupException {
 		super(player);
 	}
 

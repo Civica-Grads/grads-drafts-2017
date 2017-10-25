@@ -7,19 +7,27 @@ import java.util.ArrayList;
 
 import org.junit.Test;
 
+import com.civica.grads.boardgames.exceptions.GameSetupException;
 import com.civica.grads.boardgames.model.Game;
 import com.civica.grads.boardgames.model.player.Player;
 
 public abstract class BaseTestForGames {
 
-    protected abstract Game createGame(Player[] players); 
+    /**
+     * Implement this in a child class to create an instance of the concrete class to test.
+     * @param players
+     * @return
+     * @throws GameSetupException 
+     */
+    protected abstract Game createGame(Player[] players) throws GameSetupException; 
     
     
 	/**
 	 * Check whether getPlayer() returns the correct Player array.
+	 * @throws GameSetupException 
 	 */
 	@Test
-	public void getPlayerReturnsExpectedPlayers() {
+	public void getPlayerReturnsExpectedPlayers() throws GameSetupException {
 		// WITH
 		Player[] players = {mock(Player.class), mock(Player.class)} ; 		
 		
@@ -36,9 +44,10 @@ public abstract class BaseTestForGames {
 	
 	/**
 	 * Check whether getTurns() returns the correct Turn array.
+	 * @throws GameSetupException 
 	 */
 	@Test
-	public void getTurnsReturnsExpectedTurns() {
+	public void getTurnsReturnsExpectedTurns() throws GameSetupException {
 		// WITH
         Player[] players = {mock(Player.class), mock(Player.class)} ;       
 		TurnRecord turnOne = mock(TurnRecord.class) ; 
