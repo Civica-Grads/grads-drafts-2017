@@ -14,7 +14,7 @@ import com.civica.grads.boardgames.model.MakeMoveLogic;
 import com.civica.grads.boardgames.model.MoveRecord;
 import com.civica.grads.boardgames.model.Position;
 
-public class MakeMoveLogicDraughts extends MakeMoveLogic {
+public class MakeMoveLogicDraughts implements MakeMoveLogic {
 
     private static final int SHORT_MOVE = 1;
     private static final int LONG_MOVE = 2;
