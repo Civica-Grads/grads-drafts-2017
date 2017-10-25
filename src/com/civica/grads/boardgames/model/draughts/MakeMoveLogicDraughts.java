@@ -157,8 +157,9 @@ public class MakeMoveLogicDraughts implements MakeMoveLogic {
      */
     @Override
     public MoveRecord createMoveRecord() {
-        // TODO Auto-generated method stub
-        MoveRecord moveRecord = new MoveRecord(current, newPosition, board.getPiece(current).getColour(), board.getPiece(current).getType(), pieceTaken);
+        Counter counter = (Counter)board.getPiece(current); // FIXME: Check this hack.
+        MoveRecord moveRecord = new MoveRecord(current, newPosition, counter.getColour(), 
+                                                                     counter.getType(), pieceTaken);
         return moveRecord;
 
     }
