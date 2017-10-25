@@ -7,7 +7,7 @@ package com.civica.grads.boardgames.exceptions;
  * @author Bruce.Mundin
  *
  */
-public class RenderException extends Exception {
+public class RenderException extends GameException {
 
 	/**
 	 * 
