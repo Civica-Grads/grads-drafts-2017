@@ -11,4 +11,8 @@ public class GameSetupException extends GameException {
         super(message);
     }
 
+    public GameSetupException(String message, Throwable cause) {
+        super(message, cause);
+    }
+
 }
