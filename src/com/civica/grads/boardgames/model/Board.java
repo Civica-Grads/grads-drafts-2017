@@ -136,14 +136,6 @@ public class Board implements Describable {
 		return !(piecesOnBoard[position.getX()][position.getY()]== null);
 	}
 	
-	@Deprecated
-	public ArrayList<Piece> getWhiteCounters() {
-		return null;
-	}
-	
-	@Deprecated
-	public ArrayList<Piece> getBlackCounters() {
-		return null;
-	}
+
 }
  
