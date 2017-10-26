@@ -8,9 +8,13 @@ import static org.mockito.Mockito.mock;
 
 import org.junit.Test;
 
+import com.civica.grads.boardgames.enums.Colour;
+import com.civica.grads.boardgames.enums.CounterType;
 import com.civica.grads.boardgames.exceptions.GameException;
 import com.civica.grads.boardgames.exceptions.GameSetupException;
 import com.civica.grads.boardgames.model.Game;
+import com.civica.grads.boardgames.model.MoveRecord;
+import com.civica.grads.boardgames.model.Piece;
 import com.civica.grads.boardgames.model.BaseTestForGames;
 import com.civica.grads.boardgames.model.Position;
 import com.civica.grads.boardgames.model.player.Player;
@@ -38,12 +42,12 @@ public class DraughtsGameTest extends BaseTestForGames {
 
 
     @Override
-    protected Game createGame(Player[] players) throws GameSetupException {
+    protected Game createGame(Player[] players) throws GameException {
         return new DraughtsGame(players);
     }
     
 	@Test(expected=GameException.class)
-	public void shouldNotAllowTooFewPlayers() throws GameSetupException
+	public void shouldNotAllowTooFewPlayers() throws GameException
 	{
 	// WITH
 	Player[] tooFewPlayers = {
@@ -57,7 +61,7 @@ public class DraughtsGameTest extends BaseTestForGames {
 
 	
 	@Test(expected=GameException.class)
-	public void shouldNotAllowTooManyPlayers() throws GameSetupException
+	public void shouldNotAllowTooManyPlayers() throws GameException
 	{
 	// WITH
 	Player[] tooManyPlayers = {
@@ -76,74 +80,35 @@ public class DraughtsGameTest extends BaseTestForGames {
 	/**
 	 * Test that a valid move is recognised to be valid. 
 	 * Define and apply a move that we know is valid, pass test if no Exception is thrown
+	 * @throws GameException 
 	 */
 	@Test
-	public void validMoveAllowed() {
-
-		fail("Broken Test");
-		//FIXME Broken Test uncomment this code and it will be revealed.
-
-//		// WITH
-//		
-//		// create an array of players
-//		HumanPlayer humanPlayerWhite = new HumanPlayer("playerWhite");
-//		HumanPlayer humanPlayerBlack = new HumanPlayer("playerBlack");
-//		HumanPlayer humanPlayers[] = {humanPlayerWhite, humanPlayerBlack};
-//		
-//		// create draughts game with the two players in the array
-//		DraughtsGame draughtsGame = new DraughtsGame(8,	humanPlayers);
-//		
-//		Position p1 = mock(Position.class);
-//		when(p1.getX()).thenReturn(0);
-//		when(p1.getY()).thenReturn(0);
-//		
-//		Position p2 = mock(Position.class);
-//		when(p2.getX()).thenReturn(1);
-//		when(p2.getY()).thenReturn(1);
-//		
-//		Move move = mock(Move.class);
-//		when(move.getPositionStart()).thenReturn(p1);
-//		when(move.getPositionFinish()).thenReturn(p2);
-//		
-//		// WHEN
-//		draughtsGame.applyMove(move);
-//		
-//		// THEN 
-//		// should not throw a exception
+	public void applyMoveWorksWhenMoveValid() throws GameException {
+		// WITH
+		Position startPos = new Position(1, 2); 
+		Position endPos = new Position(0, 3);
+		MoveRecord move = new MoveRecord(startPos, endPos, Colour.WHITE, CounterType.NORMAL, 
+				false);
 		
+		Player[] players = {mock(Player.class), mock(Player.class)};
+		
+		DraughtsGame game = new DraughtsGame(DraughtsGame.BoardType.BRAZILIAN.getBoardSize(), players) ; 
+		
+		// WHEN
+		Piece counterToMove = game.getBoard().getPiece(startPos);
+		game.applyMove(move) ;
+		
+		// THEN 
+		assertThat(game.getBoard().getPiece(startPos))
+			.as("Piece should have been moved from starting position, so will now be null.")
+			.isNull();
+		assertThat(game.getBoard().getPiece(endPos))
+			.isNotNull()
+			.as("Should now contain the piece that has been moved.")
+			.isEqualTo(counterToMove);
+		// Should be at the same memory address.
+		assert(counterToMove == game.getBoard().getPiece(endPos));
 	}
-	
-	/* Test that when we try to perform a valid more, the move is actually performed
-	 * 
-	 * @Test
-	 * public void isValidMovePerformed() {
-	 * 
-	 * create an array of players
-	 * HumanPlayer humanPlayerWhite = new HumanPlayer("playerWhite");
-	 * HumanPlayer humanPlayerBlack = new HumanPlayer("playerBlack");
-	 * HumanPlayer humanPlayers[] = {humanPlayerWhite, humanPlayerBlack};
-	 *  
-	 * create draughts game with the two players in the array
-	 * DraughtsGame draughtsGame = new DraughtsGame(8,	humanPlayers);
-	 * 
-	 * create move game logic class (to validate move later on)
-	 * 
-	 * initialise counters on board
-	 * draughtsGame.initialiseBoardForGame();
-	 * 
-	 * check
-	 * 	board.getBoard()[start][start] != null
-	 * 	board.getBoard()[end][end] == null
-	 * 	
-	 * if(move is valid)
-	 * 	draughtsGame.applyMove(move);
-	 * 
-	 * check
-	 * 	board.getBoard()[start][start] == null
-	 * 	board.getBoard()[end][end] != null
-	 * 
-	 * }
-	 */
 	
 	// FIXME: This needs to be checked! Use getRow(), getColumn() ? Check positions are correct.
 	@Test
@@ -202,7 +167,7 @@ public class DraughtsGameTest extends BaseTestForGames {
 	}
 	
 	@Test(expected = GameSetupException.class)
-	public void shouldNotAllowBoardTooBig() throws GameSetupException {
+	public void shouldNotAllowBoardTooBig() throws GameException {
 		
 		// create an array of players
 		HumanPlayer humanPlayerWhite = new HumanPlayer("playerWhite");

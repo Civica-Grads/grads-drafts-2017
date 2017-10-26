@@ -27,8 +27,9 @@ public abstract class Game implements Describable,DeterminesNextMove {
 	 * Constructor for game that takes in a int size and  and array of player objects. Also checks for IAE exception to catch wrong board sizes
 	 * @param size is the size of the board of type int
 	 * @param player is an array of player objects
+	 * @throws GameException 
 	 */
-	public Game(int size, Player[] player) {
+	public Game(int size, Player[] player) throws GameException {
 	    checkBoardSizeValue(size) ; 
 		this.board = new Board(size) ;
 		this.player = player ; 
@@ -37,10 +38,11 @@ public abstract class Game implements Describable,DeterminesNextMove {
 	
 	/**
 	 * Sets the board up for the type of game.
+	 * @throws GameException 
 	 */
-	abstract protected void initialiseBoardForGame();
+	abstract protected void initialiseBoardForGame() throws GameException;
 	
-	public abstract void applyMove(Move move) throws GameException ;
+	public abstract void applyMove(MoveRecord move) throws GameException ;
 	
 	/**
 	 * This operation updates the board with the data from the moves;
@@ -65,7 +67,7 @@ public abstract class Game implements Describable,DeterminesNextMove {
 	 * @return True if turns count > 0, false otherwise
 	 */
 	public boolean hasTurns() {
-		return turnRecords.isEmpty();
+		return !turnRecords.isEmpty();
 	}
 	/**
 	 * Adds a turn record to list
