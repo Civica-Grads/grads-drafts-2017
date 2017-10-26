@@ -148,10 +148,10 @@ public class MakeMoveLogicDraughts implements MakeMoveLogic {
 	 */
 	public boolean checkIfCounterTypeNeedChanging() {
 		boolean occurred = false;
-		Counter counter = (Counter) board.getPiece(newPosition);
-		int row = newPosition.getX();
+		Counter counter = (Counter) board.getPiece(current);
+		int row = newPosition.getY();
 
-		if (counter.getType() != CounterType.KING) {
+		if (counter.getType().equals(CounterType.NORMAL)) {
 			// whites start on top, blacks on bottom
 			if ((counter.getColour() == Colour.WHITE) && (row == (boardSize - 1))) {
 				counter.setType(CounterType.KING);
