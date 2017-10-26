@@ -2,9 +2,14 @@
 package com.civica.grads.boardgames.display;
 
 import java.io.PrintStream;
+
+import com.civica.grads.boardgames.enums.Colour;
+import com.civica.grads.boardgames.enums.CounterType;
 import com.civica.grads.boardgames.exceptions.RenderException;
 import com.civica.grads.boardgames.interfaces.Renderer;
 import com.civica.grads.boardgames.model.Board;
+import com.civica.grads.boardgames.model.Piece;
+import com.civica.grads.boardgames.model.Position;
 
 /**
  * 
@@ -63,11 +68,27 @@ public class AsciiBoardRenderer implements Renderer {
         }
         
         //TODO: Finish adding counters
-        private void fillBoardCounters() {
+        private void fillBoardCounters(Board board) {
+        	
         	for (int i = 0; i < dimension -1; i++) {
         		for (int j = 0; j < dimension-1; j++) {
         			if (checkCounter(i, COUNTER_SPACING, -1)) {
-        				//textBoard[i][j] = 
+        				Piece curPiece = board.getPiece(new Position(convertDimensionToSize(j, COUNTER_SPACING, -1),
+        						convertDimensionToSize(i, COUNTER_SPACING, -1)));
+        				Colour curColour = curPiece.getColour();
+        				CounterType curType = curPiece.getCounterType();
+        				
+        				if (curPiece.equals(null)) {
+        					textBoard[i][j] = ' ';
+        				} else if (curColour.equals(Colour.WHITE) && curType.equals(CounterType.NORMAL) ) {
+        					textBoard[i][j] = UNICODE_COUNTER_WHITE;
+        				} else if (curColour.equals(Colour.WHITE) && curType.equals(CounterType.KING) ) {
+        					textBoard[i][j] = UNICODE_COUNTER_WHITE_KING;
+        				} else if (curColour.equals(Colour.BLACK) && curType.equals(CounterType.NORMAL) ) {
+        					textBoard[i][j] = UNICODE_COUNTER_BLACK;
+        				} else if (curColour.equals(Colour.BLACK) && curType.equals(CounterType.KING) ) {
+        					textBoard[i][j] = UNICODE_COUNTER_BLACK_KING;
+        				}
         			}
         		}
         	}
@@ -126,6 +147,13 @@ public class AsciiBoardRenderer implements Renderer {
     	boolean counter = ((index + shift) % spacing) == 0;
     	return counter;
     }
+    
+    private static int convertDimensionToSize(int index, int coef, int shift) {
+    	//TODO: need to convert back to size for counter for loops.
+    	int newIndex = (index + shift) / coef ;
+    
+    	return newIndex;
+    }
 
     @Override
     public void render(Board board) throws RenderException {
@@ -134,6 +162,7 @@ public class AsciiBoardRenderer implements Renderer {
         holder.fillBoardBorder();
         holder.fillBoardTiles();
         holder.appendToOutput(board);
+        holder.fillBoardCounters(board);
     }
 
     protected AsciiBoardRenderer(PrintStream out) {
