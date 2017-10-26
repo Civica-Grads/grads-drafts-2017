@@ -11,6 +11,7 @@ import com.civica.grads.boardgames.exceptions.GameSetupException;
 import com.civica.grads.boardgames.interfaces.Move;
 import com.civica.grads.boardgames.model.Counter;
 import com.civica.grads.boardgames.model.Game;
+import com.civica.grads.boardgames.model.MoveRecord;
 import com.civica.grads.boardgames.model.Position;
 import com.civica.grads.boardgames.model.player.Player;
 
@@ -46,13 +47,13 @@ public class DraughtsGame extends Game {
      * 
      * @param player
      *            Game players
-     * @throws GameSetupException 
+     * @throws GameException 
      */
-    public DraughtsGame(Player[] player) throws GameSetupException {
+    public DraughtsGame(Player[] player) throws GameException {
         this(BoardType.INTERNATIONAL, player);
     }
 
-    public DraughtsGame(BoardType boardType, Player[] player) throws GameSetupException {
+    public DraughtsGame(BoardType boardType, Player[] player) throws GameException {
         this(boardType.getBoardSize(), player);
     }
 
@@ -63,9 +64,9 @@ public class DraughtsGame extends Game {
      *            Board size
      * @param player
      *            Game players
-     * @throws GameSetupException 
+     * @throws GameException 
      */
-    DraughtsGame(int size, Player[] players) throws GameSetupException {
+    DraughtsGame(int size, Player[] players) throws GameException {
         super(size, players);
         uniqueCounterKey = 0;
 
@@ -84,9 +85,10 @@ public class DraughtsGame extends Game {
      * (so odd numbered tile starting at 0). It then does the loop again from
      * the bottom right filling the bottom half of the board with black
      * counters. It leaves a space in the middle so counters can move.
+     * @throws GameException 
      */
     @Override
-    protected void initialiseBoardForGame() {
+    protected void initialiseBoardForGame() throws GameException {
 
         int boardSize = board.getSize();
 
@@ -102,7 +104,7 @@ public class DraughtsGame extends Game {
         int blackCountersLeft = initialTotalCounters / 2;
 
         //This is the for loop for the white counters.
-        for (int i = 0; i < boardSize; i++) {
+        for (int i = 0; i < boardSize/2 - 1; i++) {
             for (int j = 0; j < boardSize; j++) {
 
                 /*
@@ -113,11 +115,12 @@ public class DraughtsGame extends Game {
                 isStartTile = (i + j) % 2 == 1;
 
                 if (isStartTile) {
-                    createNewCounterAndPlace((Counter) board.getBoard()[i][j], Colour.WHITE);
+                	getBoard().placePiece(new Counter(Colour.WHITE, CounterType.NORMAL, uniqueCounterKey++), 
+                			new Position(j, i));
 
                     whiteCountersLeft--;
                 } else {
-                    board.getBoard()[i][j] = null;
+                    getBoard().placePiece(null , new Position(j, i));
                 }
             }
             if (whiteCountersLeft <= 0) {
@@ -126,8 +129,8 @@ public class DraughtsGame extends Game {
         }
 
         //This is the for loop for the black counters
-        for (int i = boardSize - 1; i >= 0; i--) {
-            for (int j = boardSize - 1; j >= 0; j--) {
+        for (int i = boardSize/2 + 1; i < boardSize - 1 ; i++) {
+            for (int j = boardSize/2 + 1; j < boardSize - 1 ; j++) {
 
                 /*
                  * Adds the current i and j values, then divides by 2 and if
@@ -137,11 +140,12 @@ public class DraughtsGame extends Game {
                 isStartTile = (i + j) % 2 == 1;
 
                 if (isStartTile) {
-                    createNewCounterAndPlace((Counter) board.getBoard()[i][j], Colour.BLACK);
+                	getBoard().placePiece(new Counter(Colour.BLACK, CounterType.NORMAL, uniqueCounterKey++), 
+                			new Position(j, i));
 
                     blackCountersLeft--;
                 } else {
-                    board.getBoard()[i][j] = null;
+                	getBoard().placePiece(null , new Position(j, i));
                 }
             }
             if (blackCountersLeft <= 0) {
@@ -170,7 +174,7 @@ public class DraughtsGame extends Game {
      * @param move
      *            Object implementing Move interface
      */
-    public void applyMove(Move move) throws GameException {
+    public void applyMove(MoveRecord move) throws GameException {
         Position start = move.getPositionStart();
         Position end = move.getPositionFinish();
 
