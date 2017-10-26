@@ -61,6 +61,17 @@ public class AsciiBoardRenderer implements Renderer {
                 }
             }
         }
+        
+        //TODO: Finish adding counters
+        private void fillBoardCounters() {
+        	for (int i = 0; i < dimension -1; i++) {
+        		for (int j = 0; j < dimension-1; j++) {
+        			if (checkCounter(i, COUNTER_SPACING, -1)) {
+        				//textBoard[i][j] = 
+        			}
+        		}
+        	}
+        }
 
         private void appendToOutput(Board board) {
 
@@ -79,6 +90,10 @@ public class AsciiBoardRenderer implements Renderer {
     private static char UNICODE_LOWER_HALF_BLOCK = '\u2584'; // Lower half block character.
     private static char UNICODE_UPPER_HALF_BLOCK = '\u2580'; // Upper half block character.
     private static char UNICODE_FULL_BLOCK = '\u2588'; // Full block character.
+    private static char UNICODE_COUNTER_WHITE = '\u26c0';
+    private static char UNICODE_COUNTER_WHITE_KING = '\u26c1';
+    private static char UNICODE_COUNTER_BLACK = '\u26c2';
+    private static char UNICODE_COUNTER_BLACK_KING = '\u26c3';
     private static int TILE_LENGTH = 5; // Character length of one tile
     private static int BORDER_LENGTH = 4; // Character spaces used up by border
     private static int OFFSET = 2; // offset of board from edge 
@@ -90,6 +105,7 @@ public class AsciiBoardRenderer implements Renderer {
     private static int INITIAL_INDEX = 6; // Starting index of tile border
     private static int ODD_SHIFT_START = -7;// Odd rows i coordinate
     private static int EVEN_SHIFT_START = -2;// Even rows i coordinate
+    private static int COUNTER_SPACING = 5;//Spaing between counters
 
     private TextBoardHolder determineBoardDisplaySize(int size) {
         TextBoardHolder holder = new TextBoardHolder(size);
@@ -104,6 +120,11 @@ public class AsciiBoardRenderer implements Renderer {
     private static boolean checkBlackCharacterRow(int index, int coef, int shift) {
         boolean black = ((index + shift) % coef) <= (TILE_LENGTH - 1);
         return black;
+    }
+    
+    private static boolean checkCounter(int index, int spacing, int shift) {
+    	boolean counter = ((index + shift) % spacing) == 0;
+    	return counter;
     }
 
     @Override
