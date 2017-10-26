@@ -8,6 +8,7 @@ import java.util.Collection;
 
 import com.civica.grads.boardgames.exceptions.NoPieceException;
 import com.civica.grads.boardgames.exceptions.GameException;
+import com.civica.grads.boardgames.exceptions.GameSetupException;
 import com.civica.grads.boardgames.interfaces.Describable;
 import com.civica.grads.boardgames.interfaces.DeterminesNextMove;
 import com.civica.grads.boardgames.interfaces.Move;
@@ -94,7 +95,7 @@ public abstract class Game implements Describable,DeterminesNextMove {
 	}
 
 	
-	abstract protected void checkBoardSizeValue(int size) throws IllegalArgumentException ;
+	abstract protected void checkBoardSizeValue(int size) throws GameSetupException ;
 	
 	/**
 	 * Retrieves board object

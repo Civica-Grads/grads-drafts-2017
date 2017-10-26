@@ -194,7 +194,7 @@ public class DraughtsGame extends Game {
      * @throws IllegalArgumentException
      *             if board size is wrong
      */
-    protected void checkBoardSizeValue(int size) throws IllegalArgumentException 
+    protected void checkBoardSizeValue(int size) throws GameSetupException 
     {
 
         boolean found = false;
@@ -206,7 +206,7 @@ public class DraughtsGame extends Game {
         }
 
         if (!found) {
-            throw new IllegalArgumentException("Board size is incorrect.");
+            throw new GameSetupException("Board size is incorrect.");
         }
     }
 
