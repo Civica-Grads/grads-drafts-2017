@@ -49,10 +49,12 @@ public class DraughtsGameTest extends BaseTestForGames {
 	Player[] tooFewPlayers = {
 			mock(Player.class)
 	};
-	DraughtsGame game = new DraughtsGame(tooFewPlayers);
 	
 	// WHEN
+	DraughtsGame game = new DraughtsGame(tooFewPlayers);
+	
 	// THEN	
+	// DraughtsGame(...) should have thrown a GameStetupException
 	}
 
 	
@@ -65,10 +67,12 @@ public class DraughtsGameTest extends BaseTestForGames {
 			mock(Player.class),
 			mock(Player.class),
 	};
-	DraughtsGame game = new DraughtsGame(tooManyPlayers);
 	
 	// WHEN
+	DraughtsGame game = new DraughtsGame(tooManyPlayers);
+	
 	// THEN	
+	// DraughtsGame(...) should have thrown a GameSetupException
 	}
 
 

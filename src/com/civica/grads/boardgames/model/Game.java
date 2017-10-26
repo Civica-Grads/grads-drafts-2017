@@ -8,6 +8,7 @@ import java.util.Collection;
 
 import com.civica.grads.boardgames.exceptions.NoPieceException;
 import com.civica.grads.boardgames.exceptions.GameException;
+import com.civica.grads.boardgames.exceptions.GameSetupException;
 import com.civica.grads.boardgames.interfaces.Describable;
 import com.civica.grads.boardgames.interfaces.DeterminesNextMove;
 import com.civica.grads.boardgames.interfaces.Move;
@@ -27,8 +28,9 @@ public abstract class Game implements Describable,DeterminesNextMove {
 	 * Constructor for game that takes in a int size and  and array of player objects. Also checks for IAE exception to catch wrong board sizes
 	 * @param size is the size of the board of type int
 	 * @param player is an array of player objects
+	 * @throws GameSetupException 
 	 */
-	public Game(int size, Player[] player) {
+	public Game(int size, Player[] player) throws GameSetupException {
 	    checkBoardSizeValue(size) ; 
 		this.board = new Board(size) ;
 		this.player = player ; 
@@ -92,7 +94,7 @@ public abstract class Game implements Describable,DeterminesNextMove {
 	}
 
 	
-	abstract protected void checkBoardSizeValue(int size) throws IllegalArgumentException ;
+	abstract protected void checkBoardSizeValue(int size) throws GameSetupException ;
 	
 	/**
 	 * Retrieves board object
