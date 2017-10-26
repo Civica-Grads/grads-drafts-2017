@@ -72,15 +72,18 @@ public class AsciiBoardRenderer implements Renderer {
         	
         	for (int i = 0; i < dimension -1; i++) {
         		for (int j = 0; j < dimension-1; j++) {
-        			if (checkCounter(i, COUNTER_SPACING, -1)) {
+        			if (checkCounter(i, COUNTER_SPACING, 1) && checkCounter(j, COUNTER_SPACING, 1)) {
         				Piece curPiece = board.getPiece(new Position(convertDimensionToSize(j, COUNTER_SPACING, -1),
         						convertDimensionToSize(i, COUNTER_SPACING, -1)));
+        				if (curPiece == null) {
+        					textBoard[i][j] = ' ';
+        					continue;
+        				} 
+        				
         				Colour curColour = curPiece.getColour();
         				CounterType curType = curPiece.getCounterType();
         				
-        				if (curPiece.equals(null)) {
-        					textBoard[i][j] = ' ';
-        				} else if (curColour.equals(Colour.WHITE) && curType.equals(CounterType.NORMAL) ) {
+        				if (curColour.equals(Colour.WHITE) && curType.equals(CounterType.NORMAL) ) {
         					textBoard[i][j] = UNICODE_COUNTER_WHITE;
         				} else if (curColour.equals(Colour.WHITE) && curType.equals(CounterType.KING) ) {
         					textBoard[i][j] = UNICODE_COUNTER_WHITE_KING;
