@@ -1,8 +1,9 @@
 package com.civica.grads.boardgames.model;
 
 import com.civica.grads.boardgames.enums.Colour;
+import com.civica.grads.boardgames.enums.CounterType;
 
-public abstract class Piece<CounterType> {
+public abstract class Piece {
 	private final Colour colour;
 	private CounterType type;
 
@@ -24,7 +25,6 @@ public abstract class Piece<CounterType> {
 	}
 
 	public void setType(CounterType type) {
-		// TODO Auto-generated method stub
-
+		this.type = type ;
 	}
 }
