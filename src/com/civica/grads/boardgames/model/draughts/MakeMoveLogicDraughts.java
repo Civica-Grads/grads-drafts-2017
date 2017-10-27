@@ -3,8 +3,8 @@ package com.civica.grads.boardgames.model.draughts;
 
 import com.civica.grads.boardgames.enums.Colour;
 import com.civica.grads.boardgames.enums.CounterType;
+import com.civica.grads.boardgames.exceptions.GameException;
 import com.civica.grads.boardgames.exceptions.IllegalMoveException;
-import com.civica.grads.boardgames.exceptions.MoveException;
 import com.civica.grads.boardgames.exceptions.NoPieceException;
 import com.civica.grads.boardgames.exceptions.OffBoardException;
 import com.civica.grads.boardgames.exceptions.OnToPieceException;
@@ -43,7 +43,7 @@ public class MakeMoveLogicDraughts implements MakeMoveLogic {
 	}
 
 	@Override
-	public void checkForValidMove() throws MoveException {
+	public void checkForValidMove() throws GameException {
 
 		if (currentX > board.getSize() - 1 || currentX < 0 || currentY > board.getSize() - 1 || currentY < 0) {
 			throw new OffBoardException("OffBoardException: Start position is not on the board.");
@@ -83,19 +83,37 @@ public class MakeMoveLogicDraughts implements MakeMoveLogic {
 		 */
 		switch (startType) {
 		case NORMAL:
-			if (Math.abs(newPositionX - currentX) == SHORT_MOVE && newPositionY - currentY == SHORT_MOVE) { // valid
+			if (Math.abs(currentX - newPositionX) == SHORT_MOVE && newPositionY - currentY == SHORT_MOVE && startPiece.getColour().equals(Colour.WHITE)) { // valid
 				// Move is going forward by one so is valid, carry on.
-			} else if ((Math.abs(newPositionX - currentX) == LONG_MOVE) && (newPositionY - currentY == LONG_MOVE)
+			} else if (Math.abs(currentX - newPositionX) == SHORT_MOVE && currentY- newPositionY == SHORT_MOVE && startPiece.getColour().equals(Colour.BLACK)) { // valid
+				// Move is going forward by one so is valid, carry on.
+			}else if ((Math.abs(newPositionX - currentX) == LONG_MOVE) && (newPositionY - currentY == LONG_MOVE  && startPiece.getColour().equals(Colour.WHITE))
 					&& !middlePiece.equals(null) && !middlePiece.getColour().equals(startColour)) {
 				// Move is moving by two and taking an opponent's piece, valid
 				// so carry on.
-			} else {
+
+				/**
+				 * remove piece 
+				 */
+			} else if ((Math.abs(newPositionX - currentX) == LONG_MOVE) && (currentY-newPositionY == LONG_MOVE&& startPiece.getColour().equals(Colour.BLACK))
+					&& !middlePiece.equals(null) && !middlePiece.getColour().equals(startColour)) {
+				// Move is moving by two and taking an opponent's piece, valid
+				// so carry on.
+
+				/**
+				 * remove piece 
+				 */
+				board.placePiece(null, new Position((currentX + newPositionX) / AVG, (currentY + newPositionY) / AVG));
+			} 
+
+			else {
+
 				throw new IllegalMoveException(
 						"IllegalMoveException: Move was not performed " + "in a valid direction or number of spaces.");
 			}
 			break;
-		// King can move forward and backwards, so Y value can be negative or
-		// positive.
+			// King can move forward and backwards, so Y value can be negative or
+			// positive.
 		case KING:
 			if (Math.abs(newPositionX - currentX) == SHORT_MOVE && Math.abs(newPositionY - currentY) == SHORT_MOVE) { // valid
 				// Move is going forward/backward by one so is valid, carry on.
@@ -104,6 +122,13 @@ public class MakeMoveLogicDraughts implements MakeMoveLogic {
 					&& !middlePiece.getColour().equals(startColour)) {
 				// Move is moving by two and taking an opponent's piece, valid
 				// so carry on.
+
+				/*
+				 * remove piece 
+				 */
+				board.placePiece(null, new Position((currentX + newPositionX) / AVG, (currentY + newPositionY) / AVG));
+
+
 			} else {
 				throw new IllegalMoveException(
 						"IllegalMoveException: Move was not performed " + "in a valid direction or number of spaces.");
@@ -174,7 +199,7 @@ public class MakeMoveLogicDraughts implements MakeMoveLogic {
 	@Override
 	public MoveRecord createMoveRecord() {
 		Counter counter = (Counter) board.getPiece(current); // FIXME: Check
-																// this hack.
+		// this hack.
 		MoveRecord moveRecord = new MoveRecord(current, newPosition, counter.getColour(), counter.getType(),
 				pieceTaken);
 		return moveRecord;

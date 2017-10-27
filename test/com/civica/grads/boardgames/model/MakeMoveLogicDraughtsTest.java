@@ -1,7 +1,6 @@
 package com.civica.grads.boardgames.model;
 
 import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertSame;
 import static org.junit.Assert.assertTrue;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.when;
@@ -247,10 +246,10 @@ public class MakeMoveLogicDraughtsTest {
 	}
 
 	@Test(expected = MoveException.class)
-	public void validMoveDownLeftCheckIsValidMoveTestOnBlack() throws MoveException, GameException {
+	public void InvalidMoveDownLeftCheckIsInvalidMoveTestOnBlack() throws MoveException, GameException {
 
 		Board mockBoard = new Board(10);
-		Counter a = new Counter(Colour.WHITE, CounterType.NORMAL, 0);
+		Counter a = new Counter(Colour.BLACK, CounterType.NORMAL, 0);
 
 		mockBoard.placePiece(a, new Position(4, 1));
 
@@ -270,23 +269,48 @@ public class MakeMoveLogicDraughtsTest {
 
 	}
 
-	@Test(expected = MoveException.class)
-	public void validMoveDownRightCheckIsValidMoveTestOnBlack() throws MoveException, GameException {
+	@Test
+	public void validMoveDownLeftCheckIsValidMoveTestOnBlack() throws MoveException, GameException {
 
 		Board mockBoard = new Board(10);
 		Counter a = new Counter(Colour.BLACK, CounterType.NORMAL, 0);
 
-		mockBoard.placePiece(a, new Position(4, 1));
+		mockBoard.placePiece(a, new Position(4, 2));
 
 		// AND
 		Position startPos = mock(Position.class);
 		when(startPos.getX()).thenReturn(4);
-		when(startPos.getY()).thenReturn(1);
+		when(startPos.getY()).thenReturn(2);
+
+		// AND
+		Position newPos = mock(Position.class);
+		when(newPos.getX()).thenReturn(3);
+		when(newPos.getY()).thenReturn(1);
+
+		MakeMoveLogicDraughts toTest = new MakeMoveLogicDraughts(mockBoard, startPos, newPos);
+
+		toTest.checkForValidMove();
+		assertTrue(true);
+
+	}
+
+	@Test(expected = MoveException.class)
+	public void InvalidMoveUpRightCheckIsInvalidMoveTestOnWhite() throws MoveException, GameException {
+
+		Board mockBoard = new Board(10);
+		Counter a = new Counter(Colour.WHITE, CounterType.NORMAL, 0);
+
+		mockBoard.placePiece(a, new Position(4, 2));
+
+		// AND
+		Position startPos = mock(Position.class);
+		when(startPos.getX()).thenReturn(4);
+		when(startPos.getY()).thenReturn(2);
 
 		// AND
 		Position newPos = mock(Position.class);
 		when(newPos.getX()).thenReturn(5);
-		when(newPos.getY()).thenReturn(2);
+		when(newPos.getY()).thenReturn(1);
 
 		MakeMoveLogicDraughts toTest = new MakeMoveLogicDraughts(mockBoard, startPos, newPos);
 
@@ -482,32 +506,32 @@ public class MakeMoveLogicDraughtsTest {
 	@Test
 	public void createMoveRecordtest() throws GameException {
 		// with
-//		Board mockBoard = mock(Board.class);
-//		when(mockBoard.getSize()).thenReturn(10);
-//
-//		Piece<?> a = mock(Piece.class);
+		//		Board mockBoard = mock(Board.class);
+		//		when(mockBoard.getSize()).thenReturn(10);
+		//
+		//		Piece<?> a = mock(Piece.class);
 		Board mockBoard = new Board(10);
 		Counter a = new Counter(Colour.BLACK, CounterType.NORMAL, 0);
 
 		mockBoard.placePiece(a, new Position(6,3));
-		
-		
+
+
 		// AND
 		Position startPos = new Position(6,3);
-//		when(startPos.getX()).thenReturn(6);
-//		when(startPos.getY()).thenReturn(3);
+		//		when(startPos.getX()).thenReturn(6);
+		//		when(startPos.getY()).thenReturn(3);
 
 		// AND
 		Position newPos = new Position(5,2);
-//		when(newPos.getX()).thenReturn(5);
-//		when(newPos.getY()).thenReturn(2);
+		//		when(newPos.getX()).thenReturn(5);
+		//		when(newPos.getY()).thenReturn(2);
 
 		// WHEN
 
 		MakeMoveLogicDraughts toTest = new MakeMoveLogicDraughts(mockBoard, startPos, newPos);
 
-		
-		
+
+
 		MoveRecord expected = new MoveRecord(startPos, newPos, Colour.BLACK, CounterType.NORMAL, false);
 
 		toTest.equals(expected);
