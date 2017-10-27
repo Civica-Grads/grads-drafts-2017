@@ -35,7 +35,7 @@ public class AsciiBoardRenderer implements Renderer {
             // Printing outer boarder.
             for (int i = 0; i < dimension; i++) {
                 for (int j = 0; j < dimension; j++) {
-                    textBoard[i][j] = ' ';
+                    textBoard[i][j] = UNICODE_SPACE;
                     //filling in first row of border characters
                     if ((i == 0)) {
                         textBoard[i][j] = UNICODE_UPPER_HALF_BLOCK;
@@ -78,7 +78,7 @@ public class AsciiBoardRenderer implements Renderer {
         						convertDimensionToSize(j, COUNTER_SPACING, -1));
         				Piece curPiece = board.getPiece(piecePos);
         				if (curPiece == null) {
-        					textBoard[i][j] = ' ';
+        					textBoard[i][j] = UNICODE_SPACE;
         					continue;
         				} 
         				
@@ -116,10 +116,11 @@ public class AsciiBoardRenderer implements Renderer {
     private static char UNICODE_LOWER_HALF_BLOCK = '\u2584'; // Lower half block character.
     private static char UNICODE_UPPER_HALF_BLOCK = '\u2580'; // Upper half block character.
     private static char UNICODE_FULL_BLOCK = '\u2588'; // Full block character.
-    private static char UNICODE_COUNTER_WHITE = '\u26c0';
-    private static char UNICODE_COUNTER_WHITE_KING = '\u26c1';
-    private static char UNICODE_COUNTER_BLACK = '\u26c2';
-    private static char UNICODE_COUNTER_BLACK_KING = '\u26c3';
+    private static char UNICODE_COUNTER_WHITE = '\u25cb';
+    private static char UNICODE_COUNTER_WHITE_KING = '\u25a1';
+    private static char UNICODE_COUNTER_BLACK = '\u25cf';
+    private static char UNICODE_COUNTER_BLACK_KING = '\u25a0';
+    private static char UNICODE_SPACE = ' ';
     private static int TILE_LENGTH = 5; // Character length of one tile
     private static int BORDER_LENGTH = 4; // Character spaces used up by border
     private static int OFFSET = 2; // offset of board from edge 
@@ -131,7 +132,7 @@ public class AsciiBoardRenderer implements Renderer {
     private static int INITIAL_INDEX = 6; // Starting index of tile border
     private static int ODD_SHIFT_START = -7;// Odd rows i coordinate
     private static int EVEN_SHIFT_START = -2;// Even rows i coordinate
-    private static int COUNTER_SPACING = 5;//Spaing between counters
+    private static int COUNTER_SPACING = 5;//Spacing between counters
 
     private TextBoardHolder determineBoardDisplaySize(int size) {
         TextBoardHolder holder = new TextBoardHolder(size);

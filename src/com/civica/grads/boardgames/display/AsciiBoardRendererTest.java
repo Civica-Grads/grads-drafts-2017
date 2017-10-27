@@ -1,6 +1,7 @@
 package com.civica.grads.boardgames.display;
 
 import com.civica.grads.boardgames.enums.Colour;
+import com.civica.grads.boardgames.enums.CounterType;
 import com.civica.grads.boardgames.model.Board;
 import com.civica.grads.boardgames.model.Counter;
 import com.civica.grads.boardgames.model.Piece;
@@ -14,12 +15,12 @@ public class AsciiBoardRendererTest {
 		int i = 0;
 		
 		Piece[][] startBoard = {
-				{null, new Counter(w, i++), null, new Counter(w, i++), null, new Counter(w, i++), null, new Counter(w, i++)}, 
+				{null, new Counter(w, CounterType.KING, i++), null, new Counter(w, i++), null, new Counter(w, i++), null, new Counter(w, i++)}, 
 				{new Counter(w, i++), null, new Counter(w, i++), null, new Counter(w, i++), null, new Counter(w, i++), null}, 
 				{null, new Counter(w, i++), null, new Counter(w, i++), null, new Counter(w, i++), null, new Counter(w, i++)}, 
 				{null, null,null, null,null, null,null, null},
 				{null, null,null, null,null, null,null, null}, 
-				{new Counter(b, i++), null,new Counter(b, i++), null,new Counter(b, i++), null,new Counter(b, i++), null},
+				{new Counter(b,CounterType.KING, i++), null,new Counter(b, i++), null,new Counter(b, i++), null,new Counter(b, i++), null},
 				{null, new Counter(b, i++), null,new Counter(b, i++), null,new Counter(b, i++), null,new Counter(b, i++)}, 
 				{new Counter(b, i++), null,new Counter(b, i++), null,new Counter(b, i++), null,new Counter(b, i++), null}
 								
