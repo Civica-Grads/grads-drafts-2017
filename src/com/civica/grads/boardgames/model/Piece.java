@@ -5,7 +5,7 @@ import com.civica.grads.boardgames.enums.CounterType;
 
 	public abstract class Piece {
 		private final Colour colour ;
-		private CounterType counterType;
+		protected CounterType type;
 		
         public Piece(Colour colour){
 			this.colour=colour;
@@ -18,13 +18,13 @@ import com.civica.grads.boardgames.enums.CounterType;
 		}
 
 
-		public CounterType getCounterType() {
-			return counterType;
+		public CounterType getType() {
+			return type;
 		}
 
 
-		public void setCounterType(CounterType counterType) {
-			this.counterType = counterType;
+		public void setType(CounterType type) {
+			this.type = type;
 		}
 		
 }

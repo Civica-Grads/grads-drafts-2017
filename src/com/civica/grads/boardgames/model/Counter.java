@@ -11,7 +11,6 @@ import com.civica.grads.boardgames.interfaces.Describable;
 
 public class Counter extends Piece implements Describable {
 	 
-	private CounterType type ; 
 	private final int key ; //Assign each counter a number (key) from 1 to (size-2)*size/2
 	
 	private static final AtomicInteger counterKeygen = new AtomicInteger();
@@ -55,6 +54,7 @@ public class Counter extends Piece implements Describable {
 	 * Returns enum counter type
 	 * @return NORMAL or KING
 	 */
+	@Override
 	public CounterType getType() {
 		return type;
 	}

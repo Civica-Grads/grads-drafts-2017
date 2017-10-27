@@ -69,19 +69,21 @@ public class AsciiBoardRenderer implements Renderer {
         
         //TODO: Finish adding counters
         private void fillBoardCounters(Board board) {
-        	
+        	board = AsciiBoardRendererTest.createIniitialBoard(); //TODO: Remove this, for testing only.
         	for (int i = 0; i < dimension -1; i++) {
         		for (int j = 0; j < dimension-1; j++) {
         			if (checkCounter(i, COUNTER_SPACING, 1) && checkCounter(j, COUNTER_SPACING, 1)) {
-        				Piece curPiece = board.getPiece(new Position(convertDimensionToSize(j, COUNTER_SPACING, -1),
-        						convertDimensionToSize(i, COUNTER_SPACING, -1)));
+        				
+        				Position piecePos = new Position(convertDimensionToSize(i, COUNTER_SPACING, -1),
+        						convertDimensionToSize(j, COUNTER_SPACING, -1));
+        				Piece curPiece = board.getPiece(piecePos);
         				if (curPiece == null) {
         					textBoard[i][j] = ' ';
         					continue;
         				} 
         				
         				Colour curColour = curPiece.getColour();
-        				CounterType curType = curPiece.getCounterType();
+        				CounterType curType = curPiece.getType();
         				
         				if (curColour.equals(Colour.WHITE) && curType.equals(CounterType.NORMAL) ) {
         					textBoard[i][j] = UNICODE_COUNTER_WHITE;
@@ -164,8 +166,8 @@ public class AsciiBoardRenderer implements Renderer {
         TextBoardHolder holder = determineBoardDisplaySize(board.getSize());
         holder.fillBoardBorder();
         holder.fillBoardTiles();
-        holder.appendToOutput(board);
         holder.fillBoardCounters(board);
+        holder.appendToOutput(board);
     }
 
     protected AsciiBoardRenderer(PrintStream out) {
