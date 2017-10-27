@@ -6,6 +6,7 @@ package com.civica.grads.boardgames.model.draughts;
 import static org.junit.Assert.*;
 import static org.mockito.Mockito.mock;
 
+import org.junit.Ignore;
 import org.junit.Test;
 
 import com.civica.grads.boardgames.enums.Colour;
@@ -116,6 +117,7 @@ public class DraughtsGameTest extends BaseTestForGames {
 	
 	// FIXME: This needs to be checked! Use getRow(), getColumn() ? Check positions are correct.
 	@Test
+	@Ignore // TODO
 	public void isValidMovePerformed() {
 
 		fail("Broken Test");
